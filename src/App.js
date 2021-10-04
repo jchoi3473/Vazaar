@@ -1,10 +1,27 @@
 import logo from './logo.svg';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import WebFont from 'webfontloader';
+
 import './App.css';
-import MainPage from './pages/MainPage.js';
+import MainPage from './pages/main/MainPage.js';
+import SignUp from './pages/authenticate/SignUp';
+import SignIn from './pages/authenticate/SignIn';
+import ResetPassword from './pages/authenticate/ResetPassword';
 function App() {
   return (
     <div className="App">
-      <MainPage/>
+      <BrowserRouter>
+          <Switch>
+            <Route path = "/sign-in" component = {SignIn}/>
+            <Route path = "/sign-up" component = {SignUp}/>
+            <Route path = "/main" component = {MainPage}/>
+            <Route path = "/forgot-password" component = {ResetPassword}/>
+            <Route path="/">
+              <Redirect to="/main" />
+            </Route>
+
+          </Switch>
+        </BrowserRouter>
     </div>
   );
 }

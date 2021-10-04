@@ -2,3 +2,28 @@
   text-align: center;
   height: 100vh;
 }
+
+.Vazaar-poppins{
+  display: inline-block;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.Vazaar-Poiret{
+  font-family: Poiret One;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.Vazaar-Roboto-normal{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.Vazaar-Roboto-bold{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+}
