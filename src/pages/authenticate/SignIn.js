@@ -8,6 +8,10 @@ import { alpha, styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import TextField from '@mui/material/TextField';
 import BlueButton from '../../components/button/BlueButton';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
 
 //Custom Material UI input
 const FormInput = styled(InputBase)(({ theme }) => ({
@@ -42,6 +46,10 @@ const FormInput = styled(InputBase)(({ theme }) => ({
 
 function SignIn(props) {
     const [state, setState] = useState('Alabama');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+
     const onClickSignUp = () =>{
         props.history.push('sign-up')
     }
@@ -51,7 +59,17 @@ function SignIn(props) {
     const onClickLogo = () =>{
         props.history.push('main')
     }
-
+    const onChangeEmail = (e) =>{
+        setEmail(e.target.value);
+    }
+    const onChangePassword = (e) =>{
+        setPassword(e.target.value);
+    }
+    const handleClickShowPassword = () => {
+        
+        setShowPassword(!showPassword)
+      };
+    
   return (
     <div 
     style = 
@@ -83,7 +101,10 @@ function SignIn(props) {
                         <div className = "Vazaar-SignUp-Form-SecondTitle">
                             EMAIL
                         </div>
-                        <FormInput placeholder = "Enter Email" />
+                        <FormInput placeholder = "Enter Email" value = {email} onChange={e => onChangeEmail(e)}/>
+                        {
+                            console.log(email)
+                        }
                     </div>
                     <div className = "Vazaar-SignUp-Form-SubContainer">
                         <div style = {{"display":"flex", "justify-content":"space-between"}}>
@@ -94,7 +115,18 @@ function SignIn(props) {
                                 Forgot Password?
                             </div>
                         </div>
-                        <FormInput placeholder = "Enter Password" />
+                        <FormInput placeholder = "Enter Password" value = {password} onChange={e => onChangePassword(e)}
+                         endAdornment={
+                            <InputAdornment position="end">
+                              <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={handleClickShowPassword}
+                                edge="end"
+                              >
+                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                              </IconButton>
+                            </InputAdornment>
+                          }/>
                     </div>
                     
                 </div>
