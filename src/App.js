@@ -8,6 +8,7 @@ import SignUp from './pages/authenticate/SignUp';
 import SignIn from './pages/authenticate/SignIn';
 import ResetPassword from './pages/authenticate/ResetPassword';
 import Dashboard from './pages/dashboard/Dashboard'
+import SellerPage from './pages/seller_page/SellerPage'
 function App() {
   return (
     <div className="App">
@@ -18,6 +19,7 @@ function App() {
             <Route path = "/main" component = {MainPage}/>
             <Route path = "/forgot-password" component = {ResetPassword}/>
             <Route path = "/dashboard" component = {Dashboard}/>
+            <Route path = "/sell" component = {SellerPage}/>
 
             <Route path="/">
               <Redirect to="/main" />
