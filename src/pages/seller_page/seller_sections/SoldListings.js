@@ -3,7 +3,7 @@ import Post from './../../../components/post/Post'
 
 function SoldListings(props){
     return(
-        <div style = {{padding : "45px"}}>
+        <div>
             <Post/>
         </div>
     );

@@ -1,6 +1,11 @@
 .App {
+  margin: 0 auto;
   text-align: center;
   height: 100vh;
+  min-width: 1200px;
+  max-width: 1920px;
+  max-height: 1080px !important;
+  /* overflow-y: scroll; */
 }
 
 .Vazaar-poppins{

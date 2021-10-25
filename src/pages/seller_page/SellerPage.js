@@ -13,6 +13,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 
 import SoldListings from './seller_sections/SoldListings'
+import SellItem from './seller_sections/SellItem';
 function SellerPage(props) {
     const [selectedIndex, setSelectedIndex] = React.useState(1);
     let { path, url } = useRouteMatch();
@@ -32,7 +33,7 @@ function SellerPage(props) {
             {/* <ListItemIcon>
                 <InboxIcon />
             </ListItemIcon> */}
-            <ListItemText className = {selectedIndex==0?"Vazaar-List-White":"Vazaar-List-Black"} primary="All Listings" />
+            <ListItemText className = {selectedIndex==0?"Vazaar-List-White":"Vazaar-List-Black"} primary="Sell Item" />
             </ListItemButton>
             <ListItemButton
             selected={selectedIndex === 1}
@@ -59,14 +60,14 @@ function SellerPage(props) {
                     </div>
             }
             main = {
-                <>
+                <div className = "Vazaar-Seller-Section-Container">
                     {
                     {  
-                        0: <div></div>,
+                        0: <SellItem/>,
                         1: <SoldListings/>,
                     }[selectedIndex]
                     }
-                </>
+                </div>
             }
             
             />
