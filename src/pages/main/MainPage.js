@@ -13,6 +13,9 @@ function MainPage(props) {
     const onClickLogo = () =>{
         props.history.push('main')
     }
+    const onClickSell = () =>{
+        props.history.push('sell')
+    }
 
   return (
     <div 
@@ -39,21 +42,21 @@ function MainPage(props) {
             </div>
             <div className = "Vazaar-Main-Body">
                 <div className = "Vazaar-Main-Body-Title">
-                Turn your apartment into a home
+                Buy and sell furniture from and to your college peers! 
                 </div>
                 <div style = {{"marginTop":"32px"}}>
                     <div className = "Vazaar-Main-Body-SecondTitle">
-                    Purchase/Sell your furnitures from/to your peers at Emory! 
+                    We’ll provide everything you need to buy and sell, and send notifications of 
                     </div>
                     <div className = "Vazaar-Main-Body-SecondTitle">
-                    We’ll provide everything you need to buy and sell, and send notifications of matched buyer/seller if you want.
+                    matched buyer/seller if you want.
                     </div>
                 </div>
                 <div className = "Vazaar-Main-Body-Button-Container">
                     <button className = "Vazaar-Main-Body-Button Vazaar-Buy-Button">
                         Start Buying
                     </button>
-                    <button className = "Vazaar-Main-Body-Button Vazaar-Sell-Button">
+                    <button className = "Vazaar-Main-Body-Button Vazaar-Sell-Button" onClick = {onClickSell}>
                         Start Selling
                     </button>
                 </div>

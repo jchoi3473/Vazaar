@@ -1,0 +1,34 @@
+.Vazaar-Profile-Container{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    // position: absolute;
+    margin-right: 23px;
+}
+.Vazaar-Profile-Name{
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+}
+.Vazaar-Profile-Section-Container{
+    background-color: white !important;
+    // min-width: 90%;
+    // min-height: 90%;
+    width: 90%;
+    height: 90%;
+    max-width: 2000px !important;
+    max-height: 1500px !important;
+    margin: 0 auto;
+    display: flex;
+    // flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.Vazaar-Avatar{
+    width: 120px !important;
+    height: 120px !important;
+    font-size: 48px !important;
+}
