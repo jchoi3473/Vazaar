@@ -1,0 +1,26 @@
+[
+  {
+    "_id": 0,
+    "type": "Sofa"
+  },
+  {
+    "_id": 1,
+    "type": "Bed Frame"
+  },
+  {
+    "_id": 2,
+    "type": "Chair"
+  },
+  {
+    "_id": 3,
+    "type": "Mattress"
+  },
+  {
+    "_id": 4,
+    "type": "Desk/Table"
+  },
+  {
+    "_id": 5,
+    "type": "Other"
+  }
+]

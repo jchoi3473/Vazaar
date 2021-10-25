@@ -7,6 +7,10 @@ const itemSchema = new mongoose.Schema({
     required: [true, 'Please provide item name'],
     trim: true,
   },
+  categoryid: {
+    type: Number,
+    required: [true, 'Please provide item category'],
+  },
   purchasedYear: {
     type: Number,
     required: [true, 'Please provide item purchased year'],
