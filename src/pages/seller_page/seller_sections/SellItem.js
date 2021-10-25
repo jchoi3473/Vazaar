@@ -221,7 +221,7 @@ function SellItem(props){
                         // onChange={(e) => onChangeName(e)}
                     />
                 </div>
-                    <div style = {{textAlign:"right"}}>
+                    <div style = {{textAlign:"right", paddingTop: "40%"}}>
                     <BlueButton text="Add Listing" width="150px" height="47px" />
                     </div>
             </div>

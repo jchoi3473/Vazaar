@@ -9,9 +9,8 @@ import './SellerPage.scss'
 import Dashboard from '../dashboard/Dashboard';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-
+import ProfileButton from '../profile/ProfileButton';
 import SoldListings from './seller_sections/SoldListings'
 import SellItem from './seller_sections/SellItem';
 function SellerPage(props) {
@@ -23,6 +22,10 @@ function SellerPage(props) {
     };
     return(
     <Dashboard 
+        profile = {
+            <ProfileButton/>
+        }
+
         left = {
         <div>
         <List component="nav" aria-label="main mailbox folders">

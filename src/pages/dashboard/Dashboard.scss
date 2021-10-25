@@ -1,5 +1,6 @@
 .Vazaar-Dashboard-Container{
     width: 100%;
+    min-height: 700px;
     height: 100vh;
     background: #F3F7F9;
     display: flex;
@@ -47,12 +48,4 @@
     border: 1px rgba(126, 159, 182, 1)    solid;
     margin-top: 23px;
     margin-left: 38px;
-}
-.Vazaar-Profile-Container{
-    
-    display: flex;
-    align-items: center;
-    height: 100%;
-    // position: absolute;
-    margin-right: 23px;
 }
