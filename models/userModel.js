@@ -69,6 +69,13 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
+// I think this code is old, I don't see in get all user request when active is set to false
+// userSchema.pre(/^find/, function (next) {
+//   // this points to the current query
+//   this.find({ active: true });
+//   next();
+// });
+
 userSchema.pre('save', function (next) {
   if (!this.isModified('password') || this.isNew) return next();
 
