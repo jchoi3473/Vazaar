@@ -10,6 +10,8 @@ import ResetPassword from './pages/authenticate/ResetPassword';
 import Dashboard from './pages/dashboard/Dashboard'
 import SellerPage from './pages/seller_page/SellerPage'
 import Profile from './pages/profile/Profile';
+import SellerFAQ from './pages/seller_page/seller_sections/SellerFAQ';
+
 function App() {
   return (
     <div className="App">
@@ -22,6 +24,7 @@ function App() {
             <Route path = "/dashboard" component = {Dashboard}/>
             <Route path = "/sell" component = {SellerPage}/>
             <Route path = "/profile" component = {Profile}/>
+            <Route path = "/sellerFAQ" component = {SellerFAQ}/>
 
             <Route path="/">
               <Redirect to="/main" />

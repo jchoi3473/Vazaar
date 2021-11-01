@@ -183,7 +183,7 @@ function SellItem(props){
                     </div>
                     <div style = {{display: "flex", justifyContent:"space-between"}}>
                     <div style = {{display : "inline-block", width: "45%"}}>
-                        <div className="Vazaar-SellItem-Form-SecondTitle">DIMENSTION</div>
+                        <div className="Vazaar-SellItem-Form-SecondTitle">DIMENSION</div>
                         <FormInput
                             placeholder="Enter Dimension"
                             // value={name}
