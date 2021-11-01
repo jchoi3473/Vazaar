@@ -46,11 +46,53 @@ export const signIn = async function (email, password) {
   //need to do something so that we can validate user(correctness)
 
   console.log(response.data);
-  if (response.token) {
-    localStorage.setItem("jwt-token", response.token);
-    localStorage.setItem("user", JSON.stringify(response.data));
+  if (response.data.token) {
+    localStorage.setItem("jwt-token", response.data.token);
+    localStorage.setItem("user", JSON.stringify(response.data.data));
     console.log(response.data);
-    return response.data;
+    return response.data.status;
     // props.history.push('/main');
   }
+};
+
+export const addListing = async function (
+  title,
+  year,
+  condition,
+  color,
+  delivery,
+  dimension,
+  description,
+  price,
+  imagesList
+) {
+  var bodyFormData = new FormData();
+  bodyFormData.append("name", title);
+  bodyFormData.append("purchasedYear", year);
+  bodyFormData.append("condition", condition);
+  bodyFormData.append("color", color);
+  bodyFormData.append("delivery", delivery === "yes" ? true : false);
+  bodyFormData.append("dimension", dimension);
+  bodyFormData.append("description", description);
+  bodyFormData.append("price", price);
+
+  bodyFormData.append("imageCover", imagesList[0].file);
+
+  for (var i = 1; i < imagesList.length; i++) {
+    bodyFormData.append("images", imagesList[i].file);
+  }
+  const response = await axios({
+    method: "post",
+    url: "http://127.0.0.1:5000/api/v1/items",
+    data: bodyFormData,
+    headers: { "Content-Type": "multipart/form-data" },
+  })
+    .then(function (response) {
+      //handle success
+      console.log(response);
+    })
+    .catch(function (response) {
+      //handle error
+      console.log(response);
+    });
 };

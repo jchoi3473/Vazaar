@@ -71,6 +71,10 @@ function SignIn(props) {
   const onClickSignIn = async (e) => {
     console.log("Trigger Signup");
     const userData = await signIn(email, password);
+    if (userData === "success") {
+      props.history.push("main");
+    }
+
     console.log(userData);
   };
   return (
