@@ -9,6 +9,7 @@ import SignIn from './pages/authenticate/SignIn';
 import ResetPassword from './pages/authenticate/ResetPassword';
 import Dashboard from './pages/dashboard/Dashboard'
 import SellerPage from './pages/seller_page/SellerPage'
+import BuyerPage from './pages/buyer_page/BuyerPage'
 import Profile from './pages/profile/Profile';
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path = "/forgot-password" component = {ResetPassword}/>
             <Route path = "/dashboard" component = {Dashboard}/>
             <Route path = "/sell" component = {SellerPage}/>
+            <Route path = "/buy" component = {BuyerPage}/>
             <Route path = "/profile" component = {Profile}/>
 
             <Route path="/">
