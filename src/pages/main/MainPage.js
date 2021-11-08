@@ -16,7 +16,9 @@ function MainPage(props) {
     const onClickSell = () =>{
         props.history.push('sell')
     }
-
+    const onClickBuy = () =>{
+        props.history.push('buy')
+    }
   return (
     <div 
     style = 
@@ -53,7 +55,7 @@ function MainPage(props) {
                     </div>
                 </div>
                 <div className = "Vazaar-Main-Body-Button-Container">
-                    <button className = "Vazaar-Main-Body-Button Vazaar-Buy-Button">
+                    <button className = "Vazaar-Main-Body-Button Vazaar-Buy-Button" onClick = {onClickBuy}>
                         Start Buying
                     </button>
                     <button className = "Vazaar-Main-Body-Button Vazaar-Sell-Button" onClick = {onClickSell}>
