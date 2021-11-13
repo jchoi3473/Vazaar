@@ -14,6 +14,8 @@ import ProfileButton from '../profile/ProfileButton';
 import SoldListings from './buyer_sections/SoldListings'
 import SellItem from './buyer_sections/SellItem';
 import HomePage from './buyer_sections/HomePage'
+import FAQ from '../FAQ/FAQ'
+
 function BuyerPage(props) {
     const [selectedIndex, setSelectedIndex] = React.useState(0);
     let { path, url } = useRouteMatch();
@@ -81,6 +83,7 @@ function BuyerPage(props) {
                     {  
                         0: <HomePage/>,
                         1: <SoldListings/>,
+                        5: <FAQ/>,
                     }[selectedIndex]
                     }
                 </div>

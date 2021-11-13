@@ -11,6 +11,7 @@ import Dashboard from './pages/dashboard/Dashboard'
 import SellerPage from './pages/seller_page/SellerPage'
 import BuyerPage from './pages/buyer_page/BuyerPage'
 import Profile from './pages/profile/Profile';
+
 function App() {
   return (
     <div className="App">
