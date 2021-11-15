@@ -10,7 +10,7 @@ import ResetPassword from './pages/authenticate/ResetPassword';
 import Dashboard from './pages/dashboard/Dashboard'
 import SellerPage from './pages/seller_page/SellerPage'
 import BuyerPage from './pages/buyer_page/BuyerPage'
-import Profile from './pages/profile/Profile';
+import Profile from './pages/profile/ProfilePage';
 
 function App() {
   return (

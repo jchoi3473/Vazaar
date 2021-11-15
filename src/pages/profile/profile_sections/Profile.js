@@ -1,19 +1,18 @@
 import React, {useState} from 'react';
-import Dashboard from '../dashboard/Dashboard';
 import './Profile.scss'
 import Avatar from '@mui/material/Avatar';
-import ProfileButton from './ProfileButton';
+import ProfileButton from '../ProfileButton';
 import { alpha, styled } from "@mui/material/styles";
 
 import InputBase from "@mui/material/InputBase";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
-import BlueButton from '../../components/button/BlueButton';
+import BlueButton from '../../../components/button/BlueButton';
 
-import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
 
 const FormInput = styled(InputBase)(({ theme }) => ({
     "label + &": {
@@ -122,7 +121,8 @@ function Profile(props) {
     const [city, setCity] = useState("");
     const [zipcode, setZipcode] = useState("");
     const [password, setPassword] = useState("");
-  
+    const [showPassword, setShowPassword] = useState(false);
+
     const onChangeName = (e) => {
       setName(e.target.value);
     };
@@ -141,7 +141,9 @@ function Profile(props) {
     const onChangePassword = (e) => {
       setPassword(e.target.value);
     };
-  
+    const handleClickShowPassword = () => {
+      setShowPassword(!showPassword);
+    };  
     const handleStateChange = (event) => {
       setState(event.target.value);
     };
@@ -166,163 +168,141 @@ function Profile(props) {
       );
     };
     return(
-        <Dashboard
-        profile = {
-            <ProfileButton/>
-        }
-        left = {
-            <div>
-                <List component="nav" aria-label="main mailbox folders">
-                    <ListItemButton
-                    selected={selectedIndex === 0}
-                    onClick={(event) => handleListItemClick(event, 0)}
-                    >
-                    <ListItemText className = {selectedIndex==0?"Vazaar-List-White":"Vazaar-List-Black"} primary="Profile" />
-                    </ListItemButton>
-                    <ListItemButton
-                    selected={selectedIndex === 1}
-                    onClick={(event) => handleListItemClick(event, 1)}
-                    >
-                    {/* <ListItemIcon>
-                        <DraftsIcon />
-                    </ListItemIcon> */}
-                    <ListItemText className = {selectedIndex==1?"Vazaar-List-White":"Vazaar-List-Black"} primary="My Favorite" />
-                    </ListItemButton>
-                    <ListItemButton
-                    selected={selectedIndex === 2}
-                    onClick={(event) => handleListItemClick(event, 2)}
-                    >
-                    {/* <ListItemIcon>
-                        <DraftsIcon />
-                    </ListItemIcon> */}
-                    <ListItemText className = {selectedIndex==2?"Vazaar-List-White":"Vazaar-List-Black"} primary="Recently Viewed" />
-                    </ListItemButton>
-                </List>
-            </div>
-        }
-        main = {
-          <div className = "Vazaar-Profile-Section-Container">
-                  <div style = {{display:"flex", flexDirection:"row", alignItems:"center", justifyContent:"center"}}>
-                      <Avatar className = "Vazaar-Avatar" {...stringAvatar('Jae Ho Choi')} />
-                      <div className = "Vazaar-Profile-Name" style = {{fontSize:"20px", marginTop:"15px"}}>
-                          Jae Ho Choi
-                      </div>
-                  </div>
+          <div className = "Vazaar-Profile-Section-Container" style = {{paddingTop:"30px", paddingLeft: "60px"}}>
+            
+            <div className = "Vazaar-Profile-NonButtons-Container">
+
+              <div className = "Vazaar-Profile-NameInfo-Left-Container">
+
+                <Avatar className = "Vazaar-Avatar" {...stringAvatar('Jae Ho Choi')} />
+                <div className = "Vazaar-Profile-Name" style = {{fontSize:"20px", marginTop:"-70px"}}>
+                    Jae Ho Choi
+                </div> 
+
+                <div style = {{marginBottom: "50px" }}></div>
+
+                <div className="Vazaar-Profile-Form-SubContainer">
+                  <div className="Vazaar-Profile-Form-SecondTitle"> NAME</div>
+                    <FormInput
+                      placeholder="Jae Ho Choi" //replace with REAL USER information
+                      value={name}
+                      onChange={(e) => onChangeName(e)}
+                    />
+
+                <div className="Vazaar-Profile-Form-SubContainer">
+                  <div className="Vazaar-Profile-Form-SecondTitle">EMAIL</div>
+                    <FormInput
+                      placeholder="cdooley@emory.edu" //replace with REAL USER information
+                      value={email}
+                      onChange={(e) => onChangeEmail(e)}
+                    />
+
+                <div className="Vazaar-Profile-Form-SubContainer">
+                  <div className="Vazaar-Profile-Form-SecondTitle">PASSWORD</div>
+                    <FormInput
+                      placeholder="Modify Password"
+                      value={password}
+                      onChange={(e) => onChangePassword(e)}
+                      endAdornment={
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            edge="end"
+                          >
+                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                          </IconButton>
+                        </InputAdornment>
+                      }
+                    />
+
+                </div>
+                </div>
+                </div>
                 
-          {/* <div
-            className="Vazaar-Profile-Button-Container"
-          >
-            <div onClick={(e) => onClickModifyProfile()}>
-              <BlueButton text="Save" width="150px" height="47px" />
-            </div>
-
-            <div style = {{paddingTop: "10px" }}></div>
-
-            <div onClick={(e) => onClickCancel()}>
-              <BlueButton text="Cancel" width="150px" height="47px" />
-            </div>
-            </div> */}
+              </div> 
 
 
+            <div className="Vazaar-Profile-AddressInfo-Right-Container" style = {{paddingTop:"30px"}}>
 
-              <div style = {{width: "50%", height:"60%", display: "flex", justifyContent:"space-evenly", flexDirection:"column"}}>
-                  <div>
-            <div className="Vazaar-Profile-Form-Container">
+
               <div className="Vazaar-Profile-Form-SubContainer">
-                <div className="Vazaar-Profile-Form-SecondTitle">NAME</div>
+                <div className="Vazaar-Profile-Form-SecondTitle">ADDRESS</div>
+                  <FormInput
+                    placeholder="201 Dowman Dr." //replace with REAL USER information
+                    value={address}
+                    onChange={(e) => onChangeAddress(e)}
+                  />
+
+              <div className="Vazaar-Profile-Form-SubContainer">
+                <div className="Vazaar-Profile-Form-SecondTitle">CITY</div>
                 <FormInput
-                  placeholder="Jae Ho Choi" //replace with REAL USER information
-                  value={name}
-                  onChange={(e) => onChangeName(e)}
+                  placeholder="Atlanta" //replace with REAL USER information
+                  value={city}
+                  onChange={(e) => onChangeCity(e)}
                 />
-              </div>
+
               <div className="Vazaar-Profile-Form-SubContainer">
-              <div className="Vazaar-Profile-Form-SecondTitle">EMAIL</div>
-              <FormInput
-                placeholder="cdooley@emory.edu" //replace with REAL USER information
-                value={email}
-                onChange={(e) => onChangeEmail(e)}
-              />
-            <div className="Vazaar-Profile-Form-SubContainer">
-              <div className="Vazaar-Profile-Form-SecondTitle">PASSWORD</div>
-              <FormInput
-                placeholder="Modify Password"
-                value={password}
-                onChange={(e) => onChangePassword(e)}
-              />
-            </div>
-            <div className="Vazaar-Profile-Form-SubContainer">
-              <div className="Vazaar-Profile-Form-SecondTitle">ADDRESS</div>
-              <FormInput
-                placeholder="201 Dowman Dr." //replace with REAL USER information
-                value={address}
-                onChange={(e) => onChangeAddress(e)}
-              />
-            </div>
-            <div className="Vazaar-Profile-Form-SubContainer">
-              <div className="Vazaar-Profile-Form-SecondTitle">CITY</div>
-              <FormInput
-                placeholder="Atlanta" //replace with REAL USER information
-                value={city}
-                onChange={(e) => onChangeCity(e)}
-              />
-            </div>
-            </div>
-            <div className="Vazaar-Profile-Form-SubContainer">
-              <div className="Vazaar-Profile-Form-SecondTitle">STATE</div>
-              <FormTextField
-                style={{
-                  textAlign: "left",
-                }}
-                value={state}
-                placeholder="Georgia" //replace with REAL USER information
-                select
-                onChange={handleStateChange}
-                rows={5}
-                SelectProps={{
-                  MenuProps: { PaperProps: { sx: { maxHeight: 250 } } },
-                }}
-              >
-                {states.map((option) => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.value}
-                  </MenuItem>
-                ))}
-              </FormTextField>
-            </div>
-            <div className="Vazaar-Profile-Form-SubContainer">
-              <div className="Vazaar-Profile-Form-SecondTitle">ZIP Code</div>
-              <FormInput
-                placeholder="30322" //replace with REAL USER information
-                value={zipcode}
-                onChange={(e) => onChangeZipcode(e)}
-              />
-            </div>
-          </div>
+                <div className="Vazaar-Profile-Form-SecondTitle">STATE</div>
+                  <FormTextField
+                    style={{
+                      textAlign: "left",
+                    }}
+                    value={state}
+                    placeholder="Georgia" //replace with REAL USER information
+                    select
+                    onChange={handleStateChange}
+                    rows={5}
+                    SelectProps={{
+                      MenuProps: { PaperProps: { sx: { maxHeight: 250 } } },
+                    }}
+                  >
+                    {states.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.value}
+                      </MenuItem>
+                    ))}
+                  </FormTextField>
+
+              <div className="Vazaar-Profile-Form-SubContainer">
+                <div className="Vazaar-Profile-Form-SecondTitle">ZIP CODE</div>
+                  <FormInput
+                    placeholder="30322" //replace with REAL USER information
+                    value={zipcode}
+                    onChange={(e) => onChangeZipcode(e)}
+                  />
+
+              </div>
+              </div>
+              </div>
+              </div>
+            
+            </div> 
 
           </div>
 
-          <div style = {{paddingTop: "20px" }}></div>
 
-          <div
-            className="Vazaar-Profile-Button-Container"
-            style = {{display:"flex", flexDirection:"row", paddingLeft: "0px"}}
-          >
-            <div onClick={(e) => onClickModifyProfile()}>
-              <BlueButton text="Save" width="150px" height="47px" />
+          <div className = "Vazaar-Profile-Buttons-Container">
+
+            <div className="Vazaar-Profile-Buttons-SubContainer" style = {{paddingTop:"15px", paddingLeft: "150px"}}>
+
+
+              <div style = {{paddingTop: "20px" }}></div>
+
+              <div onClick={(e) => onClickModifyProfile()}>
+                <BlueButton text="Save" width="150px" height="47px" />
               </div>
 
               <div style = {{paddingRight: "20px" }}></div>
 
-            <div onClick={(e) => onClickCancel()}>
-              <BlueButton text="Cancel" width="150px" height="47px" />
-                        
+              <div onClick={(e) => onClickCancel()}>
+                <BlueButton text="Cancel" width="150px" height="47px" />            
               </div>
-              </div>
-              </div>
+
+
             </div>              
-          }
-        />
+          </div>
+        </div>
     );
 }
 

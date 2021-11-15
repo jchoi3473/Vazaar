@@ -1,14 +1,5 @@
 import React, { useState } from "react";
 import './FAQ.scss';
-import { alpha, styled } from "@mui/material/styles";
-
-import InputBase from "@mui/material/InputBase";
-import TextField from "@mui/material/TextField";
-import MenuItem from "@mui/material/MenuItem";
-
-import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
 
 function FAQ(props){
     return(
