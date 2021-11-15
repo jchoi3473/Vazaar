@@ -65,7 +65,7 @@ function Item(props){
                         Date Posted: 
                         </div>
                         <div className = "Vazaar-Item-Description-body">
-                            {Moment(props.item.name).format('MM/DD/YYYY')}
+                            {Moment(props.item.createdAt).format('MM/DD/YYYY')}
                         </div>
                     </div>
                     <div style = {{display:'flex'}}>

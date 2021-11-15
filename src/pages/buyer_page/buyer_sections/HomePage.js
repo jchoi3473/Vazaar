@@ -1,33 +1,38 @@
 import React from "react";
+import './HomePage.scss'
 function HomePage(props){
     return(
-        <div>
-            <div>
-                    Home Page
+        <div style = {{height: '100%'}}>
+            <div className = "Vazaar-Buyer-Header" style = {{textAlign : "left"}}>
+                Home Page
             </div>
-            <div>
-                <div>
-                    Recently Viewed Items
-                </div>
-                <div>
-                </div>
-            </div>
+            <div style = {{height: '40%', width:'100%', margin: '0 auto'}}>
 
-            <div>
-                <div>
-                    <div>
+                <div className = "Vazaar-Buyer-Recently-Viewed-Container">
+                    <div className = "Vazaar-Buyer-Second-Header" style = {{textAlign : "left"}}>
+                        Recently Viewed Items
+                    </div>
+                </div>
+            </div>
+            <div style = {{height: '45%', display: 'flex', width:'100%', justifyContent:'space-between'}}>
+                <div style = {{width: '45%'}}>
+                <div className = "Vazaar-Buyer-Header" style = {{textAlign : "left"}}>
                         Ready to contact the seller?
                     </div>
-                    <div>
-
+                    <div className = "Vazaar-Buyer-Recently-Viewed-Container">
+                        <div className = "Vazaar-Buyer-Second-Header" style = {{textAlign : "left"}}>
+                            Your Saved Listings
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <div>
-                        Ready to contact the seller?
+                <div style = {{width: '45%'}}>
+                <div className = "Vazaar-Buyer-Header" style = {{textAlign : "left"}}>
+                        Listings Near You
                     </div>
-                    <div>
-                        
+                    <div className = "Vazaar-Buyer-Recently-Viewed-Container">
+                        <div className = "Vazaar-Buyer-Second-Header" style = {{textAlign : "left"}}>
+                            Near Your Location
+                        </div>
                     </div>
                 </div>
             </div>
