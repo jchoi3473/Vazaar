@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Dashboard from '../dashboard/Dashboard';
-import './Profile.scss'
+import './ProfilePage.scss'
 import Avatar from '@mui/material/Avatar';
 import {withRouter} from "react-router-dom"
 
