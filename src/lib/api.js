@@ -75,15 +75,14 @@ export const addListing = async function (
   bodyFormData.append("dimension", dimension);
   bodyFormData.append("description", description);
   bodyFormData.append("price", price);
-
   bodyFormData.append("imageCover", imagesList[0].file);
 
-  for (var i = 1; i < imagesList.length; i++) {
+  for (var i = i; i < imagesList.length; i++) {
     bodyFormData.append("images", imagesList[i].file);
   }
   const response = await axios({
     method: "post",
-    url: "http://127.0.0.1:5000/api/v1/items",
+    url: "https://vazaar.herokuapp.com/api/v1/items",
     data: bodyFormData,
     headers: { "Content-Type": "multipart/form-data" },
   })
