@@ -11,7 +11,7 @@ import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import ProfileButton from '../profile/ProfileButton';
-import SoldListings from './buyer_sections/SoldListings'
+import BrowseAllListings from './buyer_sections/BrowseAllListings'
 import SellItem from './buyer_sections/SellItem';
 import HomePage from './buyer_sections/HomePage'
 import FAQ from '../FAQ/FAQ'
@@ -82,8 +82,8 @@ function BuyerPage(props) {
                     {
                     {  
                         0: <HomePage/>,
-                        1: <SoldListings/>,
-                        5: <FAQ/>,
+                        1: <BrowseAllListings/>,
+                        5: <FAQ/>
                     }[selectedIndex]
                     }
                 </div>

@@ -11,6 +11,8 @@ import Dashboard from './pages/dashboard/Dashboard'
 import SellerPage from './pages/seller_page/SellerPage'
 import BuyerPage from './pages/buyer_page/BuyerPage'
 import Profile from './pages/profile/ProfilePage';
+import Item from './pages/item/Item'
+
 
 function App() {
   return (
@@ -25,6 +27,7 @@ function App() {
             <Route path = "/sell" component = {SellerPage}/>
             <Route path = "/buy" component = {BuyerPage}/>
             <Route path = "/profile" component = {Profile}/>
+            <Route path = "/item" component = {Item}/>
 
             <Route path="/">
               <Redirect to="/main" />
