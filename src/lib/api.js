@@ -96,3 +96,18 @@ export const addListing = async function (
       console.log(response);
     });
 };
+
+
+export const getAllListings = async function () {
+
+  //need to do something so that we can validate user(correctness)
+  try {
+    const response = await axios.get(
+      "https://vazaar.herokuapp.com/api/v1/items"
+    );
+      return response.status === 200 ? response.data.data : "error";
+  } catch (error) {
+      return error
+  } 
+};
+
