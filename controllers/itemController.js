@@ -3,7 +3,23 @@ const APIFeatures = require('./../utils/apiFeatures');
 
 exports.getAllItems = async (req, res) => {
   try {
-    const items = await Item.find();
+    // sorting
+    var sort = {};
+    if (parseInt(req.query.price)) {
+      sort.price = parseInt(req.query.price);
+    }
+    if (parseInt(req.query.createdAt)) {
+      sort.createdAt = parseInt(req.query.createdAt);
+    }
+    // matching
+    var match = {};
+    if (parseInt(req.query.purchasedYear)) {
+      match.purchasedYear = parseInt(req.query.purchasedYear);
+    }
+    if (req.query.condition) {
+      match.condition = req.query.condition;
+    }
+    const items = await Item.find(match).sort(sort);
 
     // SEND RESPONSE
     res.status(200).json({

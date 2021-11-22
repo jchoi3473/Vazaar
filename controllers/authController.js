@@ -2,12 +2,14 @@ const crypto = require('crypto');
 const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
 const User = require('./../models/userModel');
+const Token = require('./../models/tokenModel');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
 const sendEmail = require('./../utils/email');
 
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
+    //synchronous method
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
 };
@@ -40,6 +42,33 @@ exports.signup = catchAsync(async (req, res, next) => {
   const newUser = await User.create(req.body);
 
   createSendToken(newUser, 201, res);
+  let token = await new Token({
+    userId: newUser._id,
+    token: crypto.randomBytes(32).toString('hex'),
+  }).save();
+  const verifyURL = `${req.protocol}://${req.get('host')}/api/v1/users/verify/${
+    newUser._id
+  }/${token.token}`;
+  console.log(verifyURL);
+  const message = `Follow the link to verify your email: ${verifyURL}`;
+  try {
+    await sendEmail({
+      email: newUser.email,
+      subject: 'Verify Your Email By Clicking the Link',
+      message,
+    });
+
+    res.status(200).json({
+      status: 'success',
+      message: 'verification link sent to email!',
+    });
+  } catch (err) {
+    await newUser.save();
+    return next(
+      new AppError('There was an error sending the email. Try again later!'),
+      500
+    );
+  }
 });
 
 exports.login = catchAsync(async (req, res, next) => {
@@ -114,6 +143,26 @@ exports.restrictTo = (...roles) => {
     next();
   };
 };
+
+exports.verifyLink = catchAsync(async (req, res) => {
+  try {
+    const user = await User.findOne({ _id: req.params.id });
+    if (!user) return res.status(400).send('Invalid link');
+
+    const token = await Token.findOne({
+      userId: user._id,
+      token: req.params.token,
+    });
+    if (!token) return res.status(400).send('Invalid link');
+
+    await User.updateOne({ _id: user._id, verified: true });
+    await Token.findByIdAndRemove(token._id);
+
+    res.send('email verified sucessfully');
+  } catch (error) {
+    res.status(400).send('An error occured');
+  }
+});
 
 exports.forgotPassword = catchAsync(async (req, res, next) => {
   // 1) Get user based on POSTed email
