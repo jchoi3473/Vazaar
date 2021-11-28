@@ -155,7 +155,7 @@ exports.verifyLink = catchAsync(async (req, res) => {
     });
     if (!token) return res.status(400).send('Invalid link');
 
-    await User.updateOne({ _id: user._id, verified: true });
+    await user.updateOne({ verified: true });
     await Token.findByIdAndRemove(token._id);
 
     res.send('email verified sucessfully');
