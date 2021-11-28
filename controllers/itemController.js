@@ -5,20 +5,30 @@ exports.getAllItems = async (req, res) => {
   try {
     // sorting
     var sort = {};
+    var match = {};
+    // var pipeline = []; need to create aggregate pipeline later to make it easier to add
     if (parseInt(req.query.price)) {
       sort.price = parseInt(req.query.price);
+    } else {
+      if (parseInt(req.query.priceMin)) {
+        match = { price: { $gte: parseInt(req.query.priceMin) } };
+      }
+      if (parseInt(req.query.priceMax)) {
+        Object.assign(match.price, { $lte: parseInt(req.query.priceMax) });
+      }
     }
     if (parseInt(req.query.createdAt)) {
       sort.createdAt = parseInt(req.query.createdAt);
     }
     // matching
-    var match = {};
+
     if (parseInt(req.query.purchasedYear)) {
       match.purchasedYear = parseInt(req.query.purchasedYear);
     }
     if (req.query.condition) {
       match.condition = req.query.condition;
     }
+    console.log(sort);
     const items = await Item.find(match).sort(sort);
 
     // SEND RESPONSE

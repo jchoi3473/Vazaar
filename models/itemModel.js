@@ -8,7 +8,7 @@ const itemSchema = new mongoose.Schema({
     trim: true,
   },
   categoryid: {
-    type: Number,
+    type: String,
     required: [true, 'Please provide item category'],
   },
   purchasedYear: {
