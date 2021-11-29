@@ -1,10 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import './team.scss'
 import team_background from './../../assets/images/team_background.png'
-import team_icon from './../../assets/images/team_icon.png'
 
-import isaac_pic from './../../assets/images/team_pics/isaac.png'
 import {authenticateUser} from './../../lib/api'
+
+import sunny_pic from './../../assets/images/team_icon.png'
+import jaeho_pic from './../../assets/images/team_icon.png'
+import taeheon_pic from './../../assets/images/team_pics/taeheon.png'
+import isaac_pic from './../../assets/images/team_pics/isaac.png'
+import lis_pic from './../../assets/images/team_pics/lis.png'
+import taeyeon_pic from './../../assets/images/team_pics/taeyeon.png'
+import dheep_pic from './../../assets/images/team_pics/dheep.png'
 
 
 function Team(props) {
@@ -78,7 +84,7 @@ function Team(props) {
                     <div className = "Vazaar-Team-Profile-Row-Container">
 
                         <div className = "Vazaar-Team-Profile-Individual-Container">
-                            <img className="Vazaar-Team-Icon" src={team_icon}/>
+                            <img className="Vazaar-Team-Icon" src={sunny_pic}/>
                             <div className = "Vazaar-Team-Description-Container">
                                 <div className = "Vazaar-Team-Name-Text">Sunny Chung</div>
                                 <div class="Vazaar-Team-Description-Line-Of-Text">
@@ -93,7 +99,7 @@ function Team(props) {
                         </div>
 
                         <div className = "Vazaar-Team-Profile-Individual-Container">
-                            <img className="Vazaar-Team-Icon" src={team_icon}/>
+                            <img className="Vazaar-Team-Icon" src={jaeho_pic}/>
                             <div className = "Vazaar-Team-Description-Container">
                                 <div className = "Vazaar-Team-Name-Text">Jae Ho Choi</div>
                                 <div class="Vazaar-Team-Description-Line-Of-Text">
@@ -108,7 +114,7 @@ function Team(props) {
                         </div>
 
                         <div className = "Vazaar-Team-Profile-Individual-Container">
-                            <img className="Vazaar-Team-Icon" src={team_icon}/>
+                            <img className="Vazaar-Team-Icon" src={taeheon_pic}/>
                             <div className = "Vazaar-Team-Description-Container">
                                 <div className = "Vazaar-Team-Name-Text">Taeheon Kim</div>
                                 <div class="Vazaar-Team-Description-Line-Of-Text">
@@ -144,7 +150,7 @@ function Team(props) {
                     <div className = "Vazaar-Team-Profile-Row-Container">
 
                         <div className = "Vazaar-Team-Profile-Individual-Container">
-                            <img className="Vazaar-Team-Icon" src={team_icon}/>
+                            <img className="Vazaar-Team-Icon" src={taeyeon_pic}/>
                             <div className = "Vazaar-Team-Description-Container">
                                 <div className = "Vazaar-Team-Name-Text">Taeyeon Kim</div>
                                 <div class="Vazaar-Team-Description-Line-Of-Text">
@@ -153,13 +159,13 @@ function Team(props) {
                                 </div>
                                 <div class="Vazaar-Team-Description-Line-Of-Text">
                                     <span class="Vazaar-Team-Description-Bold">LinkedIn: </span> 
-                                    <span><a class="Vazaar-Team-Description-Link" style={{ textDecoration: 'none' }} href="https://google.com">Taeyeon Kim</a></span> 
+                                    <span><a class="Vazaar-Team-Description-Link" style={{ textDecoration: 'none' }} href="https://www.linkedin.com/in/tae-yeon-kim-8248521a2/">Taeyeon Kim</a></span> 
                                 </div>
                             </div> 
                         </div>
 
                         <div className = "Vazaar-Team-Profile-Individual-Container">
-                            <img className="Vazaar-Team-Icon" src={team_icon}/>
+                            <img className="Vazaar-Team-Icon" src={lis_pic}/>
                             <div className = "Vazaar-Team-Description-Container">
                                 <div className = "Vazaar-Team-Name-Text">Lis Dautaj</div>
                                 <div class="Vazaar-Team-Description-Line-Of-Text">
@@ -168,22 +174,22 @@ function Team(props) {
                                 </div>
                                 <div class="Vazaar-Team-Description-Line-Of-Text">
                                     <span class="Vazaar-Team-Description-Bold">LinkedIn: </span> 
-                                    <span><a class="Vazaar-Team-Description-Link" style={{ textDecoration: 'none' }} href="https://google.com">Lis Dautaj</a></span> 
+                                    <span><a class="Vazaar-Team-Description-Link" style={{ textDecoration: 'none' }} href="http://www.linkedin.com/in/lis-dautaj-3540b2197">Lis Dautaj</a></span> 
                                 </div>
                             </div> 
                         </div>
 
                         <div className = "Vazaar-Team-Profile-Individual-Container">
-                            <img className="Vazaar-Team-Icon" src={team_icon}/>
+                            <img className="Vazaar-Team-Icon" src={dheep_pic}/>
                             <div className = "Vazaar-Team-Description-Container">
                                 <div className = "Vazaar-Team-Name-Text">Dheep Dalamal</div>
                                 <div class="Vazaar-Team-Description-Line-Of-Text">
                                     <span class="Vazaar-Team-Description-Bold">Email: </span> 
-                                    <span class="Vazaar-Team-Description-Link">dheep.dalamal@emory.edu</span> 
+                                    <span class="Vazaar-Team-Description-Link">ddalama@emory.edu</span> 
                                 </div>
                                 <div class="Vazaar-Team-Description-Line-Of-Text">
                                     <span class="Vazaar-Team-Description-Bold">LinkedIn: </span> 
-                                    <span><a class="Vazaar-Team-Description-Link" style={{ textDecoration: 'none' }} href="https://google.com">Dheep Dalamal</a></span> 
+                                    <span><a class="Vazaar-Team-Description-Link" style={{ textDecoration: 'none' }} href="https://www.linkedin.com/in/dheep-dalamal-b1aa75153/">Dheep Dalamal</a></span> 
                                 </div>
                             </div> 
                         </div>   
