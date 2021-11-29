@@ -4,7 +4,7 @@ import team_background from './../../assets/images/team_background.png'
 
 import {authenticateUser} from './../../lib/api'
 
-import sunny_pic from './../../assets/images/team_icon.png'
+import sunny_pic from './../../assets/images/team_pics/sunny.png'
 import jaeho_pic from './../../assets/images/team_icon.png'
 import taeheon_pic from './../../assets/images/team_pics/taeheon.png'
 import isaac_pic from './../../assets/images/team_pics/isaac.png'
@@ -93,7 +93,7 @@ function Team(props) {
                                 </div>
                                 <div class="Vazaar-Team-Description-Line-Of-Text">
                                     <span class="Vazaar-Team-Description-Bold">LinkedIn: </span> 
-                                    <span><a class="Vazaar-Team-Description-Link" style={{ textDecoration: 'none' }} href="https://google.com">Sunny Chung</a></span> 
+                                    <span><a class="Vazaar-Team-Description-Link" style={{ textDecoration: 'none' }} href="https://www.linkedin.com/in/sunny-chung/">Sunny Chung</a></span> 
                                 </div>
                             </div> 
                         </div>
@@ -108,7 +108,7 @@ function Team(props) {
                                 </div>
                                 <div class="Vazaar-Team-Description-Line-Of-Text">
                                     <span class="Vazaar-Team-Description-Bold">LinkedIn: </span> 
-                                    <span><a class="Vazaar-Team-Description-Link" style={{ textDecoration: 'none' }} href="https://google.com">Jae Ho Choi</a></span> 
+                                    <span><a class="Vazaar-Team-Description-Link" style={{ textDecoration: 'none' }} href="https://www.linkedin.com/in/jae-ho-choi-3424a5125/">Jae Ho Choi</a></span> 
                                 </div>
                             </div> 
                         </div>
@@ -123,7 +123,7 @@ function Team(props) {
                                 </div>
                                 <div class="Vazaar-Team-Description-Line-Of-Text">
                                     <span class="Vazaar-Team-Description-Bold">LinkedIn: </span> 
-                                    <span><a class="Vazaar-Team-Description-Link" style={{ textDecoration: 'none' }} href="https://google.com">Taeheon Kim</a></span> 
+                                    <span><a class="Vazaar-Team-Description-Link" style={{ textDecoration: 'none' }} href="https://www.linkedin.com">Taeheon Kim</a></span> 
                                 </div>
                             </div> 
                         </div>
