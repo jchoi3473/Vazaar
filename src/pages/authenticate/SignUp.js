@@ -111,16 +111,23 @@ function SignUp(props) {
 
   const onClickSignUp = async () => {
     console.log("Trigger Signup");
-    await signUP(
+    const response = await signUP(
       name,
       email,
       address,
       city,
+      state, 
       zipcode,
       password,
       passwordConfirm
     );
+    console.log(response)
+    if(response.status ==="success"){
+      props.history.push("verify");
+    }
   };
+
+
   return (
     <div
       style={{
@@ -337,7 +344,7 @@ const states = [
     label: "FL",
   },
   {
-    value: "Georgia",
+    value: "georgia",
     label: "GA",
   },
   {

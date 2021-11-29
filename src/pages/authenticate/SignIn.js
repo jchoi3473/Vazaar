@@ -48,7 +48,7 @@ function SignIn(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-
+  const [wrongEntity, setWrongEntity] = useState(false);
   const onClickSignUp = () => {
     props.history.push("sign-up");
   };
@@ -73,9 +73,10 @@ function SignIn(props) {
     const userData = await signIn(email, password);
     if (userData === "success") {
       props.history.push("main");
+    }else{
+      console.log("Trigger Signup");
+      setWrongEntity(true)
     }
-
-    console.log(userData);
   };
   return (
     <div
@@ -123,6 +124,14 @@ function SignIn(props) {
             >
               Log in to your account to continue
             </div>
+            {
+              wrongEntity?
+              <div style = {{marginTop: '15px', height:'10px', color:'red', fontSize:'13px'}}>
+                Entered Incorrect Email or Password
+              </div>
+              :<div style = {{marginTop: '15px', height:'10px'}}>
+              </div>
+            }
           </div>
           <div className="Vazaar-SignIn-Form-Container">
             <div className="Vazaar-SignUp-Form-SubContainer">
