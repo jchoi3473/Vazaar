@@ -1,5 +1,5 @@
 
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
     useRouteMatch
   } from "react-router-dom";
@@ -27,6 +27,21 @@ import switch_page from './../../assets/images/switch.png'
 function BuyerPage(props) {
     const [selectedIndex, setSelectedIndex] = React.useState(0);
     let { path, url } = useRouteMatch();
+    const [userData, setUserData] = useState(); 
+    const [signedIn, setSignedIn] = useState(false); 
+
+    useEffect(() => {
+        if(localStorage.getItem('vazaar-jwt-token')){
+            //need to call authenticate API in future
+            setUserData(JSON.parse(localStorage.getItem('vazaar-user')).user)
+            setSignedIn(true)
+            console.log(JSON.parse(localStorage.getItem('vazaar-user')).user)
+        }else{
+            alert("Please Sign In to Start Buying!")
+            props.history.push('/')
+        }
+    },[])
+
 
     const handleListItemClick = (event, index) => {
       setSelectedIndex(index);

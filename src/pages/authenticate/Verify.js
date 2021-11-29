@@ -39,7 +39,7 @@ const FormInput = styled(InputBase)(({ theme }) => ({
     },
   }));
 
-function ResetPassword(props) {
+function Verify(props) {
     const [email, setEmail] = useState();
 
     const onClickSignUp = () =>{
@@ -70,29 +70,25 @@ function ResetPassword(props) {
             </div>
         </div>
         <div className = "Vazaar-Main-Background">
-            <div className = "Vazaar-Reset-Container">
+            <div className = "Vazaar-Verify-Container">
                 <div className = "Vazaar-SignUp-Header-Container">
                     <div className = "Vazaar-Main-Logo" style = {{"fontSize":"36px", "color":"#7D9EB5", "paddingTop":"25px"}}>
                         vazaar
                     </div>
                     <div className = "Vazaar-Roboto-bold" style = {{"fontSize":"30px", "marginTop":"10px"}}>
-                        Reset Password
+                        Verify your email
                     </div>
-                    <div className = "Vazaar-Roboto-normal" style = {{"fontSize":"14px", "color":"#8DAABE", "marginTop":"20px"}}>
-                        You can reset your password here
+                    <div className = "Vazaar-Roboto-normal" style = {{"fontSize":"14px", "color":"#8DAABE", "marginTop":"40px"}}>
+                    We sent you a link at your listed email to verify your
+                    </div>
+                    <div className = "Vazaar-Roboto-normal" style = {{"fontSize":"14px", "color":"#8DAABE", "marginTop":"10px"}}>
+                    email address. If you didn’t recieve an email make sure 
+                    </div>
+                    <div className = "Vazaar-Roboto-normal" style = {{"fontSize":"14px", "color":"#8DAABE", "marginTop":"10px"}}>
+                    to check your spam folder.
                     </div>
                 </div>
-                <div className = "Vazaar-Reset-Form-Container">
-                    <div className = "Vazaar-SignUp-Form-SubContainer">
-                        <div className = "Vazaar-SignUp-Form-SecondTitle">
-                            EMAIL
-                        </div>
-                        <FormInput placeholder = "Enter Email" value = {email} onChange = {e=>onChangeEmail(e)}/>
-                    </div>                    
-                </div>
-                <div className = "Vazaar-SignUp-Button-Container" style ={{"marginTop":"24px"}} onClick = {e => onClickReset(e)}>
-                    <BlueButton text = "Reset Password" width = "417px" height = "47px"/>
-                </div>
+              
             </div>
 
         </div>
@@ -100,4 +96,4 @@ function ResetPassword(props) {
   );
 }
 
-export default ResetPassword;
+export default Verify;

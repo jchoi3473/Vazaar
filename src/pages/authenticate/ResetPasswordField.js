@@ -4,10 +4,15 @@ import './Authenticate.scss'
 import background from './../../assets/images/background.jpg'
 
 import { alpha, styled } from '@mui/material/styles';
-
+import {
+    BrowserRouter as Router,
+    Link,
+    useLocation
+} from "react-router-dom";
 import InputBase from '@mui/material/InputBase';
 import BlueButton from '../../components/button/BlueButton';
-import {forgotPassword} from './../../lib/api'
+import { useEffect } from 'react';
+
 //Custom Material UI input
 const FormInput = styled(InputBase)(({ theme }) => ({
     'label + &': {
@@ -39,22 +44,32 @@ const FormInput = styled(InputBase)(({ theme }) => ({
     },
   }));
 
-function ResetPassword(props) {
-    const [email, setEmail] = useState();
+function useQuery() {
+  const { search } = useLocation();
 
+  return React.useMemo(() => new URLSearchParams(search), [search]);
+}
+
+function ResetPasswordField(props) {
+    let query = useQuery();
+
+    const [token, setToken] = useState();
     const onClickSignUp = () =>{
         props.history.push('signup')
     }
     const onClickLogo = () =>{
         props.history.push('main')
     }
-    const onChangeEmail = (e) => {
-      setEmail(e.target.value);
-    };
-    const onClickReset  = async () => {
-      let response = await forgotPassword(email)
-      console.log(response)
-    }
+
+    useEffect(() => {
+      if(query.get("token")){
+        setToken(query.get("token"))
+      }else{
+        alert("Wrong Access to this page")
+        props.history.push('main')
+      }
+  },[])
+
 
   return (
     <div 
@@ -70,28 +85,34 @@ function ResetPassword(props) {
             </div>
         </div>
         <div className = "Vazaar-Main-Background">
-            <div className = "Vazaar-Reset-Container">
+            <div className = "Vazaar-ResetField-Container">
                 <div className = "Vazaar-SignUp-Header-Container">
                     <div className = "Vazaar-Main-Logo" style = {{"fontSize":"36px", "color":"#7D9EB5", "paddingTop":"25px"}}>
                         vazaar
                     </div>
                     <div className = "Vazaar-Roboto-bold" style = {{"fontSize":"30px", "marginTop":"10px"}}>
-                        Reset Password
+                        New Password
                     </div>
                     <div className = "Vazaar-Roboto-normal" style = {{"fontSize":"14px", "color":"#8DAABE", "marginTop":"20px"}}>
-                        You can reset your password here
+                        Create your new password
                     </div>
                 </div>
                 <div className = "Vazaar-Reset-Form-Container">
                     <div className = "Vazaar-SignUp-Form-SubContainer">
                         <div className = "Vazaar-SignUp-Form-SecondTitle">
-                            EMAIL
+                            NEW PASSWORD
                         </div>
-                        <FormInput placeholder = "Enter Email" value = {email} onChange = {e=>onChangeEmail(e)}/>
-                    </div>                    
+                        <FormInput placeholder = "Enter New Password" />
+                    </div>        
+                    <div className = "Vazaar-SignUp-Form-SubContainer">
+                        <div className = "Vazaar-SignUp-Form-SecondTitle"  style = {{"marginTop":"20px"}}>
+                            CONFIRM NEW PASSWORD
+                        </div>
+                        <FormInput placeholder = "Re-enter New Password" />
+                    </div>                                
                 </div>
-                <div className = "Vazaar-SignUp-Button-Container" style ={{"marginTop":"24px"}} onClick = {e => onClickReset(e)}>
-                    <BlueButton text = "Reset Password" width = "417px" height = "47px"/>
+                <div className = "Vazaar-SignUp-Button-Container" style ={{"marginTop":"24px"}}>
+                    <BlueButton text = "Confirm" width = "417px" height = "47px"/>
                 </div>
             </div>
 
@@ -100,4 +121,4 @@ function ResetPassword(props) {
   );
 }
 
-export default ResetPassword;
+export default ResetPasswordField;
