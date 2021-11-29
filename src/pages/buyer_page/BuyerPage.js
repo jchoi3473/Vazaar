@@ -11,11 +11,10 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import ProfileButton from '../profile/ProfileButton';
 import BrowseAllListings from './buyer_sections/BrowseAllListings'
-import SellItem from './buyer_sections/SellItem';
-import HomePage from './buyer_sections/HomePage'
+import Buyer_Dashboard from './buyer_sections/buyer_dashboard'
 import FAQ from '../FAQ/FAQ'
 
-import home from './../../assets/images/home.png'
+import dashboard from './../../assets/images/buyer_dashboard.png'
 import browse_all from './../../assets/images/browse_all.png'
 import bedroom from './../../assets/images/bedroom.png'
 import living_room from './../../assets/images/living_room.png'
@@ -51,12 +50,18 @@ function BuyerPage(props) {
         props.history.push('sell')
     }
 
+    const onClickLogo = () =>{
+        props.history.push('main')
+    }
+
     return(
     <Dashboard 
         profile = {
             <ProfileButton/>
         }
-
+        logo = {
+            <div className = "Vazaar-Dashboard-Logo" onClick = {onClickLogo}>vazaar</div>
+        }
         left = {
         <div>
         <List component="nav" aria-label="main mailbox folders">
@@ -68,9 +73,9 @@ function BuyerPage(props) {
             {/* <ListItemIcon>
                 <InboxIcon />
             </ListItemIcon> */}
-            <img className="Vazaar-category-icon" src={home}/>
+            <img className="Vazaar-category-icon" src={dashboard}/>
             <div style = {{paddingRight: "10px" }}></div>
-            <ListItemText className = {selectedIndex==0?"Vazaar-List-White":"Vazaar-List-Black"} primary="Home Page" />
+            <ListItemText className = {selectedIndex==0?"Vazaar-List-White":"Vazaar-List-Black"} primary="Dashboard" />
             </ListItemButton>
 
             <ListItemButton
@@ -148,7 +153,7 @@ function BuyerPage(props) {
                 <div className = "Vazaar-Seller-Section-Container">
                     {
                     {  
-                        0: <HomePage/>,
+                        0: <Buyer_Dashboard/>,
                         1: <BrowseAllListings/>,
                         6: <FAQ/>
                     }[selectedIndex]
