@@ -10,6 +10,9 @@ function MainPage(props) {
     const onClickSignIn = () =>{
         props.history.push('sign-in')
     }
+    const onClickTeam = () =>{
+        props.history.push('team')
+    }
     const onClickLogo = () =>{
         props.history.push('main')
     }
@@ -19,6 +22,7 @@ function MainPage(props) {
     const onClickBuy = () =>{
         props.history.push('buy')
     }
+
   return (
     <div 
     style = 
@@ -34,6 +38,9 @@ function MainPage(props) {
                 </div>
 
                 <div className = "Vazaar-Main-Signin-Container">
+                    <div className = "Vazaar-Main-Signin" style = {{"fontFamily":"Roboto"}} onClick = {onClickTeam}>
+                        Meet the Team
+                    </div>
                     <div className = "Vazaar-Main-Signin" style = {{"fontFamily":"Roboto"}} onClick = {onClickSignIn}>
                         Login
                     </div>
