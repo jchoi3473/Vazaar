@@ -43,25 +43,34 @@ function MainPage(props) {
                 </div>
             </div>
             <div className = "Vazaar-Main-Body">
+
                 <div className = "Vazaar-Main-Body-Title">
-                Buy and sell furniture from and to your college peers! 
+                Buy and sell furniture
                 </div>
-                <div style = {{"marginTop":"32px"}}>
+                <div className = "Vazaar-Main-Body-Title">
+                from and to your college peers! 
+                </div>
+
+                <div style = {{"marginTop":"40px"}}>
                     <div className = "Vazaar-Main-Body-SecondTitle">
-                    We’ll provide everything you need to buy and sell, and send notifications of 
+                    Vazaar provides everything you need to buy and sell,
                     </div>
                     <div className = "Vazaar-Main-Body-SecondTitle">
-                    matched buyer/seller if you want.
+                    and sends notifications of matched buyers/sellers if desired.
                     </div>
                 </div>
-                <div className = "Vazaar-Main-Body-Button-Container">
-                    <button className = "Vazaar-Main-Body-Button Vazaar-Buy-Button" onClick = {onClickBuy}>
-                        Start Buying
-                    </button>
-                    <button className = "Vazaar-Main-Body-Button Vazaar-Sell-Button" onClick = {onClickSell}>
-                        Start Selling
-                    </button>
+
+                <div style = {{"marginTop":"50px"}}>
+                    <div className = "Vazaar-Main-Body-Button-Container">
+                        <button className = "Vazaar-Main-Body-Button Vazaar-Buy-Button" onClick = {onClickBuy}>
+                            Start Buying
+                        </button>
+                        <button className = "Vazaar-Main-Body-Button Vazaar-Sell-Button" onClick = {onClickSell}>
+                            Start Selling
+                        </button>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
