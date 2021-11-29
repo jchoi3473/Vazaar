@@ -40,6 +40,7 @@ export const authenticateUser = async function (jwt) {
       }
     }
   );
+  console.log(response.data.data);
   if (response.status === 200) {
     localStorage.setItem("vazaar-user", JSON.stringify(response.data.data));
     console.log(response.data.data);

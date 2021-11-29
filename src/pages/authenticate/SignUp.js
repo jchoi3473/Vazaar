@@ -214,6 +214,7 @@ function SignUp(props) {
                 placeholder="Enter Password"
                 value={password}
                 onChange={(e) => onChangePassword(e)}
+                type="password"
               />
             </div>
             <div className="Vazaar-SignUp-Form-SubContainer">
@@ -246,6 +247,7 @@ function SignUp(props) {
                 placeholder="Confirm Password"
                 value={passwordConfirm}
                 onChange={(e) => onChangePasswordConfirm(e)}
+                type="password"
               />
             </div>
             <div className="Vazaar-SignUp-Form-SubContainer">

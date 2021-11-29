@@ -8,15 +8,18 @@ function MainPage(props) {
 
 
     useEffect(() => {
-        if(localStorage.getItem('vazaar-jwt-token')){
-            //need to call authenticate API in future
-            console.log(localStorage.getItem('vazaar-jwt-token'))
-            const result = authenticateUser(localStorage.getItem('vazaar-jwt-token'))
-            console.log(result)
-            setUserData(JSON.parse(localStorage.getItem('vazaar-user')).user)
-            setSignedIn(true)
-            console.log(JSON.parse(localStorage.getItem('vazaar-user')).user)
+        const fetchProducts = async() =>{
+            if(localStorage.getItem('vazaar-jwt-token')){
+                //need to call authenticate API in future
+                console.log(localStorage.getItem('vazaar-jwt-token'))
+                const result = await authenticateUser(localStorage.getItem('vazaar-jwt-token'))
+                console.log(result)
+                setUserData(JSON.parse(localStorage.getItem('vazaar-user')).data)
+                setSignedIn(true)
+                console.log(JSON.parse(localStorage.getItem('vazaar-user')).data)
+            }
         }
+        fetchProducts()
     },[])
 
 
@@ -66,8 +69,14 @@ function MainPage(props) {
                 {
                 signedIn?
                 <div className = "Vazaar-Main-Signin-Container">
+                    <div className = "Vazaar-Main-Signin" style = {{"fontFamily":"Roboto"}} onClick = {onClickTeam}>
+                        Meet the Team
+                    </div>
                     <div className = "Vazaar-Main-Signin" style = {{"fontFamily":"Roboto"}}>
-                       {JSON.parse(localStorage.getItem('vazaar-user')).user.name}
+                       {
+                       userData.name
+                       
+                       }
                     </div>
                 </div>:
                 <div className = "Vazaar-Main-Signin-Container">

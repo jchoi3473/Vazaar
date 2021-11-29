@@ -20,10 +20,16 @@ function ProfilePage(props) {
     const handleListItemClick = (event, index) => {
         setSelectedIndex(index);
     };
+    const onClickLogo = () =>{
+        props.history.push('main')
+    }
     return(
         <Dashboard
         profile = {
             <ProfileButton/>
+        }
+        logo = {
+            <div className = "Vazaar-Dashboard-Logo" onClick = {onClickLogo}>vazaar</div>
         }
         left = {
             <div>

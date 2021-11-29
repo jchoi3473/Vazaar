@@ -1,13 +1,28 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './team.scss'
 import team_background from './../../assets/images/team_background.png'
 import team_icon from './../../assets/images/team_icon.png'
 
 import isaac_pic from './../../assets/images/team_pics/isaac.png'
+import {authenticateUser} from './../../lib/api'
 
 
 function Team(props) {
-    
+    const [signedIn, setSignedIn] = useState(false); 
+    const [userData, setUserData] = useState(); 
+
+
+    useEffect(() => {
+        if(localStorage.getItem('vazaar-jwt-token')){
+            //need to call authenticate API in future
+            console.log(localStorage.getItem('vazaar-jwt-token'))
+            const result = authenticateUser(localStorage.getItem('vazaar-jwt-token'))
+            console.log(result)
+            setUserData(JSON.parse(localStorage.getItem('vazaar-user')).user)
+            setSignedIn(true)
+            console.log(JSON.parse(localStorage.getItem('vazaar-user')).user)
+        }
+    },[])
     const onClickSignUp = () =>{
         props.history.push('sign-up')
     }
@@ -31,17 +46,29 @@ function Team(props) {
                     vazaar
                 </div>
 
-                <div className = "Vazaar-Team-Signin-Container">
-                    <div className = "Vazaar-Main-Signin" style = {{"fontFamily":"Roboto"}} onClick = {onClickTeam}>
-                        Meet the Team
-                    </div>
-                    <div className = "Vazaar-Team-Signin" style = {{"fontFamily":"Roboto"}} onClick = {onClickSignIn}>
-                        Login
-                    </div>
-                    <div className = "Vazaar-Team-Signin" style = {{"fontFamily":"Roboto"}}onClick = {onClickSignUp}>
-                        Sign Up
-                    </div>
-                </div>
+
+
+                    {
+                    signedIn?
+                        <div className = "Vazaar-Main-Signin-Container">
+                            <div className = "Vazaar-Main-Signin" style = {{"fontFamily":"Roboto"}} onClick = {onClickTeam}>
+                            Meet the Team
+                            </div>
+                            <div className = "Vazaar-Main-Signin" style = {{"fontFamily":"Roboto"}}>
+                            {JSON.parse(localStorage.getItem('vazaar-user')).data.name}
+                            </div>
+                        </div>
+                        :
+                        <div className = "Vazaar-Main-Signin-Container">
+                            <div className = "Vazaar-Team-Signin" style = {{"fontFamily":"Roboto"}} onClick = {onClickSignIn}>
+                            Login
+                            </div>
+                            <div className = "Vazaar-Team-Signin" style = {{"fontFamily":"Roboto"}}onClick = {onClickSignUp}>
+                                Sign Up
+                            </div>
+                        </div>
+                    }
+                   
             </div>
 
             <div className = "Vazaar-Team-Body">

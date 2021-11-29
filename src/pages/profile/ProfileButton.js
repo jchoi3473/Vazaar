@@ -44,7 +44,7 @@ function ProfileButton(props) {
         <div className = "Vazaar-Profile-Container">
             <Avatar {...stringAvatar('Jae Ho Choi')} />
             <div className = "Vazaar-Profile-Name" style = {{marginLeft:"15px"}} onClick = {onClickSignIn}>
-                Jae Ho Choi
+                {JSON.parse(localStorage.getItem('vazaar-user')).data.name}
             </div>
         </div>
     );

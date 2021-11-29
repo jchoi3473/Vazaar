@@ -17,7 +17,7 @@ import Item from './pages/item/Item'
 import Team from './pages/team/team.js'
 import Error404 from './pages/error404/error404.js'
 import Verify from './pages/authenticate/Verify';
-
+import VerifySuccessful from './pages/authenticate/VerifySuccessful';
 function App() {
   return (
     <div className="App">
@@ -28,6 +28,7 @@ function App() {
             <Route path = "/forgot-password" component = {ResetPassword}/>
             <Route path = "/resetPassword" component = {ResetPasswordField}/>
             <Route path = "/verify" component = {Verify}/>
+            <Route path = "/verify-success" component = {VerifySuccessful}/>
 
             <Route path = "/dashboard" component = {Dashboard}/>
             <Route path = "/sell" component = {SellerPage}/>

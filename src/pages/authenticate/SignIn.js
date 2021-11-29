@@ -145,7 +145,7 @@ function SignIn(props) {
             </div>
             <div className="Vazaar-SignUp-Form-SubContainer">
               <div
-                style={{ display: "flex", "justify-content": "space-between" }}
+                style={{ display: "flex", justifyContent: "space-between" }}
               >
                 <div
                   className="Vazaar-SignUp-Form-SecondTitle"
@@ -169,17 +169,7 @@ function SignIn(props) {
                 placeholder="Enter Password"
                 value={password}
                 onChange={(e) => onChangePassword(e)}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      edge="end"
-                    >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                }
+                type="password"
               />
             </div>
           </div>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import './Profile.scss'
 import Avatar from '@mui/material/Avatar';
 import ProfileButton from '../ProfileButton';
@@ -13,7 +13,7 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
-
+import {authenticateUser} from './../../../lib/api'
 const FormInput = styled(InputBase)(({ theme }) => ({
     "label + &": {
       marginTop: theme.spacing(3),
@@ -108,18 +108,36 @@ function stringAvatar(name) {
 }
 
 function Profile(props) {
+  const [userData, setUserData] = useState(); 
+  const [signedIn, setSignedIn] = useState(false); 
+
+  useEffect(() => {
+    const fetchProducts = async() =>{
+        if(localStorage.getItem('vazaar-jwt-token')){
+            //need to call authenticate API in future
+            console.log(localStorage.getItem('vazaar-jwt-token'))
+            const result = await authenticateUser(localStorage.getItem('vazaar-jwt-token'))
+            // console.log(result)
+            setUserData(JSON.parse(localStorage.getItem('vazaar-user')).data)
+            setSignedIn(true)
+            console.log(JSON.parse(localStorage.getItem('vazaar-user')).data)
+        }
+    }
+    fetchProducts()
+  },[])
+
     const [selectedIndex, setSelectedIndex] = React.useState(1);
     const handleListItemClick = (event, index) => {
         setSelectedIndex(index);
       };
 
 
-    const [state, setState] = useState("Georgia"); //replace with REAL USER information
+    const [state, setState] = useState(JSON.parse(localStorage.getItem('vazaar-user')).data.state); //replace with REAL USER information
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
-    const [address, setAddress] = useState("");
-    const [city, setCity] = useState("");
-    const [zipcode, setZipcode] = useState("");
+    const [address, setAddress] = useState(JSON.parse(localStorage.getItem('vazaar-user')).data.address);
+    const [city, setCity] = useState(JSON.parse(localStorage.getItem('vazaar-user')).data.city);
+    const [zipcode, setZipcode] = useState(JSON.parse(localStorage.getItem('vazaar-user')).data.zipcode);
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
@@ -168,68 +186,41 @@ function Profile(props) {
       );
     };
     return(
-          <div className = "Vazaar-Profile-Section-Container" style = {{paddingTop:"30px", paddingLeft: "60px"}}>
+          <div className = "Vazaar-Profile-Section-Container" style = {{paddingTop:"30px", paddingLeft: "60px", }}>
             
             <div className = "Vazaar-Profile-NonButtons-Container">
 
               <div className = "Vazaar-Profile-NameInfo-Left-Container">
-
-                <Avatar className = "Vazaar-Avatar" {...stringAvatar('Jae Ho Choi')} />
-                <div className = "Vazaar-Profile-Name" style = {{fontSize:"20px", marginTop:"-70px"}}>
-                    Jae Ho Choi
-                </div> 
-
+                <div style ={{display: 'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', marginRight:'150px' }}>
+                  <Avatar className = "Vazaar-Avatar" {...stringAvatar('Jae Ho Choi')} />
+                  <div className = "Vazaar-Profile-Name" style = {{fontSize:"20px", marginTop:"20px", textAlign:'center'}}>
+                      {JSON.parse(localStorage.getItem('vazaar-user')).data.name}
+                  </div> 
+                </div>
                 <div style = {{marginBottom: "50px" }}></div>
 
                 <div className="Vazaar-Profile-Form-SubContainer">
                   <div className="Vazaar-Profile-Form-SecondTitle"> NAME</div>
                     <FormInput
-                      placeholder="Jae Ho Choi" //replace with REAL USER information
+                      style = {{width:'100% !important'}}
+                      placeholder={JSON.parse(localStorage.getItem('vazaar-user')).data.name} //replace with REAL USER information
                       value={name}
                       onChange={(e) => onChangeName(e)}
+                      disabled = {true}
                     />
 
                 <div className="Vazaar-Profile-Form-SubContainer">
                   <div className="Vazaar-Profile-Form-SecondTitle">EMAIL</div>
                     <FormInput
-                      placeholder="cdooley@emory.edu" //replace with REAL USER information
+                      placeholder={JSON.parse(localStorage.getItem('vazaar-user')).data.email} //replace with REAL USER information
                       value={email}
                       onChange={(e) => onChangeEmail(e)}
+                      disabled = {true}
                     />
-
-                <div className="Vazaar-Profile-Form-SubContainer">
-                  <div className="Vazaar-Profile-Form-SecondTitle">PASSWORD</div>
-                    <FormInput
-                      placeholder="Modify Password"
-                      value={password}
-                      onChange={(e) => onChangePassword(e)}
-                      endAdornment={
-                        <InputAdornment position="end">
-                          <IconButton
-                            aria-label="toggle password visibility"
-                            onClick={handleClickShowPassword}
-                            edge="end"
-                          >
-                            {showPassword ? <VisibilityOff /> : <Visibility />}
-                          </IconButton>
-                        </InputAdornment>
-                      }
-                    />
-
-                </div>
-                </div>
-                </div>
-                
-              </div> 
-
-
-            <div className="Vazaar-Profile-AddressInfo-Right-Container" style = {{paddingTop:"30px"}}>
-
-
               <div className="Vazaar-Profile-Form-SubContainer">
                 <div className="Vazaar-Profile-Form-SecondTitle">ADDRESS</div>
                   <FormInput
-                    placeholder="201 Dowman Dr." //replace with REAL USER information
+                    placeholder="Address" //replace with REAL USER information
                     value={address}
                     onChange={(e) => onChangeAddress(e)}
                   />
@@ -237,7 +228,7 @@ function Profile(props) {
               <div className="Vazaar-Profile-Form-SubContainer">
                 <div className="Vazaar-Profile-Form-SecondTitle">CITY</div>
                 <FormInput
-                  placeholder="Atlanta" //replace with REAL USER information
+                  placeholder="City" //replace with REAL USER information
                   value={city}
                   onChange={(e) => onChangeCity(e)}
                 />
@@ -273,7 +264,25 @@ function Profile(props) {
                   />
 
               </div>
-              </div>
+              <div className="Vazaar-Profile-Form-SubContainer">
+                  <div className="Vazaar-Profile-Form-SecondTitle">PASSWORD</div>
+                    <FormInput
+                      placeholder="Modify Password"
+                      value={"************"}
+                      onChange={(e) => onChangePassword(e)}
+                      type="password"
+                      disabled = {true}
+                    />
+
+                </div>
+                
+                </div>
+                </div>
+                
+              </div> 
+
+
+      
               </div>
               </div>
             
@@ -282,26 +291,16 @@ function Profile(props) {
           </div>
 
 
-          <div className = "Vazaar-Profile-Buttons-Container">
-
-            <div className="Vazaar-Profile-Buttons-SubContainer" style = {{paddingTop:"15px", paddingLeft: "150px"}}>
-
-
-              <div style = {{paddingTop: "20px" }}></div>
-
-              <div onClick={(e) => onClickModifyProfile()}>
-                <BlueButton text="Save" width="150px" height="47px" />
-              </div>
-
-              <div style = {{paddingRight: "20px" }}></div>
-
-              <div onClick={(e) => onClickCancel()}>
-                <BlueButton text="Cancel" width="150px" height="47px" />            
-              </div>
-
-
+            <div className="Vazaar-Profile-Buttons-SubContainer" style = {{display:'block'}}>
+                <div className="Vazaar-Profile-ButtonsContainer" style = {{display:'flex', justifyContent:'center'}}>
+                  <div style = {{width:'fit-content', display:'inline-block', marginRight:'80px'}}onClick={(e) => onClickModifyProfile()}>
+                    <BlueButton text="Save" width="150px" height="47px" />
+                  </div>
+                  <div style = {{width:'fit-content',display:'inline-block'}} onClick={(e) => onClickCancel()}>
+                    <BlueButton text="Cancel" width="150px" height="47px" />            
+                  </div>
+                </div>
             </div>              
-          </div>
         </div>
     );
 }

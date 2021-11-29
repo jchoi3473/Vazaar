@@ -13,13 +13,16 @@
 }
 .Vazaar-Profile-NameInfo-Left-Container{
     margin: 0 auto;
-    height: 90%;
-    width: 50%;
-    max-height: 1500px;
-    max-width: 2000px;
+    height: 750px;
+    width: 810px;
+    min-height: 750px;
+    min-width: 810px;
+    // max-height: 1500px;
+    // max-width: 2000px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    flex-wrap: wrap;
     text-align: left;
     // align-content: space-between;
     // align-items: center;
@@ -50,6 +53,8 @@
 }
 .Vazaar-Profile-Form-SubContainer{
     margin-top: 15px;
+    min-width: 310px;
+    width: 600px !important;
 }
 .Vazaar-Profile-Container{
     display: flex;
