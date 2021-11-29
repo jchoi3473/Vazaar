@@ -14,7 +14,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Profile from './profile_sections/Profile';
 
 function ProfilePage(props) {
-    const [selectedIndex, setSelectedIndex] = React.useState(1);
+    const [selectedIndex, setSelectedIndex] = React.useState(0);
     let { path, url } = useRouteMatch();
 
     const handleListItemClick = (event, index) => {

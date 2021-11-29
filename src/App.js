@@ -12,6 +12,7 @@ import SellerPage from './pages/seller_page/SellerPage'
 import BuyerPage from './pages/buyer_page/BuyerPage'
 import Profile from './pages/profile/ProfilePage';
 import Item from './pages/item/Item'
+import Team from './pages/team/team.js'
 import Error404 from './pages/error404/error404.js'
 
 
@@ -22,18 +23,22 @@ function App() {
           <Switch>
             <Route path = "/sign-in" component = {SignIn}/>
             <Route path = "/sign-up" component = {SignUp}/>
-            <Route path = "/main" component = {MainPage}/>
             <Route path = "/forgot-password" component = {ResetPassword}/>
             <Route path = "/dashboard" component = {Dashboard}/>
             <Route path = "/sell" component = {SellerPage}/>
             <Route path = "/buy" component = {BuyerPage}/>
             <Route path = "/profile" component = {Profile}/>
             <Route path = "/item" component = {Item}/>
+            <Route path = "/team" component = {Team}/>
             <Route path = "/error404" component = {Error404}/>
 
-            <Route path="/">
-              <Redirect to="/error404" />
+            <Route exact path='/' component={MainPage}/>
+
+            <Route path="/main">
+              <Redirect to="/" />
             </Route>
+
+            <Route path = "*" component = {Error404}/>
 
           </Switch>
         </BrowserRouter>
