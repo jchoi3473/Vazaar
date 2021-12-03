@@ -28,9 +28,11 @@
 .Vazaar-Seller-Section-Container{
     min-width: 90%;
     min-height: 600px;
-    width: 90%;
+    width: 100%;
     height: calc(100% - 80px);
-    padding-top: 40px;
+    // padding-top: 40px;
+    padding-left: 50px;
+    
     margin: 0 auto;
 }
 

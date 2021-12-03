@@ -2,7 +2,7 @@ import React from "react";
 import './buyer_dashboard.scss'
 function Buyer_Dashboard(props){
     return(
-        <div style = {{height: '100%'}}>
+        <div style = {{height: '100%', paddingRight:'50px'}}>
 
             <div style = {{paddingBottom: "20px" }}></div>
 
