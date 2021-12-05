@@ -8,7 +8,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import ProfileButton from '../profile/ProfileButton';
 
-import SoldListings from './seller_sections/SoldListings2'
+import SoldListing from './seller_sections/SoldListing'
 import SellItem from './seller_sections/SellItem';
 import FAQ from '../FAQ/FAQ'
 
@@ -123,7 +123,7 @@ function SellerPage(props) {
                     {
                     {  
                         0: <SellItem/>,
-                        1: <SoldListings/>,
+                        1: <SoldListing/>,
                         2: <UnSoldListing/>,
                         3: <FAQ/>
                     }[selectedIndex]
