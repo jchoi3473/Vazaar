@@ -127,7 +127,7 @@ function SignIn(props) {
             {
               wrongEntity?
               <div style = {{marginTop: '15px', height:'10px', color:'red', fontSize:'13px'}}>
-                Entered Incorrect Email or Password
+                Incorrect Email or Password. Please try again.
               </div>
               :<div style = {{marginTop: '15px', height:'10px'}}>
               </div>

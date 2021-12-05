@@ -13,98 +13,99 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
-import {authenticateUser} from './../../../lib/api'
-const FormInput = styled(InputBase)(({ theme }) => ({
-    "label + &": {
-      marginTop: theme.spacing(3),
-    },
-    display: "block",
-    "& .MuiInputBase-input": {
-      borderRadius: 4,
-      position: "relative",
-      backgroundColor: theme.palette.mode === "light" ? "#fcfcfb" : "#2b2b2b",
-      border: "1px solid #ced4da",
-      fontSize: 14,
-    //   width: "393px",
-      height: "18px",
-      padding: "10px 12px",
-      width: "60%",
-      transition: theme.transitions.create([
-        "border-color",
-        "background-color",
-        "box-shadow",
-      ]),
-      // Use the system font instead of the default Roboto font.
-      fontFamily: ["Roboto"].join(","),
-      "&:focus": {
-        boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
-        borderColor: theme.palette.primary.main,
-      },
-    },
-  }));
-  
-  const FormTextField = styled(TextField)(({ theme }) => ({
-    width: "100%",
-    "label + &": {
-      marginTop: theme.spacing(3),
-    },
-    display: "block",
-    width: "65%",
-    "& .MuiOutlinedInput-root":{
-        width: "100%",
+import {authenticateUser} from '../../../lib/api'
 
+const FormInput = styled(InputBase)(({ theme }) => ({
+  "label + &": {
+    marginTop: theme.spacing(3),
+  },
+  display: "block",
+  "& .MuiInputBase-input": {
+    borderRadius: 4,
+    position: "relative",
+    backgroundColor: theme.palette.mode === "light" ? "#fcfcfb" : "#2b2b2b",
+    border: "1px solid #ced4da",
+    fontSize: 14,
+  //   width: "393px",
+    height: "18px",
+    padding: "10px 12px",
+    width: "60%",
+    transition: theme.transitions.create([
+      "border-color",
+      "background-color",
+      "box-shadow",
+    ]),
+    // Use the system font instead of the default Roboto font.
+    fontFamily: ["Roboto"].join(","),
+    "&:focus": {
+      boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
+      borderColor: theme.palette.primary.main,
     },
-    "& .MuiInputBase-input": {
-      borderRadius: 4,
-      position: "relative",
-      backgroundColor: theme.palette.mode === "light" ? "#fcfcfb" : "#2b2b2b",
-    //   border: "1px solid #ced4da",
-      fontSize: 14,
-      maxWidth: "430px",
+  },
+}));
+
+const FormTextField = styled(TextField)(({ theme }) => ({
+  width: "100%",
+  "label + &": {
+    marginTop: theme.spacing(3),
+  },
+  display: "block",
+  width: "65%",
+  "& .MuiOutlinedInput-root":{
       width: "100%",
-      height: "18px",
-      padding: "10px 12px",
-      transition: theme.transitions.create([
-        "border-color",
-        "background-color",
-        "box-shadow",
-      ]),
-      // Use the system font instead of the default Roboto font.
-      fontFamily: ["Roboto"].join(","),
-      "&:focus": {
-        boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
-        borderColor: theme.palette.primary.main,
-      },
+
+  },
+  "& .MuiInputBase-input": {
+    borderRadius: 4,
+    position: "relative",
+    backgroundColor: theme.palette.mode === "light" ? "#fcfcfb" : "#2b2b2b",
+  //   border: "1px solid #ced4da",
+    fontSize: 14,
+    maxWidth: "430px",
+    width: "100%",
+    height: "18px",
+    padding: "10px 12px",
+    transition: theme.transitions.create([
+      "border-color",
+      "background-color",
+      "box-shadow",
+    ]),
+    // Use the system font instead of the default Roboto font.
+    fontFamily: ["Roboto"].join(","),
+    "&:focus": {
+      boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
+      borderColor: theme.palette.primary.main,
     },
-  }));
+  },
+}));
 
 function stringToColor(string) {
-  let hash = 0;
-  let i;
+let hash = 0;
+let i;
 
-  /* eslint-disable no-bitwise */
-  for (i = 0; i < string.length; i += 1) {
-    hash = string.charCodeAt(i) + ((hash << 5) - hash);
-  }
+/* eslint-disable no-bitwise */
+for (i = 0; i < string.length; i += 1) {
+  hash = string.charCodeAt(i) + ((hash << 5) - hash);
+}
 
-  let color = '#';
+let color = '#';
 
-  for (i = 0; i < 3; i += 1) {
-    const value = (hash >> (i * 8)) & 0xff;
-    color += `00${value.toString(16)}`.substr(-2);
-  }
-  /* eslint-enable no-bitwise */
+for (i = 0; i < 3; i += 1) {
+  const value = (hash >> (i * 8)) & 0xff;
+  color += `00${value.toString(16)}`.substr(-2);
+}
+/* eslint-enable no-bitwise */
 
-  return color;
+return color;
 }
 
 function stringAvatar(name) {
-  return {
-    sx: {
-      bgcolor: stringToColor(name),
-    },
-    children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
-  };
+return {
+  sx: {
+    bgcolor: stringToColor(name),
+  },
+  children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
+};
 }
 
 function Profile(props) {
@@ -186,122 +187,135 @@ function Profile(props) {
       );
     };
     return(
-          <div className = "Vazaar-Profile-Section-Container" style = {{paddingTop:"30px", paddingLeft: "60px", }}>
+          <div className = "Vazaar-Profile-Section-Container">
             
-            <div className = "Vazaar-Profile-NonButtons-Container">
+            <div className = "Vazaar-Profile-Body">
 
-              <div className = "Vazaar-Profile-NameInfo-Left-Container">
-                <div style ={{display: 'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', marginRight:'150px' }}>
-                  <Avatar className = "Vazaar-Avatar" {...stringAvatar('Jae Ho Choi')} />
-                  <div className = "Vazaar-Profile-Name" style = {{fontSize:"20px", marginTop:"20px", textAlign:'center'}}>
+              <div className = "Vazaar-Profile-NonButtons-Container">
+
+                <div className = "Vazaar-Profile-NameInfo-Left-Container">
+
+                  <div className = "Vazaar-Profile-Avatar-Name-Combo">
+                    <Avatar className = "Vazaar-Avatar" {...stringAvatar(JSON.parse(localStorage.getItem('vazaar-user')).data.name)} />
+                    <div className = "Vazaar-Profile-Name" style = {{fontSize:"30px", marginLeft:"20px"}}> 
                       {JSON.parse(localStorage.getItem('vazaar-user')).data.name}
+                    </div> 
                   </div> 
-                </div>
-                <div style = {{marginBottom: "50px" }}></div>
 
-                <div className="Vazaar-Profile-Form-SubContainer">
-                  <div className="Vazaar-Profile-Form-SecondTitle"> NAME</div>
-                    <FormInput
-                      style = {{width:'100% !important'}}
-                      placeholder={JSON.parse(localStorage.getItem('vazaar-user')).data.name} //replace with REAL USER information
-                      value={name}
-                      onChange={(e) => onChangeName(e)}
-                      disabled = {true}
+                  {/* <div style = {{marginBottom: "50px" }}></div> */}
+
+                  <div className="Vazaar-Profile-Form-SubContainer">
+                    <div className="Vazaar-Profile-Form-SecondTitle"> NAME</div>
+                      <FormInput style={{ width: "150%" }}
+                        placeholder={JSON.parse(localStorage.getItem('vazaar-user')).data.name} //replace with REAL USER information
+                        value={name}
+                        onChange={(e) => onChangeName(e)}
+                        disabled = {true}
+                      />
+
+                  <div className="Vazaar-Profile-Form-SubContainer">
+                    <div className="Vazaar-Profile-Form-SecondTitle">EMAIL</div>
+                    <FormInput style={{ width: "150%" }}
+                        placeholder={JSON.parse(localStorage.getItem('vazaar-user')).data.email} //replace with REAL USER information
+                        value={email}
+                        onChange={(e) => onChangeEmail(e)}
+                        disabled = {true}
+                      />
+
+                  <div className="Vazaar-Profile-Form-SubContainer">
+                    <div className="Vazaar-Profile-Form-SecondTitle">PASSWORD</div>
+                    <FormInput style={{ width: "150%" }}
+                        placeholder="Modify Password"
+                        value={"************"}
+                        onChange={(e) => onChangePassword(e)}
+                        type="password"
+                        disabled = {true}
+                      />
+
+                  </div>
+                  </div>
+                  </div>
+                  
+                </div> 
+
+
+                <div className="Vazaar-Profile-AddressInfo-Right-Container" style = {{paddingTop:"30px"}}>
+
+                  <div className="Vazaar-Profile-Form-SubContainer">
+                    <div className="Vazaar-Profile-Form-SecondTitle">ADDRESS</div>
+                    <FormInput style={{ width: "150%" }}
+                        placeholder={JSON.parse(localStorage.getItem('vazaar-user')).data.address} //replace with REAL USER information
+                        value={address}
+                        onChange={(e) => onChangeAddress(e)}
+                      />
+
+                  <div className="Vazaar-Profile-Form-SubContainer">
+                    <div className="Vazaar-Profile-Form-SecondTitle">CITY</div>
+                    <FormInput style={{ width: "150%" }}
+                      placeholder={JSON.parse(localStorage.getItem('vazaar-user')).data.city} //replace with REAL USER information
+                      value={city}
+                      onChange={(e) => onChangeCity(e)}
                     />
 
-                <div className="Vazaar-Profile-Form-SubContainer">
-                  <div className="Vazaar-Profile-Form-SecondTitle">EMAIL</div>
-                    <FormInput
-                      placeholder={JSON.parse(localStorage.getItem('vazaar-user')).data.email} //replace with REAL USER information
-                      value={email}
-                      onChange={(e) => onChangeEmail(e)}
-                      disabled = {true}
-                    />
-              <div className="Vazaar-Profile-Form-SubContainer">
-                <div className="Vazaar-Profile-Form-SecondTitle">ADDRESS</div>
-                  <FormInput
-                    placeholder="Address" //replace with REAL USER information
-                    value={address}
-                    onChange={(e) => onChangeAddress(e)}
-                  />
+                  <div className="Vazaar-Profile-Form-SubContainer">
+                    <div className="Vazaar-Profile-Form-SecondTitle">STATE</div>
+                      <div className="Vazaar-Profile-State">
+                        <FormTextField
+                            style={{
+                              textAlign: "left",
+                            }}
+                            value={state}
+                            placeholder={JSON.parse(localStorage.getItem('vazaar-user')).data.state} //replace with REAL USER information
+                            select
+                            onChange={handleStateChange}
+                            rows={5}
+                            SelectProps={{
+                              MenuProps: { PaperProps: { sx: { maxHeight: 250 } } },
+                            }}
+                          >
+                            {states.map((option) => (
+                              <MenuItem key={option.value} value={option.value}>
+                                {option.value}
+                              </MenuItem>
+                            ))}
+                          </FormTextField>
+                      </div>
 
-              <div className="Vazaar-Profile-Form-SubContainer">
-                <div className="Vazaar-Profile-Form-SecondTitle">CITY</div>
-                <FormInput
-                  placeholder="City" //replace with REAL USER information
-                  value={city}
-                  onChange={(e) => onChangeCity(e)}
-                />
+                  <div className="Vazaar-Profile-Form-SubContainer">
+                    <div className="Vazaar-Profile-Form-SecondTitle">ZIP CODE</div>
+                    <FormInput style={{ width: "150%" }}
+                        placeholder={JSON.parse(localStorage.getItem('vazaar-user')).data.zipcode} //replace with REAL USER information
+                        value={zipcode}
+                        onChange={(e) => onChangeZipcode(e)}
+                      />
 
-              <div className="Vazaar-Profile-Form-SubContainer">
-                <div className="Vazaar-Profile-Form-SecondTitle">STATE</div>
-                  <FormTextField
-                    style={{
-                      textAlign: "left",
-                    }}
-                    value={state}
-                    placeholder="Georgia" //replace with REAL USER information
-                    select
-                    onChange={handleStateChange}
-                    rows={5}
-                    SelectProps={{
-                      MenuProps: { PaperProps: { sx: { maxHeight: 250 } } },
-                    }}
-                  >
-                    {states.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.value}
-                      </MenuItem>
-                    ))}
-                  </FormTextField>
-
-              <div className="Vazaar-Profile-Form-SubContainer">
-                <div className="Vazaar-Profile-Form-SecondTitle">ZIP CODE</div>
-                  <FormInput
-                    placeholder="30322" //replace with REAL USER information
-                    value={zipcode}
-                    onChange={(e) => onChangeZipcode(e)}
-                  />
-
-              </div>
-              <div className="Vazaar-Profile-Form-SubContainer">
-                  <div className="Vazaar-Profile-Form-SecondTitle">PASSWORD</div>
-                    <FormInput
-                      placeholder="Modify Password"
-                      value={"************"}
-                      onChange={(e) => onChangePassword(e)}
-                      type="password"
-                      disabled = {true}
-                    />
-
-                </div>
+                  </div>
+                  </div>
+                  </div>
+                  </div>
                 
-                </div>
-                </div>
-                
-              </div> 
+                </div> 
 
-
-      
               </div>
-              </div>
-            
-            </div> 
 
+
+              <div className="Vazaar-Profile-Buttons-SubContainer">
+
+                {/* <div style = {{paddingTop: "20px" }}></div> */}
+
+                <div onClick={(e) => onClickModifyProfile()}>
+                  <BlueButton text="Save" width="150px" height="47px" />
+                </div>
+
+                <div style = {{paddingRight: "20px" }}></div>
+
+                <div onClick={(e) => onClickCancel()}>
+                  <BlueButton text="Cancel" width="150px" height="47px" />            
+                </div>
+
+              </div>              
+            </div>
           </div>
-
-
-            <div className="Vazaar-Profile-Buttons-SubContainer" style = {{display:'block'}}>
-                <div className="Vazaar-Profile-ButtonsContainer" style = {{display:'flex', justifyContent:'center'}}>
-                  <div style = {{width:'fit-content', display:'inline-block', marginRight:'80px'}}onClick={(e) => onClickModifyProfile()}>
-                    <BlueButton text="Save" width="150px" height="47px" />
-                  </div>
-                  <div style = {{width:'fit-content',display:'inline-block'}} onClick={(e) => onClickCancel()}>
-                    <BlueButton text="Cancel" width="150px" height="47px" />            
-                  </div>
-                </div>
-            </div>              
-        </div>
     );
 }
 
@@ -545,4 +559,3 @@ const states = [
     label: "WY",
   },
 ];
-

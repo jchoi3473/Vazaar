@@ -36,11 +36,14 @@ function MainPage(props) {
     const onClickLogo = () =>{
         props.history.push('main')
     }
+    const onClickProfile = () =>{
+        props.history.push('profile')
+    }
     const onClickSell = () =>{
         if(signedIn){
             props.history.push('sell')
         }else{
-            alert("You need to sign-up to start selling!");
+            alert("You need to sign up to start selling!");
             props.history.push('sign-up')
         }
     }
@@ -48,7 +51,7 @@ function MainPage(props) {
         if(signedIn){
             props.history.push('buy')
         }else{
-            alert("You need to sign-up to start buying!");
+            alert("You need to sign up to start buying!");
             props.history.push('sign-up')
         }
     }
@@ -72,7 +75,7 @@ function MainPage(props) {
                     <div className = "Vazaar-Main-Signin" style = {{"fontFamily":"Roboto"}} onClick = {onClickTeam}>
                         Meet the Team
                     </div>
-                    <div className = "Vazaar-Main-Signin" style = {{"fontFamily":"Roboto"}}>
+                    <div className = "Vazaar-Main-Signin" style = {{"fontFamily":"Roboto"}} onClick = {onClickProfile}>
                        {
                        userData.name
                        
