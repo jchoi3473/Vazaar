@@ -309,20 +309,20 @@ export default SellItem;
 
 const categories = [
   {
-    value: "Chair",
-    label: "Chair",
+    value: "Bedroom",
+    label: "Bedroom",
   },
   {
-    value: "Desk",
-    label: "Desk",
+    value: "Living Room",
+    label: "Living Room",
   },
   {
-    value: "Bed",
-    label: "Bed",
+    value: "Kitchen",
+    label: "Kitchen",
   },
   {
-    value: "Table",
-    label: "Table",
+    value: "Bathroom",
+    label: "Bathroom",
   },
 ];
 

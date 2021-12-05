@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Post from '../../../components/post/Post';
-import {getAllListings} from './../../../lib/api'
+import {getAllListings} from '../../../lib/api'
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -57,7 +57,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 
   
 
-function BrowseAllListings(props){
+function Kitchen(props){
     const [loaded, setLoaded] = useState(false);
     const [items, setItems] = useState([]);
     const [sortingOption, setSortingOption] = React.useState(0);
@@ -202,4 +202,4 @@ function BrowseAllListings(props){
         </div>
     );
 }
-export default BrowseAllListings;
+export default Kitchen;
