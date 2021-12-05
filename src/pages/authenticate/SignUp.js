@@ -158,7 +158,7 @@ function SignUp(props) {
           <div className="Vazaar-SignUp-Header-Container">
             <div
               className="Vazaar-Main-Logo"
-              style={{ fontSize: "36px", color: "#7D9EB5", paddingTop: "25px" }}
+              style={{ fontSize: "36px", color: "#7D9EB5", paddingTop: "10px" }}
             >
               vazaar
             </div>
@@ -170,7 +170,7 @@ function SignUp(props) {
             </div>
             <div
               className="Vazaar-Roboto-normal"
-              style={{ fontSize: "14px", color: "#8DAABE", marginTop: "20px" }}
+              style={{ fontSize: "14px", color: "#8DAABE", marginTop: "15px" }}
             >
               Create your account here
             </div>
@@ -261,12 +261,12 @@ function SignUp(props) {
           </div>
           <div
             className="Vazaar-SignUp-Button-Container"
-            style={{ marginTop: "70px" }}
+            style={{ marginTop: "15px" }}
           >
             <div onClick={(e) => onClickSignUp()}>
               <BlueButton text="Sign Up" width="417px" height="47px" />
             </div>
-            <div style={{ marginTop: "28px" }}>
+            <div style={{ marginTop: "15px" }}>
               <div
                 className="Vazaar-Roboto-normal"
                 style={{ display: "inline-block", fontSize: "14px" }}
@@ -346,7 +346,7 @@ const states = [
     label: "FL",
   },
   {
-    value: "georgia",
+    value: "Georgia",
     label: "GA",
   },
   {

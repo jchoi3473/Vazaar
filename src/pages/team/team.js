@@ -5,7 +5,7 @@ import team_background from './../../assets/images/team_background.png'
 import {authenticateUser} from './../../lib/api'
 
 import sunny_pic from './../../assets/images/team_pics/sunny.png'
-import jaeho_pic from './../../assets/images/team_icon.png'
+import jaeho_pic from './../../assets/images/team_pics/jaeho.png'
 import taeheon_pic from './../../assets/images/team_pics/taeheon.png'
 import isaac_pic from './../../assets/images/team_pics/isaac.png'
 import lis_pic from './../../assets/images/team_pics/lis.png'
@@ -93,7 +93,7 @@ function Team(props) {
                                 </div>
                                 <div class="Vazaar-Team-Description-Line-Of-Text">
                                     <span class="Vazaar-Team-Description-Bold">LinkedIn: </span> 
-                                    <span><a class="Vazaar-Team-Description-Link" style={{ textDecoration: 'none' }} href="https://www.linkedin.com/in/sunny-chung/">Sunny Chung</a></span> 
+                                    <span><a class="Vazaar-Team-Description-Link" style={{ textDecoration: 'none' }} href="https://www.linkedin.com/in/sunny-chung/" target="_blank" rel="noreferrer noopener">Sunny Chung</a></span> 
                                 </div>
                             </div> 
                         </div>
@@ -108,7 +108,7 @@ function Team(props) {
                                 </div>
                                 <div class="Vazaar-Team-Description-Line-Of-Text">
                                     <span class="Vazaar-Team-Description-Bold">LinkedIn: </span> 
-                                    <span><a class="Vazaar-Team-Description-Link" style={{ textDecoration: 'none' }} href="https://www.linkedin.com/in/jae-ho-choi-3424a5125/">Jae Ho Choi</a></span> 
+                                    <span><a class="Vazaar-Team-Description-Link" style={{ textDecoration: 'none' }} href="https://www.linkedin.com/in/jae-ho-choi-3424a5125/" target="_blank" rel="noreferrer noopener">Jae Ho Choi</a></span> 
                                 </div>
                             </div> 
                         </div>
@@ -123,7 +123,7 @@ function Team(props) {
                                 </div>
                                 <div class="Vazaar-Team-Description-Line-Of-Text">
                                     <span class="Vazaar-Team-Description-Bold">LinkedIn: </span> 
-                                    <span><a class="Vazaar-Team-Description-Link" style={{ textDecoration: 'none' }} href="https://www.linkedin.com">Taeheon Kim</a></span> 
+                                    <span><a class="Vazaar-Team-Description-Link" style={{ textDecoration: 'none' }} href="https://www.linkedin.com" target="_blank" rel="noreferrer noopener">Taeheon Kim</a></span> 
                                 </div>
                             </div> 
                         </div>
@@ -138,7 +138,7 @@ function Team(props) {
                                 </div>
                                 <div class="Vazaar-Team-Description-Line-Of-Text">
                                     <span class="Vazaar-Team-Description-Bold">LinkedIn: </span> 
-                                    <span><a class="Vazaar-Team-Description-Link" style={{ textDecoration: 'none' }} href="https://www.linkedin.com/in/isaacsyoo/">Isaac Yoo</a></span> 
+                                    <span><a class="Vazaar-Team-Description-Link" style={{ textDecoration: 'none' }} href="https://www.linkedin.com/in/isaacsyoo/" target="_blank" rel="noreferrer noopener">Isaac Yoo</a></span> 
                                 </div>
                             </div> 
                         </div>                                                
@@ -159,7 +159,7 @@ function Team(props) {
                                 </div>
                                 <div class="Vazaar-Team-Description-Line-Of-Text">
                                     <span class="Vazaar-Team-Description-Bold">LinkedIn: </span> 
-                                    <span><a class="Vazaar-Team-Description-Link" style={{ textDecoration: 'none' }} href="https://www.linkedin.com/in/tae-yeon-kim-8248521a2/">Taeyeon Kim</a></span> 
+                                    <span><a class="Vazaar-Team-Description-Link" style={{ textDecoration: 'none' }} href="https://www.linkedin.com/in/tae-yeon-kim-8248521a2/" target="_blank" rel="noreferrer noopener">Taeyeon Kim</a></span> 
                                 </div>
                             </div> 
                         </div>
@@ -174,7 +174,7 @@ function Team(props) {
                                 </div>
                                 <div class="Vazaar-Team-Description-Line-Of-Text">
                                     <span class="Vazaar-Team-Description-Bold">LinkedIn: </span> 
-                                    <span><a class="Vazaar-Team-Description-Link" style={{ textDecoration: 'none' }} href="http://www.linkedin.com/in/lis-dautaj-3540b2197">Lis Dautaj</a></span> 
+                                    <span><a class="Vazaar-Team-Description-Link" style={{ textDecoration: 'none' }} href="http://www.linkedin.com/in/lis-dautaj-3540b2197" target="_blank" rel="noreferrer noopener">Lis Dautaj</a></span> 
                                 </div>
                             </div> 
                         </div>
@@ -189,7 +189,7 @@ function Team(props) {
                                 </div>
                                 <div class="Vazaar-Team-Description-Line-Of-Text">
                                     <span class="Vazaar-Team-Description-Bold">LinkedIn: </span> 
-                                    <span><a class="Vazaar-Team-Description-Link" style={{ textDecoration: 'none' }} href="https://www.linkedin.com/in/dheep-dalamal-b1aa75153/">Dheep Dalamal</a></span> 
+                                    <span><a class="Vazaar-Team-Description-Link" style={{ textDecoration: 'none' }} href="https://www.linkedin.com/in/dheep-dalamal-b1aa75153/" target="_blank" rel="noreferrer noopener">Dheep Dalamal</a></span> 
                                 </div>
                             </div> 
                         </div>   

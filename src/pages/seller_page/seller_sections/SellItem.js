@@ -145,7 +145,7 @@ function SellItem(props) {
           <UploadPicture setUploadImages={setUploadImages} />
         </div>
         <div style={{ padding: "20px" }}>
-          <div className="Vazaar-SellItem-Form-SecondTitle">Description</div>
+          <div className="Vazaar-SellItem-Form-SecondTitle">DESCRIPTION</div>
           <textarea
             className="Vazaar-SellItem-Description-TextArea"
             onChange={(e) => onChangeDescription(e)}
@@ -173,9 +173,7 @@ function SellItem(props) {
         </div>
         <div>
           <div style={{ width: "100%" }}>
-            <div className="Vazaar-SellItem-Form-SecondTitle">
-              PURCHASED YEAR
-            </div>
+            <div className="Vazaar-SellItem-Form-SecondTitle">PURCHASED YEAR</div>
             <FormInput
               placeholder="Enter Year"
               value={year}
@@ -255,7 +253,7 @@ function SellItem(props) {
         </div>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ display: "inline-block", width: "45%" }}>
-            <div className="Vazaar-SellItem-Form-SecondTitle">DIMENSTION</div>
+            <div className="Vazaar-SellItem-Form-SecondTitle">DIMENSION</div>
             <FormInput
               placeholder="Enter Dimension"
               value={dimension}
@@ -293,7 +291,7 @@ function SellItem(props) {
             onChange={(e) => onChangeKeywords(e)}
           />
         </div>
-        <div style={{ textAlign: "right", paddingTop: "40%" }}>
+        <div style={{ textAlign: "right", paddingTop: "10%" }}>
           <div
             style={{
               width: "fit-content",

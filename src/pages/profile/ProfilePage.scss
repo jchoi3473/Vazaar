@@ -7,38 +7,22 @@
     max-width: 2000px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    // align-content: space-between;
-    text-align: left;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
     align-items: center;
 }
 
 .Vazaar-Profile-NonButtons-Container{
     margin: 0 auto;
-    background-color: white !important;
     height: 90%;
     width: 90%;
-    max-height: 1500px;
-    max-width: 2000px;
+    // max-height: 1500px;
+    // max-width: 2000px;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
-    // align-content: space-between;
-    text-align: left;
-    align-items: center;
-}
-
-.Vazaar-Profile-Buttons-Container{
-    margin: 0 auto;
-    background-color: white !important;
-    height: 90%;
-    width: 90%;
-    max-height: 1500px;
-    max-width: 2000px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    // align-content: space-between;
-    text-align: left;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
     align-items: center;
 }

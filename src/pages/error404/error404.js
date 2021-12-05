@@ -1,17 +1,44 @@
-import React from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import './error404.scss'
 import background from './../../assets/images/error404.JPG'
+import {authenticateUser} from './../../lib/api'
 
 function MainPage(props) {
-    
+
+    const [signedIn, setSignedIn] = useState(false); 
+    const [userData, setUserData] = useState(); 
+
+
+    useEffect(() => {
+        if(localStorage.getItem('vazaar-jwt-token')){
+            //need to call authenticate API in future
+            console.log(localStorage.getItem('vazaar-jwt-token'))
+            const result = authenticateUser(localStorage.getItem('vazaar-jwt-token'))
+            console.log(result)
+            setUserData(JSON.parse(localStorage.getItem('vazaar-user')).user)
+            setSignedIn(true)
+            console.log(JSON.parse(localStorage.getItem('vazaar-user')).user)
+        }
+    },[])
+
     const onClickLogo = () =>{
         props.history.push('main')
     }
     const onClickSell = () =>{
-        props.history.push('sell')
+        if(signedIn){
+            props.history.push('sell')
+        }else{
+            alert("You need to sign up to start selling!");
+            props.history.push('sign-up')
+        }
     }
     const onClickBuy = () =>{
-        props.history.push('buy')
+        if(signedIn){
+            props.history.push('buy')
+        }else{
+            alert("You need to sign up to start buying!");
+            props.history.push('sign-up')
+        }
     }
   return (
     <div 

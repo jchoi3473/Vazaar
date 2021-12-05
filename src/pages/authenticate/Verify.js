@@ -75,17 +75,17 @@ function Verify(props) {
                     <div className = "Vazaar-Main-Logo" style = {{"fontSize":"36px", "color":"#7D9EB5", "paddingTop":"25px"}}>
                         vazaar
                     </div>
-                    <div className = "Vazaar-Roboto-bold" style = {{"fontSize":"30px", "marginTop":"10px"}}>
+                    <div className = "Vazaar-Roboto-bold" style = {{"fontSize":"30px", "marginTop":"20px"}}>
                         Verify your email
                     </div>
-                    <div className = "Vazaar-Roboto-normal" style = {{"fontSize":"14px", "color":"#8DAABE", "marginTop":"40px"}}>
-                    We sent you a link at your listed email to verify your
+                    <div className = "Vazaar-Roboto-normal" style = {{"fontSize":"14px", "color":"#8DAABE", "marginTop":"30px"}}>
+                    We sent you a link at your listed emory.edu email to
                     </div>
                     <div className = "Vazaar-Roboto-normal" style = {{"fontSize":"14px", "color":"#8DAABE", "marginTop":"10px"}}>
-                    email address. If you didn’t recieve an email make sure 
+                    verify your email address. If you did not receive an email,
                     </div>
                     <div className = "Vazaar-Roboto-normal" style = {{"fontSize":"14px", "color":"#8DAABE", "marginTop":"10px"}}>
-                    to check your spam folder.
+                    please make sure to check your spam folder.
                     </div>
                 </div>
               
