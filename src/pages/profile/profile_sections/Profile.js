@@ -100,13 +100,23 @@ return color;
 }
 
 function stringAvatar(name) {
-return {
-  sx: {
-    bgcolor: stringToColor(name),
-  },
-  children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
-};
+  var children;
+  console.log(name.split(' '))
+  if (name.split(' ').length>1){
+    children = `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`
+  }else{
+    children = `${name.split(' ')[0][0]}`
+  }
+  return {
+    
+    sx: {
+      bgcolor: stringToColor(name),
+    },
+    children: children,
+  };
 }
+
+
 
 function Profile(props) {
   const [userData, setUserData] = useState(); 

@@ -17,7 +17,12 @@ function Item(props){
     };
 
     useEffect(() => {
-        let tempImages = []
+        let tempImages = [
+        {
+            original: "https://vazaar.herokuapp.com/img/items/"+props.item.imageCover,
+            thumbnail: "https://vazaar.herokuapp.com/img/items/"+props.item.imageCover
+        }
+    ]
         for(var i=0;i<props.item.images.length;i++){
             tempImages.push({
                 original :  "https://vazaar.herokuapp.com/img/items/"+props.item.images[i],
@@ -35,7 +40,7 @@ function Item(props){
                         Images
                 </div>
                 <div style = {{width:'600px', height:'300px'}}>
-                    <ImageGallery  items={image}/>
+                    <ImageGallery  items={image} originalHeight="600" originalWidth="500"/>
                 </div>
                 </div>
                 <div className = "Vazaar-Item-Description-Container" style = {{height: '40%'}}>
@@ -46,7 +51,7 @@ function Item(props){
                         {props.item.description}
                     </div>
                 </div>
-
+            
             </div>
             <div className = "Vazaar-Item-Right">
                 <div style = {{display: 'flex', alignItems: 'center', height: '8rem'}}>
@@ -102,17 +107,15 @@ function Item(props){
 
                     </div>
                     <div style = {{display:'flex'}}>
-                        
                         <div className = "Vazaar-Item-Description-body" style = {{fontWeight: 'bold', marginRight:"5px"}}>
                         Dimensions: 
                         </div>
                         <div className = "Vazaar-Item-Description-body">
                         {props.item.dimension}
                         </div>
-
-
                     </div>
-                    <div style = {{display:'flex'}}>
+                   
+                    {/* <div style = {{display:'flex'}}>
 
                         <div className = "Vazaar-Item-Description-body" style = {{fontWeight: 'bold', marginRight:"5px"}}>
                         Tags: 
@@ -121,9 +124,8 @@ function Item(props){
                             bed, bedroom, mattress
                         </div>
 
-                    </div>
+                    </div> */}
                     <div style = {{display:'flex'}}>
-
                         <div className = "Vazaar-Item-Description-body" style = {{fontWeight: 'bold', marginRight:"5px"}}>
                         Delivery Options: 
                         </div>
@@ -133,6 +135,22 @@ function Item(props){
                             }
                         </div>
 
+                    </div>
+                    <div style = {{display:'flex', marginTop:'50px'}}>
+                        <div className = "Vazaar-Item-Description-body" style = {{fontWeight: 'bold', marginRight:"5px"}}>
+                        Seller: 
+                        </div>
+                        <div className = "Vazaar-Item-Description-body">
+                        {props.item.dimension}
+                        </div>
+                    </div>
+                    <div style = {{display:'flex'}}>
+                        <div className = "Vazaar-Item-Description-body" style = {{fontWeight: 'bold', marginRight:"5px"}}>
+                        Seller Email: 
+                        </div>
+                        <div className = "Vazaar-Item-Description-body">
+                        {props.item.dimension}
+                        </div>
                     </div>
                 </div>
                 <div style = {{height: '25rem', display: 'flex', flexDirection:'column', justifyContent:"space-evenly"}}>

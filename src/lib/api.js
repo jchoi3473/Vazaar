@@ -1,4 +1,5 @@
 import axios from "axios";
+import { min } from "moment";
 
 export const signUP = async function (
   name,
@@ -62,10 +63,14 @@ export const signIn = async function (email, password) {
     userInfo
   )
     if (response.data.token) {
+      if(response.data.data.user.verified){
       localStorage.setItem("vazaar-jwt-token", response.data.token);
       localStorage.setItem("vazaar-user", JSON.stringify(response.data.data));
       console.log(response.data);
       return response.data.status;
+      }else{
+        return "verify"
+      }
       // props.history.push('/main');
     }
   }
@@ -84,7 +89,8 @@ export const addListing = async function (
   dimension,
   description,
   price,
-  imagesList
+  imagesList,
+  category
 ) {
   var bodyFormData = new FormData();
   bodyFormData.append("name", title);
@@ -96,10 +102,14 @@ export const addListing = async function (
   bodyFormData.append("description", description);
   bodyFormData.append("price", price);
   bodyFormData.append("imageCover", imagesList[0].file);
+  bodyFormData.append("category", category);
 
-  for (var i = i; i < imagesList.length; i++) {
-    bodyFormData.append("images", imagesList[i].file);
+  var tempImages = []
+  for (var i = 1; i < imagesList.length; i++) {
+    tempImages.push(imagesList[i].file)
   }
+  bodyFormData.append("images", tempImages);
+
   const response = await axios({
     method: "post",
     url: "https://vazaar.herokuapp.com/api/v1/items",
@@ -107,31 +117,82 @@ export const addListing = async function (
     headers: { "Content-Type": "multipart/form-data" },
   })
     .then(function (response) {
-      //handle success
+      //handle success  
+      alert("Item Post Successful!")
       console.log(response);
+      return response.data
     })
     .catch(function (response) {
       //handle error
       console.log(response);
+      return response.data
     });
 };
 
 
-export const getAllListings = async function (category, page, numItems) {
+export const getAllListings = async function (category, page, numItems, sort, minPrice, maxPrice) {
 
   //need to do something so that we can validate user(correctness)
   try {
     var response;
-    if(category === 'all'){
-      response = await axios.get(
-        "https://vazaar.herokuapp.com/api/v1/items",{ params: { page: page, limit: numItems } }
-      );
+    if(minPrice===0 && maxPrice===0){
+      if(category === 'all'){
+        if(sort.length>0){
+          response = await axios.get(
+            // (`/api/v1/products?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}`
+            
+            'https://vazaar.herokuapp.com/api/v1/items',{ params: { page: page, limit: numItems, sort: sort } }
+          );
+        }
+        else{
+          response = await axios.get(
+            "https://vazaar.herokuapp.com/api/v1/items",{ params: { page: page, limit: numItems } }
+          );
+        }
+      }
+      else{
+        if(sort.length>0){
+          response = await axios.get(
+            "https://vazaar.herokuapp.com/api/v1/items",{ params: { category: category,page: page, limit: numItems, sort: sort } }
+          );
+        }
+        else{
+          response = await axios.get(
+            "https://vazaar.herokuapp.com/api/v1/items",{ params: { category: category,page: page, limit: numItems } }
+          );
+        }
+      }
+    }else{
+      if(category === 'all'){
+        if(sort.length>0){
+          response = await axios.get(
+            `https://vazaar.herokuapp.com/api/v1/items?page=${page}&limit=${numItems}&price[gte]=${minPrice}&price[lte]=${maxPrice}&sort=${sort}`
+          );
+        }
+        else{
+          response = await axios.get(
+            `https://vazaar.herokuapp.com/api/v1/items?page=${page}&limit=${numItems}&price[gte]=${minPrice}&price[lte]=${maxPrice}`
+          );
+        }
+      }
+      else{
+        if(sort.length>0){
+          response = await axios.get(
+            `https://vazaar.herokuapp.com/api/v1/items?category=${category}&page=${page}&limit=${numItems}&price[gte]=${minPrice}&price[lte]=${maxPrice}&sort=${sort}`
+          );
+        }
+        else{
+          response = await axios.get(
+            `https://vazaar.herokuapp.com/api/v1/items?category=${category}&page=${page}&limit=${numItems}&price[gte]=${minPrice}&price[lte]=${maxPrice}`
+          );
+        }
+      }
     }
-    else{
-      response = await axios.get(
-        "https://vazaar.herokuapp.com/api/v1/items",{ params: { category: category,page: page, limit: numItems } }
-      );
-    }
+
+
+
+
+
       return response.status === 200 ? response.data : "error";
   } catch (error) {
       return error

@@ -49,6 +49,8 @@ function SignIn(props) {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [wrongEntity, setWrongEntity] = useState(false);
+  const [verify, setVerify] = useState(false);
+
   const onClickSignUp = () => {
     props.history.push("sign-up");
   };
@@ -76,6 +78,9 @@ function SignIn(props) {
     }else{
       console.log("Trigger Signup");
       setWrongEntity(true)
+      if(userData==='verify'){
+        setVerify(true)
+      }
     }
   };
   return (
@@ -126,9 +131,16 @@ function SignIn(props) {
             </div>
             {
               wrongEntity?
-              <div style = {{marginTop: '15px', height:'10px', color:'red', fontSize:'13px'}}>
-                Incorrect Email or Password. Please try again.
-              </div>
+                verify?
+                <>
+                <div style = {{marginTop: '15px', height:'10px', color:'red', fontSize:'13px'}}>
+                Please Verify Your Email First.
+                </div>
+                </>
+                :
+                <div style = {{marginTop: '15px', height:'10px', color:'red', fontSize:'13px'}}>
+                  Incorrect Email or Password. Please try again.
+                </div>
               :<div style = {{marginTop: '15px', height:'10px'}}>
               </div>
             }

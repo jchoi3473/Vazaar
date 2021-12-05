@@ -122,8 +122,11 @@ function SellItem(props) {
 
   const onClickAddListing = async (e) => {
     // e.preventDefault();
-
-    await addListing(
+    if(images.length<2){
+      alert("You must add at least two pictures");
+      return;
+    }
+    const response = await addListing(
       title,
       year,
       condition,
@@ -132,8 +135,23 @@ function SellItem(props) {
       dimension,
       description,
       price,
-      images
+      images,
+      category
     );
+    console.log(response)
+    if(response.status ==='success'){
+      setCategory()
+      setCondition()
+      setDelivery()
+      setDescription("")
+      setTitle("")
+      setYear(0)
+      setPrice(0)
+      setColor("")
+      setDimension("")
+      setKeyWords("")
+      setUploadImages([])
+    }
   };
   return (
     <div className="Vazaar-SellItem-Container">

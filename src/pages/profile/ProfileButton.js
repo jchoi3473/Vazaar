@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import Dashboard from '../dashboard/Dashboard';
 import './ProfilePage.scss'
 import Avatar from '@mui/material/Avatar';
@@ -26,26 +26,37 @@ function stringToColor(string) {
 }
 
 function stringAvatar(name) {
+  var children;
+  console.log(name.split(' '))
+  if (name.split(' ').length>1){
+    children = `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`
+  }else{
+    children = `${name.split(' ')[0][0]}`
+  }
   return {
     sx: {
       bgcolor: stringToColor(name),
     },
-    children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
+    children: children,
   };
 }
 
 function ProfileButton(props) {
-
   const onClickSignIn = () => {
     props.history.push("/profile");
   };
 
     return(
-        <div className = "Vazaar-Profile-Container">
+      <div className = "Vazaar-Profile-Container">
+      {            JSON.parse(localStorage.getItem('vazaar-user'))?
+            <>
             <Avatar {...stringAvatar(JSON.parse(localStorage.getItem('vazaar-user')).data.name)} />
             <div className = "Vazaar-Profile-Name" style = {{marginLeft:"15px"}} onClick = {onClickSignIn}>
                 {JSON.parse(localStorage.getItem('vazaar-user')).data.name}
             </div>
+            </>:
+            <></>
+      }
         </div>
     );
 }

@@ -39,10 +39,10 @@ function Post(props){
                             {/* <img  className = "Vazaar-Heart" style ={{height:"60px"}} src={Heart}/> */}
                             {
                                 hoverHeart?
-                                <div className = "Vazaar-Heart-Circle" onMouseLeave = {() => setHoverHeart(false)}>
+                                <div className = "Vazaar-Heart-Circle" style ={{cursor:'pointer'}} onMouseLeave = {() => setHoverHeart(false)}>
                                     <SvgIcon  className = "Vazaar-Heart" component={FavoriteIcon} style = {{color: '#E9545D', fontSize: '55px'}} />
                                 </div>:
-                                <div className = "Vazaar-Heart-Circle" onMouseEnter = {() => setHoverHeart(true)}>
+                                <div className = "Vazaar-Heart-Circle" style ={{cursor:'pointer'}} onMouseEnter = {() => setHoverHeart(true)}>
                                     <SvgIcon  className = "Vazaar-Heart"  component={FavoriteBorderIcon} style = {{color: '#E9545D', fontSize: '55px'}} />
                                 </div>
                             }
