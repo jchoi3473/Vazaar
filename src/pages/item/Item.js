@@ -141,7 +141,7 @@ function Item(props){
                         Seller: 
                         </div>
                         <div className = "Vazaar-Item-Description-body">
-                        {props.item.dimension}
+                        {props.item.userInfo.name}
                         </div>
                     </div>
                     <div style = {{display:'flex'}}>
@@ -149,7 +149,7 @@ function Item(props){
                         Seller Email: 
                         </div>
                         <div className = "Vazaar-Item-Description-body">
-                        {props.item.dimension}
+                        {props.item.userInfo.email}
                         </div>
                     </div>
                 </div>

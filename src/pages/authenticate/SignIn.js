@@ -6,12 +6,8 @@ import background from "./../../assets/images/background.jpg";
 import { alpha, styled } from "@mui/material/styles";
 
 import InputBase from "@mui/material/InputBase";
-import TextField from "@mui/material/TextField";
 import BlueButton from "../../components/button/BlueButton";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import InputAdornment from "@mui/material/InputAdornment";
-import IconButton from "@mui/material/IconButton";
+
 import { signIn } from "../../lib/api";
 
 //Custom Material UI input
@@ -44,7 +40,6 @@ const FormInput = styled(InputBase)(({ theme }) => ({
 }));
 
 function SignIn(props) {
-  const [state, setState] = useState("Alabama");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -66,9 +61,7 @@ function SignIn(props) {
   const onChangePassword = (e) => {
     setPassword(e.target.value);
   };
-  const handleClickShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
+
 
   const onClickSignIn = async (e) => {
     console.log("Trigger Signup");

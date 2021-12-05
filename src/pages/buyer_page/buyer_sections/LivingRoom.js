@@ -65,15 +65,17 @@ function LivingRoom(props){
     const [maxPrice, setMaxPrice] = React.useState(0);
     const [totalNumPages, setTotalNumPages] = React.useState(0);
     const [currentPage, setcurrentPage] = useState(0); 
-
+    const [sortString, setSortString] = useState('')
 
     const onClickReset = () =>{
         setLoaded(false)
         setMinPrice(0)
         setMaxPrice(0)
         setSortingOption(0)
-        getAllListings(1, 20).then(response => {
+        setSortString('')
+        getAllListings(props.type, 1, 20, '', 0, 0).then(response => {
             setLoaded(true);
+            console.log(response.data)
             setTotalNumPages(response.totalPageNumber)
             setItems(response.data.doc)
         })
@@ -81,7 +83,7 @@ function LivingRoom(props){
     const handlePageChange = (selectedObject) => {
         setcurrentPage(selectedObject.selected);
         // setLoaded(false);
-        const data = getAllListings(props.type, selectedObject.selected+1, 20).then(response => {
+        const data = getAllListings(props.type, selectedObject.selected+1, 20, sortString, minPrice, maxPrice).then(response => {
             // setLoaded(true);
             setTotalNumPages(response.totalPageNumber)
             console.log(response)
@@ -92,32 +94,63 @@ function LivingRoom(props){
 
 		// handleFetch();
 	};
+    const onClickSearch = (event) =>{
+        if(maxPrice <= minPrice){
+            alert("Please insert correct price range.")
+            setMinPrice(0)
+            setMaxPrice(0)
+            onClickReset()
+            return
+        }
+        const data = getAllListings(props.type, 1, 20, sortString, minPrice, maxPrice).then(response => {
+            // setLoaded(true);
+            setTotalNumPages(response.totalPageNumber)
+            console.log(response)
+            setItems(response.data.doc)
+        })
+
+    }
     const handleChange = (event) => {
         setSortingOption(event.target.value);
+        var tempSortString = ""
+        switch (event.target.value) {
+            case 1:
+                tempSortString = "price"
+                break;
+            case 2:
+                tempSortString = "-price"
+                break;
+            case 3:
+                tempSortString = "-createdAt"
+                break;
+            case 4:
+                tempSortString = "createdAt"
+                break;
+            default:
+              return null
+        }
+        setSortString(tempSortString)
+        const data = getAllListings(props.type, 1, 20, tempSortString, minPrice, maxPrice).then(response => {
+            // setLoaded(true);
+            setTotalNumPages(response.totalPageNumber)
+            console.log(response)
+            setItems(response.data.doc)
+        })
     };
+
     const handleChangeMinPrice = (event) =>{
-            setMinPrice(event.target.value)
+        setMinPrice(event.target.value)
     }
     const handleChangeMaxPrice = (event) =>{
         setMaxPrice(event.target.value)
     }
     useEffect(() => {
-        getAllListings(props.type, 1, 20).then(response => {
+        getAllListings(props.type, 1, 20, sortString, minPrice, maxPrice).then(response => {
             setLoaded(true);
             setTotalNumPages(response.totalPageNumber)
+            console.log(response)
             setItems(response.data.doc)
         })
-        // if(localStorage.getItem('jwt-token')){
-        //   getApplication(JSON.parse(localStorage.getItem('user')).uID).then(applications => 
-        //     {props.setApps(applications)
-        //       setAppLoaded(true)})
-        //   getCompany(JSON.parse(localStorage.getItem('user')).uID).then(companies => 
-        //     {props.setCompany(companies)
-        //     setCompanyLoaded(true)
-        //     })
-        // }else{
-        //   props.history.push('/');
-        // }
       },[])
 
     return(
@@ -163,7 +196,7 @@ function LivingRoom(props){
                             </div>
                             <BootstrapInput className="no-spinner" type = "number" style = {{width : '150px'}} value = {maxPrice} onChange={handleChangeMaxPrice}/>
                         </FormControl>
-                        <button className = "Vazaar-sort-price">Search Price</button>
+                        <button className = "Vazaar-sort-price" onClick = {(e) => onClickSearch(e)}>Search Price</button>
                         <button className = "Vazaar-sort-price" onClick = {() => onClickReset()}>Reset</button>
                         </div>
                     </div>

@@ -36,7 +36,6 @@ function BuyerPage(props) {
     const [signedIn, setSignedIn] = useState(false); 
 
     useEffect(() => {
-        console.log("Not Triggered why")
 
         if(localStorage.getItem('vazaar-jwt-token')){
             //need to call authenticate API in future

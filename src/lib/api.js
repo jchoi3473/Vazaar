@@ -92,6 +92,8 @@ export const addListing = async function (
   imagesList,
   category
 ) {
+ 
+
   var bodyFormData = new FormData();
   bodyFormData.append("name", title);
   bodyFormData.append("purchasedYear", year);
@@ -106,27 +108,26 @@ export const addListing = async function (
 
   var tempImages = []
   for (var i = 1; i < imagesList.length; i++) {
-    tempImages.push(imagesList[i].file)
-  }
-  bodyFormData.append("images", tempImages);
+    bodyFormData.append("images", imagesList[i].file);
 
-  const response = await axios({
-    method: "post",
-    url: "https://vazaar.herokuapp.com/api/v1/items",
-    data: bodyFormData,
-    headers: { "Content-Type": "multipart/form-data" },
-  })
-    .then(function (response) {
-      //handle success  
-      alert("Item Post Successful!")
-      console.log(response);
-      return response.data
+    // tempImages.push()
+  }
+  try{
+    const response = await axios({
+      method: "post",
+      url: "https://vazaar.herokuapp.com/api/v1/items",
+      data: bodyFormData,
+      headers: { "Content-Type": "multipart/form-data",
+      'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}` },
     })
-    .catch(function (response) {
-      //handle error
-      console.log(response);
-      return response.data
-    });
+    console.log(response);
+    alert("Item Posted Successfully!")
+    return response.data
+  }
+  catch(error){
+    console.log(error);
+    return error
+  }
 };
 
 
@@ -141,24 +142,28 @@ export const getAllListings = async function (category, page, numItems, sort, mi
           response = await axios.get(
             // (`/api/v1/products?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}`
             
-            'https://vazaar.herokuapp.com/api/v1/items',{ params: { page: page, limit: numItems, sort: sort } }
+            'https://vazaar.herokuapp.com/api/v1/items',{ params: { page: page, limit: numItems, sort: sort },
+             headers: {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`} }
           );
         }
         else{
           response = await axios.get(
-            "https://vazaar.herokuapp.com/api/v1/items",{ params: { page: page, limit: numItems } }
+            "https://vazaar.herokuapp.com/api/v1/items",{ params: { page: page, limit: numItems },
+            headers: {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`} }
           );
         }
       }
       else{
         if(sort.length>0){
           response = await axios.get(
-            "https://vazaar.herokuapp.com/api/v1/items",{ params: { category: category,page: page, limit: numItems, sort: sort } }
+            "https://vazaar.herokuapp.com/api/v1/items",{ params: { category: category,page: page, limit: numItems, sort: sort },
+            headers: {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`} }
           );
         }
         else{
           response = await axios.get(
-            "https://vazaar.herokuapp.com/api/v1/items",{ params: { category: category,page: page, limit: numItems } }
+            "https://vazaar.herokuapp.com/api/v1/items",{ params: { category: category,page: page, limit: numItems },
+            headers: {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`} }
           );
         }
       }
@@ -166,24 +171,28 @@ export const getAllListings = async function (category, page, numItems, sort, mi
       if(category === 'all'){
         if(sort.length>0){
           response = await axios.get(
-            `https://vazaar.herokuapp.com/api/v1/items?page=${page}&limit=${numItems}&price[gte]=${minPrice}&price[lte]=${maxPrice}&sort=${sort}`
+            `https://vazaar.herokuapp.com/api/v1/items?page=${page}&limit=${numItems}&price[gte]=${minPrice}&price[lte]=${maxPrice}&sort=${sort}`,{
+            headers: {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`}}
           );
         }
         else{
           response = await axios.get(
-            `https://vazaar.herokuapp.com/api/v1/items?page=${page}&limit=${numItems}&price[gte]=${minPrice}&price[lte]=${maxPrice}`
+            `https://vazaar.herokuapp.com/api/v1/items?page=${page}&limit=${numItems}&price[gte]=${minPrice}&price[lte]=${maxPrice}`,
+            {headers: {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`}}
           );
         }
       }
       else{
         if(sort.length>0){
           response = await axios.get(
-            `https://vazaar.herokuapp.com/api/v1/items?category=${category}&page=${page}&limit=${numItems}&price[gte]=${minPrice}&price[lte]=${maxPrice}&sort=${sort}`
+            `https://vazaar.herokuapp.com/api/v1/items?category=${category}&page=${page}&limit=${numItems}&price[gte]=${minPrice}&price[lte]=${maxPrice}&sort=${sort}`,
+            {headers: {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`}}
           );
         }
         else{
           response = await axios.get(
-            `https://vazaar.herokuapp.com/api/v1/items?category=${category}&page=${page}&limit=${numItems}&price[gte]=${minPrice}&price[lte]=${maxPrice}`
+            `https://vazaar.herokuapp.com/api/v1/items?category=${category}&page=${page}&limit=${numItems}&price[gte]=${minPrice}&price[lte]=${maxPrice}`,
+            {headers: {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`}}
           );
         }
       }
@@ -235,4 +244,21 @@ export const forgotPassword = async function (email) {
   return response
   //need to do something so that we can validate user(correctness)
 
+};
+
+
+export const getSoldListing = async function (sold) {
+
+  //need to do something so that we can validate user(correctness)
+  try {
+    const response = await axios.get(
+      // (`/api/v1/products?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}`  
+      `https://vazaar.herokuapp.com/api/v1/items?userinfo._id=${JSON.parse(localStorage.getItem('vazaar-user')).data._id}&sold=${sold}`,
+      {headers : {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`} }
+    );
+    return response.status === 200 ? response.data : "error";
+
+  } catch (error) {
+      return error
+  } 
 };

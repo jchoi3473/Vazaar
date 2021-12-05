@@ -1,9 +1,5 @@
 
 import React, {useState,useEffect} from 'react';
-import {
-    useRouteMatch
-  } from "react-router-dom";
-
 
 import './SellerPage.scss'
 import Dashboard from '../dashboard/Dashboard';
@@ -12,7 +8,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import ProfileButton from '../profile/ProfileButton';
 
-import SoldListings from './seller_sections/SoldListings'
+import SoldListings from './seller_sections/SoldListings2'
 import SellItem from './seller_sections/SellItem';
 import FAQ from '../FAQ/FAQ'
 
@@ -21,10 +17,10 @@ import sold_listings from './../../assets/images/sold_listings.png'
 import unsold_listings from './../../assets/images/unsold_listings.png'
 import faq from './../../assets/images/faq.png'
 import switch_page from './../../assets/images/switch.png'
+import UnSoldListing from './seller_sections/UnSoldListing';
 
 function SellerPage(props) {
     const [selectedIndex, setSelectedIndex] = React.useState(0);
-    let { path, url } = useRouteMatch();
 
     const [userData, setUserData] = useState(); 
     const [signedIn, setSignedIn] = useState(false); 
@@ -39,7 +35,7 @@ function SellerPage(props) {
             alert("Please Sign In to Start Selling!")
             props.history.push('/')
         }
-    },[])
+    },[props.history])
 
 
     const handleListItemClick = (event, index) => {
@@ -73,9 +69,9 @@ function SellerPage(props) {
                     {/* <ListItemIcon>
                         <InboxIcon />
                     </ListItemIcon> */}
-                    <img className="Vazaar-category-icon" src={sell_item}/>
+                    <img className="Vazaar-category-icon" src={sell_item} alt = "Category"/>
                     <div style = {{paddingRight: "10px" }}></div>
-                    <ListItemText className = {selectedIndex==0?"Vazaar-List-White":"Vazaar-List-Black"} primary="Sell Item" />
+                    <ListItemText className = {selectedIndex===0?"Vazaar-List-White":"Vazaar-List-Black"} primary="Sell Item" />
                     </ListItemButton>
 
                     <ListItemButton
@@ -85,27 +81,27 @@ function SellerPage(props) {
                     {/* <ListItemIcon>
                         <DraftsIcon />
                     </ListItemIcon> */}
-                    <img className="Vazaar-category-icon" src={sold_listings}/>
+                    <img className="Vazaar-category-icon" src={sold_listings} alt = "Sold"/>
                     <div style = {{paddingRight: "10px" }}></div>
-                    <ListItemText className = {selectedIndex==1?"Vazaar-List-White":"Vazaar-List-Black"} primary="Sold Listings" />
+                    <ListItemText className = {selectedIndex===1?"Vazaar-List-White":"Vazaar-List-Black"} primary="Sold Listings" />
                     </ListItemButton>
 
                     <ListItemButton
                     selected={selectedIndex === 2}
                     onClick={(event) => handleListItemClick(event, 2)}
                     >
-                    <img className="Vazaar-category-icon" src={unsold_listings}/>
+                    <img className="Vazaar-category-icon" src={unsold_listings} alt = "Unsold"/>
                     <div style = {{paddingRight: "10px" }}></div>
-                    <ListItemText className = {selectedIndex==2?"Vazaar-List-White":"Vazaar-List-Black"} primary="Unsold Listings" />
+                    <ListItemText className = {selectedIndex===2?"Vazaar-List-White":"Vazaar-List-Black"} primary="Unsold Listings" />
                     </ListItemButton>
 
                     <ListItemButton
                     selected={selectedIndex === 3}
                     onClick={(event) => handleListItemClick(event, 3)}
                     >
-                    <img className="Vazaar-category-icon" src={faq}/>
+                    <img className="Vazaar-category-icon" src={faq} alt = "FAQ"/>
                     <div style = {{paddingRight: "10px" }}></div>
-                    <ListItemText className = {selectedIndex==3?"Vazaar-List-White":"Vazaar-List-Black"} primary="FAQ" />
+                    <ListItemText className = {selectedIndex===3?"Vazaar-List-White":"Vazaar-List-Black"} primary="FAQ" />
                     </ListItemButton>
 
                     <div style = {{paddingBottom: "20px" }}></div>
@@ -114,7 +110,7 @@ function SellerPage(props) {
                     selected={selectedIndex === 5}
                     onClick = {onClickBuy}
                     >
-                    <img className="Vazaar-category-icon" src={switch_page}/>
+                    <img className="Vazaar-category-icon" src={switch_page} alt = "Buy"/>
                     <div style = {{paddingRight: "10px" }}></div>
                     <ListItemText primary="Switch to Buy" />
                     </ListItemButton>
@@ -128,6 +124,7 @@ function SellerPage(props) {
                     {  
                         0: <SellItem/>,
                         1: <SoldListings/>,
+                        2: <UnSoldListing/>,
                         3: <FAQ/>
                     }[selectedIndex]
                     }

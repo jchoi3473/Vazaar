@@ -15,7 +15,6 @@ import dheep_pic from './../../assets/images/team_pics/dheep.png'
 
 function Team(props) {
     const [signedIn, setSignedIn] = useState(false); 
-    const [userData, setUserData] = useState(); 
 
 
     useEffect(() => {
@@ -24,7 +23,6 @@ function Team(props) {
             console.log(localStorage.getItem('vazaar-jwt-token'))
             const result = authenticateUser(localStorage.getItem('vazaar-jwt-token'))
             console.log(result)
-            setUserData(JSON.parse(localStorage.getItem('vazaar-user')).user)
             setSignedIn(true)
             console.log(JSON.parse(localStorage.getItem('vazaar-user')).user)
         }
@@ -84,7 +82,7 @@ function Team(props) {
                     <div className = "Vazaar-Team-Profile-Row-Container">
 
                         <div className = "Vazaar-Team-Profile-Individual-Container">
-                            <img className="Vazaar-Team-Icon" src={sunny_pic}/>
+                            <img className="Vazaar-Team-Icon" src={sunny_pic} alt ="Sunny"/>
                             <div className = "Vazaar-Team-Description-Container">
                                 <div className = "Vazaar-Team-Name-Text">Sunny Chung</div>
                                 <div class="Vazaar-Team-Description-Line-Of-Text">
@@ -99,7 +97,7 @@ function Team(props) {
                         </div>
 
                         <div className = "Vazaar-Team-Profile-Individual-Container">
-                            <img className="Vazaar-Team-Icon" src={jaeho_pic}/>
+                            <img className="Vazaar-Team-Icon" src={jaeho_pic} alt ="Jae"/>
                             <div className = "Vazaar-Team-Description-Container">
                                 <div className = "Vazaar-Team-Name-Text">Jae Ho Choi</div>
                                 <div class="Vazaar-Team-Description-Line-Of-Text">
@@ -114,7 +112,7 @@ function Team(props) {
                         </div>
 
                         <div className = "Vazaar-Team-Profile-Individual-Container">
-                            <img className="Vazaar-Team-Icon" src={taeheon_pic}/>
+                            <img className="Vazaar-Team-Icon" src={taeheon_pic} alt ="Tae"/>
                             <div className = "Vazaar-Team-Description-Container">
                                 <div className = "Vazaar-Team-Name-Text">Taeheon Kim</div>
                                 <div class="Vazaar-Team-Description-Line-Of-Text">
@@ -129,7 +127,7 @@ function Team(props) {
                         </div>
 
                         <div className = "Vazaar-Team-Profile-Individual-Container">
-                            <img className="Vazaar-Team-Icon" src={isaac_pic}/>
+                            <img className="Vazaar-Team-Icon" src={isaac_pic} alt ="Isaac"/>
                             <div className = "Vazaar-Team-Description-Container">
                                 <div className = "Vazaar-Team-Name-Text">Isaac Yoo</div>
                                 <div class="Vazaar-Team-Description-Line-Of-Text">
@@ -150,7 +148,7 @@ function Team(props) {
                     <div className = "Vazaar-Team-Profile-Row-Container">
 
                         <div className = "Vazaar-Team-Profile-Individual-Container">
-                            <img className="Vazaar-Team-Icon" src={taeyeon_pic}/>
+                            <img className="Vazaar-Team-Icon" src={taeyeon_pic} alt ="TaeYeon"/>
                             <div className = "Vazaar-Team-Description-Container">
                                 <div className = "Vazaar-Team-Name-Text">Taeyeon Kim</div>
                                 <div class="Vazaar-Team-Description-Line-Of-Text">
@@ -165,7 +163,7 @@ function Team(props) {
                         </div>
 
                         <div className = "Vazaar-Team-Profile-Individual-Container">
-                            <img className="Vazaar-Team-Icon" src={lis_pic}/>
+                            <img className="Vazaar-Team-Icon" src={lis_pic} alt ="Lis"/>
                             <div className = "Vazaar-Team-Description-Container">
                                 <div className = "Vazaar-Team-Name-Text">Lis Dautaj</div>
                                 <div class="Vazaar-Team-Description-Line-Of-Text">
@@ -180,7 +178,7 @@ function Team(props) {
                         </div>
 
                         <div className = "Vazaar-Team-Profile-Individual-Container">
-                            <img className="Vazaar-Team-Icon" src={dheep_pic}/>
+                            <img className="Vazaar-Team-Icon" src={dheep_pic} alt ="Dheep"/>
                             <div className = "Vazaar-Team-Description-Container">
                                 <div className = "Vazaar-Team-Name-Text">Dheep Dalamal</div>
                                 <div class="Vazaar-Team-Description-Line-Of-Text">

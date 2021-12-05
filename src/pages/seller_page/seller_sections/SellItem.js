@@ -44,7 +44,7 @@ const FormTextField = styled(TextField)(({ theme }) => ({
     marginTop: theme.spacing(3),
   },
   display: "block",
-  width: "100%",
+  // width: "100%",
   "& .MuiOutlinedInput-root": {
     width: "100%",
   },
@@ -138,7 +138,7 @@ function SellItem(props) {
       images,
       category
     );
-    console.log(response)
+    console.log(response.status)
     if(response.status ==='success'){
       setCategory()
       setCondition()
