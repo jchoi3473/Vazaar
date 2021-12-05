@@ -23,6 +23,12 @@ import bathroom_picture from './../../assets/images/bathroom.png'
 import faq from './../../assets/images/faq.png'
 import switch_page from './../../assets/images/switch.png'
 
+import KitchenPage from './buyer_sections/Kitchen'
+import LivingRoomPage from './buyer_sections/LivingRoom'
+import BathroomPage from './buyer_sections/Bathroom'
+import BedroomPage from './buyer_sections/Bedroom'
+
+
 function BuyerPage(props) {
     const [selectedIndex, setSelectedIndex] = React.useState(0);
     let { path, url } = useRouteMatch();
@@ -154,7 +160,11 @@ function BuyerPage(props) {
                     {
                     {  
                         0: <Buyer_Dashboard/>,
-                        1: <BrowseAllListings/>,
+                        1: <BrowseAllListings type = "all"/>,
+                        2: <BedroomPage type = "bedroom"/>,
+                        3: <LivingRoomPage type = "living room"/>,
+                        4: <KitchenPage type = "kitchen"/>,
+                        5: <BathroomPage type = "bathroom"/>,
                         6: <FAQ/>
                     }[selectedIndex]
                     }
@@ -166,3 +176,5 @@ function BuyerPage(props) {
 }
 
 export default BuyerPage
+
+

@@ -117,19 +117,50 @@ export const addListing = async function (
 };
 
 
-export const getAllListings = async function () {
+export const getAllListings = async function (category, page, numItems) {
 
   //need to do something so that we can validate user(correctness)
   try {
-    const response = await axios.get(
-      "https://vazaar.herokuapp.com/api/v1/items"
-    );
-      return response.status === 200 ? response.data.data : "error";
+    var response;
+    if(category === 'all'){
+      response = await axios.get(
+        "https://vazaar.herokuapp.com/api/v1/items",{ params: { page: page, limit: numItems } }
+      );
+    }
+    else{
+      response = await axios.get(
+        "https://vazaar.herokuapp.com/api/v1/items",{ params: { category: category,page: page, limit: numItems } }
+      );
+    }
+      return response.status === 200 ? response.data : "error";
   } catch (error) {
       return error
   } 
 };
 
+export const getSortedListing = async function (sortOption) {
+  //need to do something so that we can validate user(correctness)
+  try {
+    const response = await axios.get(
+      "https://vazaar.herokuapp.com/api/v1/items"
+    );
+      return response.status === 200 ? response.data : "error";
+  } catch (error) {
+      return error
+  } 
+};
+
+export const getListingPrice = async function (sortOption, startPrice, endPrice) {
+  //need to do something so that we can validate user(correctness)
+  try {
+    const response = await axios.get(
+      "https://vazaar.herokuapp.com/api/v1/items"
+    );
+      return response.status === 200 ? response.data : "error";
+  } catch (error) {
+      return error
+  } 
+};
 
 export const forgotPassword = async function (email) {
   const userInfo = {

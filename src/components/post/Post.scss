@@ -76,3 +76,21 @@
     justify-content: center;
     cursor: pointer;
 }
+.Vazaar-Post-Heart-Container{
+    bottom: 294px;
+    height: 100%;
+}
+.Vazaar-Heart{
+    position: relative;
+    top: 22px;
+}
+
+.Vazaar-Heart-Circle{
+    position: relative;
+    margin: 0 auto;
+    top: 100px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    background-color:  rgba(255, 255, 255, 0.75);;
+}

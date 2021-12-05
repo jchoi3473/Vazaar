@@ -4,13 +4,17 @@ import Moment from 'moment';
 import Item from '../../pages/item/Item';
 import Modal from '@mui/material/Modal';
 import Heart from './../../assets/images/heart.png'
-
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { SvgIcon } from '@mui/material';
 function Post(props){
     //Values here are all static. Need to figure out details in future
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const [hover, setHover] = useState(false);
+    const [hoverHeart, setHoverHeart] = useState(false);
+
     const [source, setSource] = useState();
 
     useEffect(() => {
@@ -25,23 +29,29 @@ function Post(props){
   
     return(
         <div className = "Vazaar-Post-Container" >
-            {
-                console.log(props.item.color)
-            }
-
-
             <div className = "Vazaar-Post-Image-Container" onMouseEnter = {() => setHover(true)} onMouseLeave = { () => setHover(false)}>
-                <div style = {{position:'relative', zIndex:'3333'}}>
-                {
-                    hover? 
-                    <div  onMouseEnter = {() => setHover(true)}>
-                        <img  onMouseEnter = {() => setHover(true)} style ={{height:"65px", width:"65px"}} src={Heart}/>
 
-                    </div>:
-                    <></>
-                }
+                <img style ={{position: "relative", zIndex : "1"}} src={"https://vazaar.herokuapp.com/img/items/"+props.item.imageCover} width="432" height ="290"/>
+                <div className = "Vazaar-Post-Heart-Container" style = {{position:'relative', zIndex:'2'}}>
+                    {
+                        hover? 
+                        <div style = {{height:'100%', background:'linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.6) 100%)'}} onMouseEnter = {() => setHover(true)}>
+                            {/* <img  className = "Vazaar-Heart" style ={{height:"60px"}} src={Heart}/> */}
+                            {
+                                hoverHeart?
+                                <div className = "Vazaar-Heart-Circle" onMouseLeave = {() => setHoverHeart(false)}>
+                                    <SvgIcon  className = "Vazaar-Heart" component={FavoriteIcon} style = {{color: '#E9545D', fontSize: '55px'}} />
+                                </div>:
+                                <div className = "Vazaar-Heart-Circle" onMouseEnter = {() => setHoverHeart(true)}>
+                                    <SvgIcon  className = "Vazaar-Heart"  component={FavoriteBorderIcon} style = {{color: '#E9545D', fontSize: '55px'}} />
+                                </div>
+                            }
+                            
+
+                        </div>:
+                        <></>
+                    }
                 </div>
-                <img src={source}/>
             </div>
             <div className = "Vazaar-Post-Detail-Container">
                 <div className = "Vazaar-Post-Detail-Title">
@@ -63,7 +73,10 @@ function Post(props){
                         ${props.item.price}
                     </div>
                 </div>
-                <div className = "Vazaar-Post-View" onClick = {handleOpen}>View</div>
+                {/* <div style = {{position:"relative"}}> */}
+                    {/* <img  className = "Vazaar-Heart" style ={{height:"30px"}} src={Heart}/> */}
+                    <div className = "Vazaar-Post-View" onClick = {handleOpen}>View</div>
+                {/* </div> */}
             </div>
             <Modal
                 open={open}
@@ -73,7 +86,7 @@ function Post(props){
                 }}
                 closeAfterTransition
             >
-                <Item item = {props.item} />
+                <Item item = {props.item} handleClose = {handleClose} />
             </Modal>
             {/* <Switch>
                     <Route path={`${path}/:topicId`}>

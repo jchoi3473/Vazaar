@@ -1,9 +1,19 @@
 .Vazaar-ItemListing-Container{
-    height: calc(100% - 80px);
+    // height: calc(100% - 80px);
     width: 100% !important;
-    display: flex;
-    flex-wrap: wrap;
-    overflow-y: scroll;
+    display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(500px, max-content));
+       grid-gap: 3px;
+       justify-content: center;
+       padding: initial;
+
+    // display: flex;
+    // // flex-wrap: wrap;
+    // flex-direction: column;
+    // align-content: center;
+    // overflow-y: scroll;
+    
     // flex-direction: row;
 }
 
@@ -86,4 +96,64 @@ input[type=number] {
     // &:active{
     //     background-color: #2066cf;
     // }
+}
+.Vazaar-Pagination{
+    display: block;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.container{
+    display: flex;
+    list-style: none;
+}
+
+.page{
+	padding: 10px;
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.disabled{
+    cursor: not-allowed;
+    
+}
+
+.active{
+	border: 2px solid #000;
+    font-weight: bold;
+}
+
+.previous{
+    padding: 10px;
+    border-radius: 6px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.break{
+    padding: 10px;
+}
+
+.next{
+    padding: 10px;
+    border-radius: 6px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.Vazaar-Test-Container{
+    display: flex;
+    flex-wrap: wrap;
+    width: fit-content;
+    // justify-content: space-between;
+    margin: 0 auto !important;
+    padding: 0 auto !important;
+
+    // justify-content: center;
 }
