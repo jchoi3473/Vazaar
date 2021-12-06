@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Post from './../../../components/post/Post'
+import Post from '../../../components/post/Post'
 
 function SoldListings(props){
     //Currently using static item

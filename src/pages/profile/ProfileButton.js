@@ -3,7 +3,7 @@ import Dashboard from '../dashboard/Dashboard';
 import './ProfilePage.scss'
 import Avatar from '@mui/material/Avatar';
 import {withRouter} from "react-router-dom"
-
+import {signOut} from './../../lib/api'
 
 function stringToColor(string) {
   let hash = 0;
@@ -45,14 +45,29 @@ function ProfileButton(props) {
   const onClickSignIn = () => {
     props.history.push("/profile");
   };
-
+  const onClickLogOut = () =>{
+    signOut()
+    localStorage.removeItem('vazaar-jwt-token')
+    localStorage.removeItem('vazaar-user')
+    props.history.push("/main");
+  }
     return(
       <div className = "Vazaar-Profile-Container">
       {            JSON.parse(localStorage.getItem('vazaar-user'))?
             <>
-            <Avatar {...stringAvatar(JSON.parse(localStorage.getItem('vazaar-user')).data.name)} />
-            <div className = "Vazaar-Profile-Name" style = {{marginLeft:"15px"}} onClick = {onClickSignIn}>
-                {JSON.parse(localStorage.getItem('vazaar-user')).data.name}
+            <div className = "Vazaar-Profile-subContainer">
+              <Avatar {...stringAvatar(JSON.parse(localStorage.getItem('vazaar-user')).data.name)} />
+              <div className = "Vazaar-Profile-Name" style = {{marginLeft:"15px", display:'flex', alignItems:'center'}} >
+                  {JSON.parse(localStorage.getItem('vazaar-user')).data.name}
+              </div>
+            </div>
+            <div className = "Vazaar-Profile-subMenu">
+              <div className = "Vazaar-Profile-subMenu-Entity" onClick = {onClickSignIn}>
+                Profile
+              </div>
+              <div className = "Vazaar-Profile-subMenu-Entity" onClick = {onClickLogOut}>
+                Log Out
+              </div>
             </div>
             </>:
             <></>

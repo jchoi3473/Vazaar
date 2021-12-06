@@ -26,3 +26,51 @@
     text-align: center;
     align-items: center;
 }
+.Vazaar-Profile-subMenu {
+    display: none;
+    position: absolute;
+    top: 65px;
+    right: 20px;
+    z-index: 10;
+    background-color: white;
+    // width: 100px;
+    // height: 100px;
+    min-width: 80px;
+    border-radius: 5px;
+    box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
+    border: none;
+    border-top: none;
+
+  }
+.Vazaar-Profile-Container{
+    &:hover{
+        cursor: pointer;
+        .Vazaar-Profile-subMenu {
+            display: block;
+        }
+    }
+}
+.Vazaar-Profile-subContainer{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+   
+}
+
+.Vazaar-Profile-subMenu-Entity{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #589BFF;
+    &:hover{
+        background-color: #589BFF;
+        color: white;
+    }
+}
