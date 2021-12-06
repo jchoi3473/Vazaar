@@ -44,9 +44,9 @@
   }
 .Vazaar-Profile-Container{
     &:hover{
-        cursor: pointer;
         .Vazaar-Profile-subMenu {
             display: block;
+            cursor: pointer;
         }
     }
 }

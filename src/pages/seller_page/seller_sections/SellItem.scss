@@ -98,7 +98,11 @@
     font-size: 12px;
     line-height: 24px;
     /* or 200% */
-    width: fit-content;
+    width: 100%;
     margin-bottom: 7px;
     color: #7D9EB5;
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
 }

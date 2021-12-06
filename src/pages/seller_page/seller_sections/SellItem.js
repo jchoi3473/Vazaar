@@ -160,7 +160,10 @@ function SellItem(props) {
       <div className="Vazaar-SellItem-LeftCol" style={{ height: "100%" }}>
         <div className="Vazaar-Picture-Container">
           <div className="Vazaar-SellItem-Form-SecondTitle">
-            {"DRAG & DROP IMAGE(Attach at least 2 images and the first image will be used as a cover image)*"}
+            {"DRAG & DROP IMAGE*"}
+          </div>
+          <div className="Vazaar-SellItem-Form-SecondTitle">
+            {"Attach at least 2 images in .JPEG or .PNG format only. The first image will be used as the cover photo."}
           </div>
           <UploadPicture setUploadImages={setUploadImages} />
         </div>
@@ -215,7 +218,7 @@ function SellItem(props) {
             />
           </div>
           <div style={{ display: "inline-block", width: "45%" }}>
-            <div className="Vazaar-SignUp-Form-SecondTitle">CATEGORY*</div>
+            <div className="Vazaar-SellItem-Form-SecondTitle">CATEGORY*</div>
             <FormTextField
               style={{
                 textAlign: "left",
@@ -249,7 +252,7 @@ function SellItem(props) {
             />
           </div>
           <div style={{ display: "inline-block", width: "45%" }}>
-            <div className="Vazaar-SignUp-Form-SecondTitle">CONDITION*</div>
+            <div className="Vazaar-SellItem-Form-SecondTitle">CONDITION*</div>
             <FormTextField
               style={{
                 textAlign: "left",
@@ -273,15 +276,15 @@ function SellItem(props) {
         </div>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ display: "inline-block", width: "45%" }}>
-            <div className="Vazaar-SellItem-Form-SecondTitle">DIMENSION/SIZE* (ex. 30x30 or small)</div>
+            <div className="Vazaar-SellItem-Form-SecondTitle" style={{ alignContent: "center" }}>DIMENSION / SIZE*</div>
             <FormInput
-              placeholder="Enter Dimension"
+              placeholder="ex. ''30x30'' or ''small''"
               value={dimension}
               onChange={(e) => onChangeDimension(e)}
             />
           </div>
           <div style={{ display: "inline-block", width: "45%" }}>
-            <div className="Vazaar-SignUp-Form-SecondTitle">DELIVERY*</div>
+            <div className="Vazaar-SellItem-Form-SecondTitle">DELIVERY*</div>
             <FormTextField
               style={{
                 textAlign: "left",

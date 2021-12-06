@@ -190,14 +190,14 @@ function Profile(props) {
     };
 
     const onClickCancel = () => {
-      history.push("profile");
+      window.location.reload();
     };
 
     const onClickModifyProfile = async () => {
 
       const res = updateProfile(address, city, state, zipcode);
       if(res === "success"){
-        alert("Profile Update Successfully!")
+        alert("Profile Updated Successfully!")
       }
     };
     return(
@@ -212,7 +212,7 @@ function Profile(props) {
 
                   <div className = "Vazaar-Profile-Avatar-Name-Combo">
                     <Avatar className = "Vazaar-Avatar" {...stringAvatar(JSON.parse(localStorage.getItem('vazaar-user')).data.name)} />
-                    <div className = "Vazaar-Profile-Name" style = {{fontSize:"30px", marginLeft:"20px"}}> 
+                    <div className = "Vazaar-Profile-Name" style = {{fontSize:"25px", marginLeft:"20px"}}> 
                       {JSON.parse(localStorage.getItem('vazaar-user')).data.name}
                     </div> 
                   </div> 

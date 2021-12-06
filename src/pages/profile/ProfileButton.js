@@ -46,7 +46,7 @@ function stringAvatar(name) {
 function ProfileButton(props) {
   let history = useHistory();
 
-  const onClickSignIn = () => {
+  const onClickProfile = () => {
     history.push('/profile', {radio:0});
   };
   const onClickFavorite = () =>{
@@ -72,7 +72,7 @@ function ProfileButton(props) {
               </div>
             </div>
             <div className = "Vazaar-Profile-subMenu">
-              <div className = "Vazaar-Profile-subMenu-Entity" onClick = {onClickSignIn}>
+              <div className = "Vazaar-Profile-subMenu-Entity" onClick = {onClickProfile}>
                 Profile
               </div>
               <div className = "Vazaar-Profile-subMenu-Entity" onClick = {onClickLogOut}>

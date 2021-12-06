@@ -78,7 +78,7 @@ function UnSoldListing(props){
                                     <Post key = {index} item = {item} />
                                     <div className ="Vazaar-MarkSold-Container" onClick ={()=>onClickSold(item)}>
                                         <div className ="Vazaar-MarkSold">
-                                            Item Sold
+                                            Mark as Sold
                                         </div>
                                     </div>
                                     </div>

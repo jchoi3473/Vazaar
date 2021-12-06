@@ -210,7 +210,7 @@ function SignUp(props) {
               />
             </div>
             <div className="Vazaar-SignUp-Form-SubContainer">
-              <div className="Vazaar-SignUp-Form-SecondTitle">EMAIL(Only Emory email will work)*</div>
+              <div className="Vazaar-SignUp-Form-SecondTitle">EMAIL* (@emory.edu only)</div>
               <FormInput
                 placeholder="Enter emory.edu Email"
                 value={email}
