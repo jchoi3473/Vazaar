@@ -3,11 +3,10 @@ import './Post.scss'
 import Moment from 'moment';
 import Item from '../../pages/item/Item';
 import Modal from '@mui/material/Modal';
-import Heart from './../../assets/images/heart.png'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { SvgIcon } from '@mui/material';
-import {doFavorite, undoFavorite} from './../../lib/api'
+import {doFavorite, undoFavorite, authenticateUser} from './../../lib/api'
 function Post(props){
     //Values here are all static. Need to figure out details in future
     const [open, setOpen] = useState(false);
@@ -18,10 +17,15 @@ function Post(props){
     const [isFavorite, setIsFavorite] = useState(false);
 
     useEffect(() => {
-        
+
         if(JSON.parse(localStorage.getItem('vazaar-user')).data){
-            if(props.id in JSON.parse(localStorage.getItem('vazaar-user')).data.favorite){
-                setIsFavorite(true)
+            console.log(props.item)
+            var favoriteList = []
+            const jsonFav = JSON.parse(localStorage.getItem('vazaar-user')).data.favorite
+            for(var i=0;i<jsonFav.length;i++){
+                if(props.item.id === jsonFav[i].id){
+                    setIsFavorite(true)
+                }
             }
         }      
     },[])
@@ -30,12 +34,21 @@ function Post(props){
         var res = ""
         if(isFavorite){
             res = await undoFavorite(props.item.id)
+            const result = await authenticateUser(localStorage.getItem('vazaar-jwt-token'))
+            if(res === "success"){
+                setIsFavorite(false)
+            }
             console.log(props.item.id)
             //undo Favorite
         }else{
             //do Favorite
             res = await doFavorite(props.item.id)
-            console.log(props.item.id)
+            const result = await authenticateUser(localStorage.getItem('vazaar-jwt-token'))
+            console.log(res)
+            if(res === "success"){
+                console.log("triggered success")
+                setIsFavorite(true)
+            }
         }
     }
     return(
@@ -49,32 +62,16 @@ function Post(props){
                         <div style = {{height:'100%', background:'linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.6) 100%)'}} onMouseEnter = {() => setHover(true)}>
                             {/* <img  className = "Vazaar-Heart" style ={{height:"60px"}} src={Heart}/> */}
                             {
-                                hoverHeart?
-                                <>
-                                {
-                                isFavorite?
+                               
+                            isFavorite?
                                 <div className = "Vazaar-Heart-Circle" style ={{cursor:'pointer'}} onMouseEnter = {() => setHoverHeart(true)} onClick={()=>onClickHeart()}>
-                                <SvgIcon  className = "Vazaar-Heart"  component={FavoriteBorderIcon} style = {{color: '#E9545D', fontSize: '55px'}} />
-                                </div>:
-                                  <div className = "Vazaar-Heart-Circle" style ={{cursor:'pointer'}} onMouseLeave = {() => setHoverHeart(false)} onClick={()=>onClickHeart()}>
-                                  <SvgIcon  className = "Vazaar-Heart" component={FavoriteIcon} style = {{color: '#E9545D', fontSize: '55px'}} />
-                                </div>
-                                }
-                                    
-                                </>
-                                :
-                                <>
-                                {
-                                isFavorite?
-                                <div className = "Vazaar-Heart-Circle" style ={{cursor:'pointer'}} onMouseLeave = {() => setHoverHeart(false)}>
                                 <SvgIcon  className = "Vazaar-Heart" component={FavoriteIcon} style = {{color: '#E9545D', fontSize: '55px'}} />
                                 </div>:
-                                <div className = "Vazaar-Heart-Circle" style ={{cursor:'pointer'}} onMouseEnter = {() => setHoverHeart(true)}>
+                                <div className = "Vazaar-Heart-Circle" style ={{cursor:'pointer'}} onMouseEnter = {() => setHoverHeart(true)} onClick={()=>onClickHeart()}>
                                 <SvgIcon  className = "Vazaar-Heart"  component={FavoriteBorderIcon} style = {{color: '#E9545D', fontSize: '55px'}} />
                                 </div>
-                                }
-                                </>
                             }
+                               
                             
 
                         </div>:

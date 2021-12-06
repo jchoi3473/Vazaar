@@ -4,6 +4,8 @@ import './ProfilePage.scss'
 import Avatar from '@mui/material/Avatar';
 import {signOut} from './../../lib/api'
 import { useHistory, withRouter} from "react-router-dom";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { SvgIcon } from '@mui/material';
 
 function stringToColor(string) {
   let hash = 0;
@@ -47,6 +49,9 @@ function ProfileButton(props) {
   const onClickSignIn = () => {
     history.push('/profile', {radio:0});
   };
+  const onClickFavorite = () =>{
+    history.push('/profile', {radio:1});
+  }
   const onClickLogOut = () =>{
     signOut()
     localStorage.removeItem('vazaar-jwt-token')
@@ -54,10 +59,13 @@ function ProfileButton(props) {
     history.push("/main", {radio:0});
   }
     return(
+      <div style = {{display:"flex", alignContent:'center'}}>
+      <SvgIcon component={FavoriteBorderIcon} onClick = {()=>onClickFavorite()} style = {{color: '#E9545D', fontSize: '40px', marginRight:'15px', height:'100%', cursor: 'pointer'}} />
       <div className = "Vazaar-Profile-Container">
       {            JSON.parse(localStorage.getItem('vazaar-user'))?
             <>
             <div className = "Vazaar-Profile-subContainer">
+            {/* <SvgIcon  className = "Vazaar-Heart" component={FavoriteIcon} style = {{color: '#E9545D', fontSize: '55px'}} /> */}
               <Avatar {...stringAvatar(JSON.parse(localStorage.getItem('vazaar-user')).data.name)} />
               <div className = "Vazaar-Profile-Name" style = {{marginLeft:"15px", display:'flex', alignItems:'center'}} >
                   {JSON.parse(localStorage.getItem('vazaar-user')).data.name}
@@ -74,6 +82,7 @@ function ProfileButton(props) {
             </>:
             <></>
       }
+        </div>
         </div>
     );
 }

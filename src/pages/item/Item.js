@@ -7,13 +7,15 @@ import Moment from 'moment';
 import { Checkbox } from '@mui/material';
 import ImageGallery from 'react-image-gallery';
 import "react-image-gallery/styles/scss/image-gallery.scss";
-
+import {undoFavorite, doFavorite, authenticateUser} from './../../lib/api'
 
 
 function Item(props){
     const [checked, setChecked] = useState(false);
     const [hoverHeart, setHoverHeart] = useState(false);
     const [image, setImage] = useState([])
+    const [isFavorite, setIsFavorite] = useState(false);
+
     const handleChange = (event) => {
       setChecked(event.target.checked);
     };
@@ -38,7 +40,16 @@ function Item(props){
             localStorage.setItem('vazaar-recently-viewed', JSON.stringify({recentlyViewed: [props.item]}))
         }
         
-    
+        
+        if(JSON.parse(localStorage.getItem('vazaar-user')).data){
+            console.log(props.item)
+            const jsonFav = JSON.parse(localStorage.getItem('vazaar-user')).data.favorite
+            for(var i=0;i<jsonFav.length;i++){
+                if(props.item.id === jsonFav[i].id){
+                    setIsFavorite(true)
+                }
+            }
+        }      
         let tempImages = [
         {
             original: "https://vazaar.herokuapp.com/img/items/"+props.item.imageCover,
@@ -53,6 +64,27 @@ function Item(props){
         }
         setImage(tempImages)
     },[])
+    const onClickHeart = async() =>{
+        var res = ""
+        if(isFavorite){
+            res = await undoFavorite(props.item.id)
+            const result = await authenticateUser(localStorage.getItem('vazaar-jwt-token'))
+            if(res === "success"){
+                setIsFavorite(false)
+            }
+            console.log(props.item.id)
+            //undo Favorite
+        }else{
+            //do Favorite
+            res = await doFavorite(props.item.id)
+            const result = await authenticateUser(localStorage.getItem('vazaar-jwt-token'))
+            console.log(res)
+            if(res === "success"){
+                console.log("triggered success")
+                setIsFavorite(true)
+            }
+        }
+    }
 
     return(
         <div className = "Vazaar-Item-Container">
@@ -81,11 +113,10 @@ function Item(props){
                         {props.item.name}
                     </div>
                     <div>
-                        {console.log(image)}
                         {
-                            hoverHeart?
-                                <SvgIcon  onMouseLeave = {() => setHoverHeart(false)} component={FavoriteIcon} style = {{color: '#E9545D', fontSize: '55px', cursor:'pointer'}} />:
-                                <SvgIcon  onMouseEnter = {() => setHoverHeart(true)} component={FavoriteBorderIcon} style = {{color: '#E9545D', fontSize: '55px', cursor:'pointer'}} />
+                            isFavorite?
+                                <SvgIcon  component={FavoriteIcon} style = {{color: '#E9545D', fontSize: '55px', cursor:'pointer'}} onClick={()=>onClickHeart()}/>:
+                                <SvgIcon  component={FavoriteBorderIcon} style = {{color: '#E9545D', fontSize: '55px', cursor:'pointer'}} onClick={()=>onClickHeart()}/>
                         }
                     </div>
                     {/* <div>

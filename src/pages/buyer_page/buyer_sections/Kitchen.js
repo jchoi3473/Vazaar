@@ -10,6 +10,7 @@ import { styled } from '@mui/material/styles';
 import ReactPaginate from 'react-paginate'; 
 import axios from 'axios';
 import './Listing.scss';
+import Vazaar from './../../../assets/images/vazaar.png'
 
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
     'label + &': {
@@ -66,6 +67,7 @@ function Kitchen(props){
     const [totalNumPages, setTotalNumPages] = React.useState(0);
     const [currentPage, setcurrentPage] = useState(0); 
     const [sortString, setSortString] = useState('')
+    const [searchText, setSearchText] = useState('')
 
     const onClickReset = () =>{
         setLoaded(false)
@@ -73,7 +75,7 @@ function Kitchen(props){
         setMaxPrice(0)
         setSortingOption(0)
         setSortString('')
-        getAllListings(props.type, 1, 20, '', 0, 0).then(response => {
+        getAllListings(props.type, 1, 20, '', 0, 0, searchText).then(response => {
             setLoaded(true);
             console.log(response.data)
             setTotalNumPages(response.totalPageNumber)
@@ -82,19 +84,34 @@ function Kitchen(props){
     }
     const handlePageChange = (selectedObject) => {
         setcurrentPage(selectedObject.selected);
+        var myDiv = document.getElementById('Vazaar-Container-Div');
+        myDiv.scrollTop = 0;
+
+
         // setLoaded(false);
-        const data = getAllListings(props.type, selectedObject.selected+1, 20, sortString, minPrice, maxPrice).then(response => {
+        const data = getAllListings(props.type, selectedObject.selected+1, 20, sortString, minPrice, maxPrice, searchText).then(response => {
             // setLoaded(true);
             setTotalNumPages(response.totalPageNumber)
             console.log(response)
             setItems(response.data.doc)
         })
+
         // handleFetch()
         
 
 		// handleFetch();
 	};
-    const onClickSearch = (event) =>{
+
+    const onClickSearch = () =>{
+        const data = getAllListings(props.type, 1, 20, sortString, minPrice, maxPrice, searchText).then(response => {
+            // setLoaded(true);
+            setTotalNumPages(response.totalPageNumber)
+            console.log(response)
+            setItems(response.data.doc)
+        })
+    }
+
+    const onClickSearchPrice = (event) =>{
         if(maxPrice <= minPrice){
             alert("Please insert correct price range.")
             setMinPrice(0)
@@ -102,13 +119,12 @@ function Kitchen(props){
             onClickReset()
             return
         }
-        const data = getAllListings(props.type, 1, 20, sortString, minPrice, maxPrice).then(response => {
+        const data = getAllListings(props.type, 1, 20, sortString, minPrice, maxPrice, searchText).then(response => {
             // setLoaded(true);
             setTotalNumPages(response.totalPageNumber)
             console.log(response)
             setItems(response.data.doc)
         })
-
     }
     const handleChange = (event) => {
         setSortingOption(event.target.value);
@@ -130,7 +146,7 @@ function Kitchen(props){
               return null
         }
         setSortString(tempSortString)
-        const data = getAllListings(props.type, 1, 20, tempSortString, minPrice, maxPrice).then(response => {
+        const data = getAllListings(props.type, 1, 20, tempSortString, minPrice, maxPrice, searchText).then(response => {
             // setLoaded(true);
             setTotalNumPages(response.totalPageNumber)
             console.log(response)
@@ -145,7 +161,7 @@ function Kitchen(props){
         setMaxPrice(event.target.value)
     }
     useEffect(() => {
-        getAllListings(props.type, 1, 20, sortString, minPrice, maxPrice).then(response => {
+        getAllListings(props.type, 1, 20, sortString, minPrice, maxPrice, searchText).then(response => {
             setLoaded(true);
             setTotalNumPages(response.totalPageNumber)
             console.log(response)
@@ -153,12 +169,25 @@ function Kitchen(props){
         })
       },[])
 
+
+    const onChangeSearchText = (e) =>{
+        setSearchText(e.target.value);
+    }
+    const handleKeyDown = (event) =>{
+        if (event.key === 'Enter') {
+            onClickSearch()
+        }
+    }
     return(
         <div style = {{width:'100%', height:'100%'}}>
             {
                 loaded?
                 <div style = {{width:'100%', height:'100%'}}>
-                    <div style = {{textAlign :'left', paddingBottom:'30px'}}>
+                        <div className ="Vazaar-Top-Search-Container">
+                            <input className ="Vazaar-Top-Search" value = {searchText} onChange = {(e) => onChangeSearchText(e)} placeholder = "Search for an item here" onKeyDown={handleKeyDown}/>
+                            <buttom className ="Vazaar-Top-Search-Button" onClick = {()=>onClickSearch()}>Search</buttom>
+                        </div>
+                        <div style = {{textAlign :'left', paddingBottom:'30px'}}>
                         <FormControl className = "Vazaar-sort-dropdown">
                                 <div className = "Vazaar-sort-title">
                                 Sort by
@@ -196,11 +225,11 @@ function Kitchen(props){
                             </div>
                             <BootstrapInput className="no-spinner" type = "number" style = {{width : '150px'}} value = {maxPrice} onChange={handleChangeMaxPrice}/>
                         </FormControl>
-                        <button className = "Vazaar-sort-price" onClick = {(e) => onClickSearch(e)}>Search Price</button>
+                        <button className = "Vazaar-sort-price" onClick = {(e) => onClickSearchPrice(e)}>Search Price</button>
                         <button className = "Vazaar-sort-price" onClick = {() => onClickReset()}>Reset</button>
                         </div>
                     </div>
-                        <div style = {{width:'100%', height:'calc(100% - 80px)', overflowY:'scroll'}}>
+                        <div id = "Vazaar-Container-Div"style = {{width:'100%', height:'calc(100% - 80px)', overflowY:'scroll'}}>
                             <div className = "Vazaar-ItemListing-Container">
                                 {
                                     items.map((item, index) => (
@@ -228,7 +257,10 @@ function Kitchen(props){
                 </div>
                 :
                 <div>
-                    Data Loading in Progress
+                       <img  src={Vazaar} alt = "Data Loading" style ={{height:'200px', width:'200px'}}/>
+                    <div style = {{fontSize:'40px', fontFamily:'Roboto', color:'#7D9EB5', marginTop:'10px'}}>
+                        Ready to Vazaar?
+                    </div>
                 </div>
             }
             

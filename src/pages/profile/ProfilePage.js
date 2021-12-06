@@ -21,7 +21,7 @@ import buy_icon from './../../assets/images/buy.jpeg'
 import sell_icon from './../../assets/images/sell.png'
 import RecentlyViewed from './RecentlyViewed';
 import { useHistory } from "react-router-dom";
-
+import FavoriteProfile from './FavoriteProfile';
 function ProfilePage(props) {
     let history = useHistory();
     useEffect(() => {
@@ -119,6 +119,7 @@ function ProfilePage(props) {
                 <div className = "Vazaar-Profile-Section-Container">
                     <Profile/>
                 </div>,
+                1:<FavoriteProfile/>,
                 2: <RecentlyViewed/>
 
               }[selectedIndex]

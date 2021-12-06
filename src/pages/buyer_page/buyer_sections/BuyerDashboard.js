@@ -21,15 +21,22 @@ function Buyer_Dashboard(props){
         if(JSON.parse(localStorage.getItem('vazaar-recently-viewed'))){
             setRecentItems(JSON.parse(localStorage.getItem('vazaar-recently-viewed')).recentlyViewed)
         }
+        if(JSON.parse(localStorage.getItem('vazaar-user')).data.favorite){
+            setFavoriteItems(JSON.parse(localStorage.getItem('vazaar-user')).data.favorite)
+        }
+
 
     }, [])
     const onClickImage = (item) =>{
         setCurrentItem(item)
         handleOpen()
     }
-
+    
     const onClickView = () =>{
         history.push('profile', {radio:2})
+    }
+    const onClickViewFav = () =>{
+        history.push('profile', {radio:1})
     }
     return(
         <div style = {{height: '100%', paddingRight:'50px'}}>
@@ -77,6 +84,27 @@ function Buyer_Dashboard(props){
                         <div className = "Vazaar-Buyer-Second-Header" style = {{textAlign : "left"}}>
                             Your Saved Listings
                         </div>
+                        {
+                        favoriteItems.length>0?
+                        <div style = {{width:'100%', height:'100%'}}>
+                            <div style = {{width:'100%', height:'95%', overflowY:'scroll', display:'flex', flexWrap:'wrap'}}>
+                                {favoriteItems.map((item, index) =>(
+                                    <img onClick = {()=>onClickImage(item)} style ={{marginLeft:'20px', cursor:'pointer'}} width = '200' height = '200' src = {"https://vazaar.herokuapp.com/img/items/"+item.imageCover}  alt = ""/>
+                                ))
+                                }             
+                            </div>
+                            <div className = "Vazaar-Dashboard-ViewMore" onClick = {() => onClickViewFav()}>
+                                <BlueButton text="View More" width="120px" height="47px" />                                
+                            </div>        
+                        </div>
+                        :
+                        <div style ={{position:'relative', top:'30%'}}>
+                            <img  src={EmptyBox} alt = "Empty" style ={{height:'200px', width:'200px'}}/>
+                            <div style = {{fontSize:'20px', fontFamily:'Roboto', color:'#7D9EB5', marginTop:'10px'}}>
+                            You don't have any favorite items.
+                            </div>
+                        </div>
+                        }
                     </div>
                 </div>
                 

@@ -149,17 +149,19 @@ export const addListing = async function (
 };
 
 
-export const getAllListings = async function (category, page, numItems, sort, minPrice, maxPrice) {
+export const getAllListings = async function (category, page, numItems, sort, minPrice, maxPrice, search) {
 
   //need to do something so that we can validate user(correctness)
   try {
     var response;
+
+
+    if(search===''){
     if(minPrice===0 && maxPrice===0){
       if(category === 'all'){
         if(sort.length>0){
           response = await axios.get(
             // (`/api/v1/products?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}`
-            
             'https://vazaar.herokuapp.com/api/v1/items',{ params: { page: page, limit: numItems, sort: sort },
              headers: {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`} }
           );
@@ -215,7 +217,68 @@ export const getAllListings = async function (category, page, numItems, sort, mi
         }
       }
     }
-
+  }else{
+    if(minPrice===0 && maxPrice===0){
+      if(category === 'all'){
+        if(sort.length>0){
+          response = await axios.get(
+            // (`/api/v1/products?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}`
+            'https://vazaar.herokuapp.com/api/v1/items',{ params: { page: page, limit: numItems, sort: sort, search:search },
+             headers: {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`} }
+          );
+        }
+        else{
+          response = await axios.get(
+            "https://vazaar.herokuapp.com/api/v1/items",{ params: { page: page, limit: numItems, search:search },
+            headers: {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`} }
+          );
+        }
+      }
+      else{
+        if(sort.length>0){
+          response = await axios.get(
+            "https://vazaar.herokuapp.com/api/v1/items",{ params: { category: category,page: page, limit: numItems, sort: sort, search:search },
+            headers: {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`} }
+          );
+        }
+        else{
+          response = await axios.get(
+            "https://vazaar.herokuapp.com/api/v1/items",{ params: { category: category,page: page, limit: numItems, search:search },
+            headers: {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`} }
+          );
+        }
+      }
+    }else{
+      if(category === 'all'){
+        if(sort.length>0){
+          response = await axios.get(
+            `https://vazaar.herokuapp.com/api/v1/items?page=${page}&limit=${numItems}&price[gte]=${minPrice}&price[lte]=${maxPrice}&sort=${sort}&search=${search}`,{
+            headers: {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`}}
+          );
+        }
+        else{
+          response = await axios.get(
+            `https://vazaar.herokuapp.com/api/v1/items?page=${page}&limit=${numItems}&price[gte]=${minPrice}&price[lte]=${maxPrice}&search=${search}`,
+            {headers: {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`}}
+          );
+        }
+      }
+      else{
+        if(sort.length>0){
+          response = await axios.get(
+            `https://vazaar.herokuapp.com/api/v1/items?category=${category}&page=${page}&limit=${numItems}&price[gte]=${minPrice}&price[lte]=${maxPrice}&sort=${sort}&search=${search}`,
+            {headers: {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`}}
+          );
+        }
+        else{
+          response = await axios.get(
+            `https://vazaar.herokuapp.com/api/v1/items?category=${category}&page=${page}&limit=${numItems}&price[gte]=${minPrice}&price[lte]=${maxPrice}&search=${search}`,
+            {headers: {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`}}
+          );
+        }
+      }
+    }
+  }
       return response.status === 200 ? response.data : "error";
   } catch (error) {
       return error
@@ -367,10 +430,18 @@ export const deleteUser = async function () {
 
 export const doFavorite = async function (itemID) {
   try{
-    const response = await axios.post(
-      `https://vazaar.herokuapp.com/api/v1/users/favorite/${itemID}`,
-      {headers : {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`} }
-    )
+    const response = await axios({
+      method: "post",
+      url: `https://vazaar.herokuapp.com/api/v1/users/favorite/${itemID}`,
+      headers: {
+      'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}` },
+    })
+
+    // const response = await axios.post(
+    //   `https://vazaar.herokuapp.com/api/v1/users/favorite/${itemID}`,
+    //   {headers: {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`}
+    // }
+    // )
     console.log(response.status);
     if(response.status === 201){
       return "success"
