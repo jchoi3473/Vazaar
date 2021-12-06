@@ -162,13 +162,13 @@ export const getAllListings = async function (category, page, numItems, sort, mi
         if(sort.length>0){
           response = await axios.get(
             // (`/api/v1/products?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}`
-            'https://vazaar.herokuapp.com/api/v1/items',{ params: { page: page, limit: numItems, sort: sort },
+            'https://vazaar.herokuapp.com/api/v1/items',{ params: { page: page, limit: numItems, sort: sort, sold:false },
              headers: {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`} }
           );
         }
         else{
           response = await axios.get(
-            "https://vazaar.herokuapp.com/api/v1/items",{ params: { page: page, limit: numItems },
+            "https://vazaar.herokuapp.com/api/v1/items",{ params: { page: page, limit: numItems, sold:false },
             headers: {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`} }
           );
         }
@@ -176,13 +176,13 @@ export const getAllListings = async function (category, page, numItems, sort, mi
       else{
         if(sort.length>0){
           response = await axios.get(
-            "https://vazaar.herokuapp.com/api/v1/items",{ params: { category: category,page: page, limit: numItems, sort: sort },
+            "https://vazaar.herokuapp.com/api/v1/items",{ params: { category: category,page: page, limit: numItems, sort: sort, sold:false },
             headers: {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`} }
           );
         }
         else{
           response = await axios.get(
-            "https://vazaar.herokuapp.com/api/v1/items",{ params: { category: category,page: page, limit: numItems },
+            "https://vazaar.herokuapp.com/api/v1/items",{ params: { category: category,page: page, limit: numItems, sold:false },
             headers: {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`} }
           );
         }
@@ -191,13 +191,13 @@ export const getAllListings = async function (category, page, numItems, sort, mi
       if(category === 'all'){
         if(sort.length>0){
           response = await axios.get(
-            `https://vazaar.herokuapp.com/api/v1/items?page=${page}&limit=${numItems}&price[gte]=${minPrice}&price[lte]=${maxPrice}&sort=${sort}`,{
+            `https://vazaar.herokuapp.com/api/v1/items?page=${page}&limit=${numItems}&price[gte]=${minPrice}&price[lte]=${maxPrice}&sort=${sort}&sold=${false}`,{
             headers: {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`}}
           );
         }
         else{
           response = await axios.get(
-            `https://vazaar.herokuapp.com/api/v1/items?page=${page}&limit=${numItems}&price[gte]=${minPrice}&price[lte]=${maxPrice}`,
+            `https://vazaar.herokuapp.com/api/v1/items?page=${page}&limit=${numItems}&price[gte]=${minPrice}&price[lte]=${maxPrice}&sold=${false}`,
             {headers: {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`}}
           );
         }
@@ -205,13 +205,13 @@ export const getAllListings = async function (category, page, numItems, sort, mi
       else{
         if(sort.length>0){
           response = await axios.get(
-            `https://vazaar.herokuapp.com/api/v1/items?category=${category}&page=${page}&limit=${numItems}&price[gte]=${minPrice}&price[lte]=${maxPrice}&sort=${sort}`,
+            `https://vazaar.herokuapp.com/api/v1/items?category=${category}&page=${page}&limit=${numItems}&price[gte]=${minPrice}&price[lte]=${maxPrice}&sort=${sort}&sold=${false}`,
             {headers: {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`}}
           );
         }
         else{
           response = await axios.get(
-            `https://vazaar.herokuapp.com/api/v1/items?category=${category}&page=${page}&limit=${numItems}&price[gte]=${minPrice}&price[lte]=${maxPrice}`,
+            `https://vazaar.herokuapp.com/api/v1/items?category=${category}&page=${page}&limit=${numItems}&price[gte]=${minPrice}&price[lte]=${maxPrice}&sold=${false}`,
             {headers: {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`}}
           );
         }
@@ -223,13 +223,13 @@ export const getAllListings = async function (category, page, numItems, sort, mi
         if(sort.length>0){
           response = await axios.get(
             // (`/api/v1/products?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}`
-            'https://vazaar.herokuapp.com/api/v1/items',{ params: { page: page, limit: numItems, sort: sort, search:search },
+            'https://vazaar.herokuapp.com/api/v1/items',{ params: { page: page, limit: numItems, sort: sort, search:search, sold:false },
              headers: {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`} }
           );
         }
         else{
           response = await axios.get(
-            "https://vazaar.herokuapp.com/api/v1/items",{ params: { page: page, limit: numItems, search:search },
+            "https://vazaar.herokuapp.com/api/v1/items",{ params: { page: page, limit: numItems, search:search, sold:false },
             headers: {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`} }
           );
         }
@@ -237,13 +237,13 @@ export const getAllListings = async function (category, page, numItems, sort, mi
       else{
         if(sort.length>0){
           response = await axios.get(
-            "https://vazaar.herokuapp.com/api/v1/items",{ params: { category: category,page: page, limit: numItems, sort: sort, search:search },
+            "https://vazaar.herokuapp.com/api/v1/items",{ params: { category: category,page: page, limit: numItems, sort: sort, search:search, sold:false },
             headers: {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`} }
           );
         }
         else{
           response = await axios.get(
-            "https://vazaar.herokuapp.com/api/v1/items",{ params: { category: category,page: page, limit: numItems, search:search },
+            "https://vazaar.herokuapp.com/api/v1/items",{ params: { category: category,page: page, limit: numItems, search:search, sold:false },
             headers: {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`} }
           );
         }
@@ -252,13 +252,13 @@ export const getAllListings = async function (category, page, numItems, sort, mi
       if(category === 'all'){
         if(sort.length>0){
           response = await axios.get(
-            `https://vazaar.herokuapp.com/api/v1/items?page=${page}&limit=${numItems}&price[gte]=${minPrice}&price[lte]=${maxPrice}&sort=${sort}&search=${search}`,{
+            `https://vazaar.herokuapp.com/api/v1/items?page=${page}&limit=${numItems}&price[gte]=${minPrice}&price[lte]=${maxPrice}&sort=${sort}&search=${search}&sold=${false}`,{
             headers: {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`}}
           );
         }
         else{
           response = await axios.get(
-            `https://vazaar.herokuapp.com/api/v1/items?page=${page}&limit=${numItems}&price[gte]=${minPrice}&price[lte]=${maxPrice}&search=${search}`,
+            `https://vazaar.herokuapp.com/api/v1/items?page=${page}&limit=${numItems}&price[gte]=${minPrice}&price[lte]=${maxPrice}&search=${search}&sold=${false}`,
             {headers: {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`}}
           );
         }
@@ -266,13 +266,13 @@ export const getAllListings = async function (category, page, numItems, sort, mi
       else{
         if(sort.length>0){
           response = await axios.get(
-            `https://vazaar.herokuapp.com/api/v1/items?category=${category}&page=${page}&limit=${numItems}&price[gte]=${minPrice}&price[lte]=${maxPrice}&sort=${sort}&search=${search}`,
+            `https://vazaar.herokuapp.com/api/v1/items?category=${category}&page=${page}&limit=${numItems}&price[gte]=${minPrice}&price[lte]=${maxPrice}&sort=${sort}&search=${search}&sold=${false}`,
             {headers: {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`}}
           );
         }
         else{
           response = await axios.get(
-            `https://vazaar.herokuapp.com/api/v1/items?category=${category}&page=${page}&limit=${numItems}&price[gte]=${minPrice}&price[lte]=${maxPrice}&search=${search}`,
+            `https://vazaar.herokuapp.com/api/v1/items?category=${category}&page=${page}&limit=${numItems}&price[gte]=${minPrice}&price[lte]=${maxPrice}&search=${search}&sold=${false}`,
             {headers: {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`}}
           );
         }
