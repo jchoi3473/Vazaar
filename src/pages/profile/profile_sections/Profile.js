@@ -3,6 +3,7 @@ import './Profile.scss'
 import Avatar from '@mui/material/Avatar';
 import ProfileButton from '../ProfileButton';
 import { alpha, styled } from "@mui/material/styles";
+import { Link } from 'react-router';
 
 import InputBase from "@mui/material/InputBase";
 import TextField from "@mui/material/TextField";
@@ -14,6 +15,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import {authenticateUser} from '../../../lib/api'
+import { signUP } from "../../../lib/api";
 
 const FormInput = styled(InputBase)(({ theme }) => ({
   "label + &": {
@@ -182,12 +184,12 @@ function Profile(props) {
     };
 
     const onClickCancel = () => {
-      props.history.push("profile");
+      window.location.reload();    
     };
 
     const onClickModifyProfile = async () => {
       console.log("Modify Profile");
-      await Profile(
+      const response = await signUP(
         name,
         email,
         address,
@@ -195,6 +197,7 @@ function Profile(props) {
         zipcode,
         password,
       );
+      console.log(response)
     };
     return(
           <div className = "Vazaar-Profile-Section-Container">

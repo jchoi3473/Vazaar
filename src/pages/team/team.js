@@ -39,7 +39,10 @@ function Team(props) {
     const onClickLogo = () =>{
         props.history.push('main')
     }
-
+    const onClickProfile = () =>{
+        props.history.push('profile')
+    }
+    
   return (
     <div style = {{backgroundImage:`url(${team_background})`, backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', height: '100%'}}>
 
@@ -58,7 +61,7 @@ function Team(props) {
                             <div className = "Vazaar-Main-Signin" style = {{"fontFamily":"Roboto"}} onClick = {onClickTeam}>
                             Meet the Team
                             </div>
-                            <div className = "Vazaar-Main-Signin" style = {{"fontFamily":"Roboto"}}>
+                            <div className = "Vazaar-Main-Signin" style = {{"fontFamily":"Roboto"}} onClick = {onClickProfile}>
                             {JSON.parse(localStorage.getItem('vazaar-user')).data.name}
                             </div>
                         </div>
@@ -121,7 +124,7 @@ function Team(props) {
                                 </div>
                                 <div class="Vazaar-Team-Description-Line-Of-Text">
                                     <span class="Vazaar-Team-Description-Bold">LinkedIn: </span> 
-                                    <span><a class="Vazaar-Team-Description-Link" style={{ textDecoration: 'none' }} href="https://www.linkedin.com" target="_blank" rel="noreferrer noopener">Taeheon Kim</a></span> 
+                                    <span><a class="Vazaar-Team-Description-Link" style={{ textDecoration: 'none' }} href="https://www.linkedin.com/in/tae-kim-973b7518a/" target="_blank" rel="noreferrer noopener">Taeheon Kim</a></span> 
                                 </div>
                             </div> 
                         </div>

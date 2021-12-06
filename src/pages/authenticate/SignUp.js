@@ -10,6 +10,7 @@ import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import BlueButton from "../../components/button/BlueButton";
 import { signUP } from "../../lib/api";
+
 //Custom Material UI input
 const FormInput = styled(InputBase)(({ theme }) => ({
   "label + &": {

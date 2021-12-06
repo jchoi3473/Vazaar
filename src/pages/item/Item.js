@@ -35,15 +35,15 @@ function Item(props){
     return(
         <div className = "Vazaar-Item-Container">
             <div className = "Vazaar-Item-Left">
-                <div className = "Vazaar-Item-Picture-Container" style = {{height: '60%'}}>
-                <div className = "Vazaar-Item-Description-Title">
+                <div className = "Vazaar-Item-Picture-Container" style = {{height: '70%'}}>
+                {/* <div className = "Vazaar-Item-Description-Title">
                         Images
-                </div>
+                </div> */}
                 <div style = {{width:'600px', height:'300px'}}>
-                    <ImageGallery  items={image} originalHeight="600" originalWidth="500"/>
+                    <ImageGallery  items={image} originalHeight="500" originalWidth="500"/>
                 </div>
                 </div>
-                <div className = "Vazaar-Item-Description-Container" style = {{height: '40%'}}>
+                <div className = "Vazaar-Item-Description-Container" style = {{height: '30%'}}>
                     <div className = "Vazaar-Item-Description-Title">
                         Description
                     </div>
@@ -54,7 +54,7 @@ function Item(props){
             
             </div>
             <div className = "Vazaar-Item-Right">
-                <div style = {{display: 'flex', alignItems: 'center', height: '8rem'}}>
+                <div style = {{display: 'flex', alignItems: 'center', height: '6rem'}}>
                     <div className = "Vazaar-Item-Title">
                         {props.item.name}
                     </div>
@@ -70,7 +70,7 @@ function Item(props){
                         {props.item.name}
                     </div> */}
                 </div>
-                <div style = {{height: '25rem', display: 'flex', flexDirection:'column', justifyContent:"space-evenly"}}>
+                <div style = {{height: '20rem', display: 'flex', flexDirection:'column', justifyContent:"space-evenly"}}>
                     <div style = {{display:'flex'}}>
                         <div className = "Vazaar-Item-Description-body" style = {{fontWeight: 'bold', marginRight:"5px"}}>
                             {"Price: "}
@@ -136,7 +136,7 @@ function Item(props){
                         </div>
 
                     </div>
-                    <div style = {{display:'flex', marginTop:'50px'}}>
+                    <div style = {{display:'flex', marginTop:'20px'}}>
                         <div className = "Vazaar-Item-Description-body" style = {{fontWeight: 'bold', marginRight:"5px"}}>
                         Seller: 
                         </div>
@@ -153,7 +153,7 @@ function Item(props){
                         </div>
                     </div>
                 </div>
-                <div style = {{height: '25rem', display: 'flex', flexDirection:'column', justifyContent:"space-evenly"}}>
+                <div style = {{height: '10rem', display: 'flex', flexDirection:'column', justifyContent:"space-evenly"}}>
                     <div style = {{display:'flex',alignItems:"center"}}>
                         <Checkbox
                         checked={checked}
