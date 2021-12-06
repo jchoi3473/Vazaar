@@ -46,12 +46,12 @@ function FAQ(props){
                     <div className = "Vazaar-FAQ-Answer">| A. All available listings have a heart icon for buyers to favorite the listing. The listing will be added to your favorites page to view listings again conveniently at any time.
                     <div style = {{paddingTop: "20px" }}></div>
 
-                    {/* <div className = "Vazaar-FAQ-Question">| Q. I want to reset my password. How do I do that?
-                    <div className = "Vazaar-FAQ-Answer">| A. The easiest way would be to click on your profile icon at the top right. At the bottom of the page you can click on the link to “reset password.” Enter your emory.edu email to reset.
-                    <div style = {{paddingTop: "20px" }}></div> */}
+                    <div className = "Vazaar-FAQ-Question">| Q. I want to reset my password. How do I do that?
+                    <div className = "Vazaar-FAQ-Answer">| A. Click on your profile icon at the top right. At the bottom of the page, you can click on the link "Reset Password”. Enter your current and new password.
+                    <div style = {{paddingTop: "20px" }}></div>
 
                     <div className = "Vazaar-FAQ-Question">| Q. How do I terminate my account if I no longer need Vazaar’s services?
-                    <div className = "Vazaar-FAQ-Answer">| A. Depending on your expected graduation year, Vazaar will automatically terminate the account. Accounts inactive for a certain period of time may also be terminated automatically.
+                    <div className = "Vazaar-FAQ-Answer">| A. Click on your profile icon at the top right. At the bottom of the page, you can click on the link "Delete Account".
                     <div style = {{paddingTop: "20px" }}></div>
 
                     </div>
@@ -78,10 +78,12 @@ function FAQ(props){
                     </div>
                     </div>
 
+                    </div>
+                    </div>
+
                     {/* </div>
-                    </div>
-                    </div>
                     </div>                                     */}
+                    
             </div>
         </div>
 

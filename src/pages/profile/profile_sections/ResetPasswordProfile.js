@@ -102,19 +102,19 @@ function ResetPasswordProfile(props) {
                         <div className = "Vazaar-SignUp-Form-SecondTitle">
                             CURRENT PASSWORD
                         </div>
-                        <FormInput type ="password" value = {currentPassword} onChange ={(e) => onChangeCurrent(e)} placeholder = "Enter New Password" />
+                        <FormInput type ="password" value = {currentPassword} onChange ={(e) => onChangeCurrent(e)} placeholder = "Enter Current Password" />
                     </div>        
                     <div className = "Vazaar-SignUp-Form-SubContainer">
                         <div className = "Vazaar-SignUp-Form-SecondTitle"  style = {{"marginTop":"20px"}}>
                         NEW PASSWORD
                         </div>
-                        <FormInput type ="password" value = {newPassword} onChange ={(e) => onChangeNew(e)} placeholder = "Re-enter New Password" />
+                        <FormInput type ="password" value = {newPassword} onChange ={(e) => onChangeNew(e)} placeholder = "Enter New Password" />
                     </div>        
                     <div className = "Vazaar-SignUp-Form-SubContainer" style = {{"marginTop":"5px"}}>
                         <div className = "Vazaar-SignUp-Form-SecondTitle">
                             CONFIRM NEW PASSWORD
                         </div>
-                        <FormInput type ="password" value = {confirmNewPassword} onChange ={(e) => onChangeConfirm(e)} placeholder = "Enter New Password" />
+                        <FormInput type ="password" value = {confirmNewPassword} onChange ={(e) => onChangeConfirm(e)} placeholder = "Re-Enter New Password" />
                     </div>        
                                             
                 </div>

@@ -35,11 +35,11 @@ function DeleteConfirm(props) {
                     <div className = "Vazaar-Roboto-bold" style = {{"fontSize":"30px", "marginTop":"10px"}}>
                         Delete Account
                     </div>
-                    <div className = "Vazaar-Roboto-normal" style = {{"fontSize":"14px", "color":"#8DAABE", "marginTop":"40px"}}>
+                    <div className = "Vazaar-Roboto-normal" style = {{"fontSize":"14px", "color":"#8DAABE", "marginTop":"30px"}}>
                       Are you sure you want to delete your account?
                     </div>
-                    <div className = "Vazaar-Roboto-normal" style = {{"fontSize":"14px", "color":"#8DAABE"}}>
-                      If you wish to restore account in future, contact Vazaar Team.
+                    <div className = "Vazaar-Roboto-normal" style = {{"fontSize":"14px", "color":"#8DAABE", "marginTop": "10px", "marginBottom": "10px"}}>
+                      If you wish to restore your account in the future, contact the Vazaar Team.
                     </div>
                     <div style = {{display: 'flex', marginTop:'15px', width: '280px', justifyContent:'space-between'}}>
                       <div onClick = {() => onClickDelete()}>
