@@ -348,8 +348,8 @@ const categories = [
 
 const conditions = [
   {
-    value: "Mint",
-    label: "Mint",
+    value: "New",
+    label: "New",
   },
   {
     value: "Good",

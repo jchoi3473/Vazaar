@@ -123,7 +123,7 @@ function Item(props){
                         {props.item.name}
                     </div> */}
                 </div>
-                <div style = {{height: '45%', display: 'flex', flexDirection:'column', justifyContent:"space-evenly"}}>
+                <div style = {{height: '50%', display: 'flex', flexDirection:'column', justifyContent:"space-evenly"}}>
                     <div style = {{display:'flex'}}>
                         <div className = "Vazaar-Item-Description-body" style = {{fontWeight: 'bold', marginRight:"5px"}}>
                             {"Price: "}
@@ -137,7 +137,8 @@ function Item(props){
                             Category: 
                         </div>
                         <div className = "Vazaar-Item-Description-body">
-                            Bedroom
+                        {props.item.category.charAt(0).toUpperCase() + props.item.category.slice(1)}
+
                         </div>
                     </div>
                     <div style = {{display:'flex'}}>
@@ -148,16 +149,21 @@ function Item(props){
                             {Moment(props.item.createdAt).format('MM/DD/YYYY')}
                         </div>
                     </div>
-                    <div style = {{display:'flex'}}>
-                        
+                    <div style = {{display:'flex'}}>   
                         <div className = "Vazaar-Item-Description-body" style = {{fontWeight: 'bold', marginRight:"5px"}}>
                         Condition: 
                         </div>
                         <div className = "Vazaar-Item-Description-body">
                         {props.item.condition}
                         </div>
-
-
+                    </div>
+                    <div style = {{display:'flex'}}>   
+                        <div className = "Vazaar-Item-Description-body" style = {{fontWeight: 'bold', marginRight:"5px"}}>
+                        Color: 
+                        </div>
+                        <div className = "Vazaar-Item-Description-body">
+                        {props.item.color.charAt(0).toUpperCase() + props.item.color.slice(1)}
+                        </div>
                     </div>
                     <div style = {{display:'flex'}}>
                         <div className = "Vazaar-Item-Description-body" style = {{fontWeight: 'bold', marginRight:"5px"}}>
