@@ -7,7 +7,7 @@ import InputBase from "@mui/material/InputBase";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import BlueButton from "../../../components/button/BlueButton";
-import { addListing } from "../../../lib/api";
+import { addListing, authenticateUser } from "../../../lib/api";
 
 const FormInput = styled(InputBase)(({ theme }) => ({
   "label + &": {
@@ -138,6 +138,7 @@ function SellItem(props) {
       images,
       category
     );
+    const result = await authenticateUser(localStorage.getItem('vazaar-jwt-token'))
     console.log(response.status)
     if(response.status ==='success'){
       setCategory()

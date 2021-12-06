@@ -53,6 +53,8 @@ function ResetPassword(props) {
     };
     const onClickReset  = async () => {
       let response = await forgotPassword(email)
+      props.history.push('resetPassword')
+
       console.log(response)
     }
 

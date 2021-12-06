@@ -20,7 +20,6 @@ function Post(props){
 
         if(JSON.parse(localStorage.getItem('vazaar-user')).data){
             console.log(props.item)
-            var favoriteList = []
             const jsonFav = JSON.parse(localStorage.getItem('vazaar-user')).data.favorite
             for(var i=0;i<jsonFav.length;i++){
                 if(props.item.id === jsonFav[i].id){
@@ -46,9 +45,12 @@ function Post(props){
             const result = await authenticateUser(localStorage.getItem('vazaar-jwt-token'))
             console.log(res)
             if(res === "success"){
-                console.log("triggered success")
                 setIsFavorite(true)
             }
+        }
+
+        if(props.resetBoolean){
+            props.resetItem()
         }
     }
     return(

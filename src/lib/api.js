@@ -314,11 +314,19 @@ export const forgotPassword = async function (email) {
     email: email,
   
   };
+  try {
+
   const response = await axios.post(
     "https://vazaar.herokuapp.com/api/v1/users/forgotPassword",
     userInfo
   );
+  if(response.status===200){
+    return "success"
+  }
   return response
+}catch(error){
+  console.log(error)
+}
   //need to do something so that we can validate user(correctness)
 
 };
@@ -463,6 +471,48 @@ export const undoFavorite = async function (itemID) {
     )
     console.log(response.status);
     if(response.status === 204){
+      return "success"
+    }
+    return
+  }
+  catch(error){
+    console.log(error);
+    return error
+  }
+};
+
+export const updateItem = async function (itemID, updateObject) {
+  try{
+
+    const response = await axios.patch(
+      `https://vazaar.herokuapp.com/api/v1/items/${itemID}`,
+      updateObject,{
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}` }
+      }
+    );
+    console.log(response.status);
+    if(response.status === 200){
+      return "success"
+    }
+    return
+  }
+  catch(error){
+    console.log(error);
+    return error
+  }
+};
+
+
+export const resetPasswordAPI = async function (token, updateObject) {
+  try{
+
+    const response = await axios.patch(
+      `https://vazaar.herokuapp.com/api/v1/users/resetPassword/${token}`,
+      updateObject
+    );
+    console.log(response.status);
+    if(response.status === 200){
       return "success"
     }
     return

@@ -12,6 +12,7 @@ import {
 import InputBase from '@mui/material/InputBase';
 import BlueButton from '../../components/button/BlueButton';
 import { useEffect } from 'react';
+import {resetPasswordAPI} from './../../lib/api'
 
 //Custom Material UI input
 const FormInput = styled(InputBase)(({ theme }) => ({
@@ -53,23 +54,38 @@ function useQuery() {
 function ResetPasswordField(props) {
     let query = useQuery();
 
-    const [token, setToken] = useState();
-    const onClickSignUp = () =>{
-        props.history.push('signup')
-    }
+    const [token, setToken] = useState('');
+    const [newPassword, setNewPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+
+    // const onClickSignUp = () =>{
+    //     props.history.push('signup')
+    // }
     const onClickLogo = () =>{
         props.history.push('main')
     }
 
-    useEffect(() => {
-      if(query.get("token")){
-        setToken(query.get("token"))
-      }else{
-        alert("Wrong Access to this page")
-        props.history.push('main')
-      }
-  },[])
 
+  const onChangeToken =(e) =>{
+    setToken(e.target.value)
+  }
+  const onChangeNewPassword =(e) =>{
+    setNewPassword(e.target.value)
+  }
+  const onChangeConfirmPassword =(e) =>{
+    setConfirmPassword(e.target.value)
+  }
+  
+  const onClickSubmit = async() =>{
+    const res = await resetPasswordAPI(token, {
+      password: newPassword,
+      passwordConfirm: confirmPassword
+    })
+    if(res==="success"){
+      alert("Password reset successful. Please log in with new password.")
+      props.history.push('sign-in')
+    }
+  }
 
   return (
     <div 
@@ -94,25 +110,31 @@ function ResetPasswordField(props) {
                         New Password
                     </div>
                     <div className = "Vazaar-Roboto-normal" style = {{"fontSize":"14px", "color":"#8DAABE", "marginTop":"20px"}}>
-                        Create your new password
+                        Please input the token from your email
                     </div>
                 </div>
                 <div className = "Vazaar-Reset-Form-Container">
-                    <div className = "Vazaar-SignUp-Form-SubContainer">
+                <div className = "Vazaar-SignUp-Form-SubContainer">
                         <div className = "Vazaar-SignUp-Form-SecondTitle">
+                            TOKEN
+                        </div>
+                        <FormInput value = {token} onChange = {(e)=>onChangeToken(e)} placeholder = "Enter Token" />
+                    </div>      
+                    <div className = "Vazaar-SignUp-Form-SubContainer">
+                        <div className = "Vazaar-SignUp-Form-SecondTitle" style = {{"marginTop":"20px"}}>
                             NEW PASSWORD
                         </div>
-                        <FormInput placeholder = "Enter New Password" />
+                        <FormInput type='password' value = {newPassword} onChange = {(e)=>onChangeNewPassword(e)} placeholder = "Enter New Password" />
                     </div>        
                     <div className = "Vazaar-SignUp-Form-SubContainer">
                         <div className = "Vazaar-SignUp-Form-SecondTitle"  style = {{"marginTop":"20px"}}>
                             CONFIRM NEW PASSWORD
                         </div>
-                        <FormInput placeholder = "Re-enter New Password" />
+                        <FormInput type='password' value = {confirmPassword} onChange = {(e)=>onChangeConfirmPassword(e)} placeholder = "Re-enter New Password" />
                     </div>                                
                 </div>
-                <div className = "Vazaar-SignUp-Button-Container" style ={{"marginTop":"24px"}}>
-                    <BlueButton text = "Confirm" width = "417px" height = "47px"/>
+                <div className = "Vazaar-SignUp-Button-Container" style ={{"marginTop":"24px"}} onClick ={()=>onClickSubmit()}>
+                    <BlueButton text = "Submit" width = "417px" height = "47px"/>
                 </div>
             </div>
 

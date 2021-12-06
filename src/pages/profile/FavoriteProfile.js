@@ -14,6 +14,14 @@ function FavoriteProfile(props){
             return
         }        
     },[])
+    const resetItem = () =>{
+        if(JSON.parse(localStorage.getItem('vazaar-user')).data.favorite){
+            setItems(JSON.parse(localStorage.getItem('vazaar-user')).data.favorite)
+        }
+        else{
+            return
+        }      
+    }
     return(
         <>
         {items.length>0?
@@ -22,7 +30,7 @@ function FavoriteProfile(props){
                     <div className = "Vazaar-ItemListing-Container">
                     {
                         items.map((item, index) => (
-                            <Post key = {index} item = {item} />
+                            <Post key = {index} item = {item} resetBoolean = {true} resetItem = {resetItem}/>
                         ))
                     }
                     </div>
