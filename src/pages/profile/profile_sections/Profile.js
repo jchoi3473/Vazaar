@@ -10,7 +10,9 @@ import MenuItem from "@mui/material/MenuItem";
 import BlueButton from '../../../components/button/BlueButton';
 import Modal from '@mui/material/Modal';
 import ResetPasswordProfile from './ResetPasswordProfile';
+import DeleteConfirm from './DeleteConfirm';
 import {authenticateUser, updateProfile} from '../../../lib/api'
+import { useHistory } from "react-router-dom";
 
 const FormInput = styled(InputBase)(({ theme }) => ({
   "label + &": {
@@ -121,7 +123,13 @@ function Profile(props) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  
+
+  const [openDelete, setOpenDelete] = useState(false);
+  const handleOpenDelete = () => setOpenDelete(true);
+  const handleCloseDelete = () => setOpenDelete(false);
+
+  let history = useHistory();
+
   useEffect(() => {
     const fetchProducts = async() =>{
         if(localStorage.getItem('vazaar-jwt-token')){
@@ -178,21 +186,22 @@ function Profile(props) {
     };
 
     const onClickLogo = () => {
-      props.history.push("main");
+      history.push("main");
     };
 
     const onClickCancel = () => {
-      props.history.push("profile");
+      history.push("profile");
     };
 
     const onClickModifyProfile = async () => {
 
-      const res = updateProfile(address, state, zipcode);
+      const res = updateProfile(address, city, state, zipcode);
       if(res === "success"){
         alert("Profile Update Successfully!")
       }
     };
     return(
+      <>
           <div className = "Vazaar-Profile-Section-Container">
             
             <div className = "Vazaar-Profile-Body">
@@ -324,7 +333,7 @@ function Profile(props) {
 
               </div>              
             </div>
-
+         
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -335,7 +344,22 @@ function Profile(props) {
             >
               <ResetPasswordProfile/>
             </Modal>
+          
           </div>
+          <div className = "Vazaar-Delete-Account" onClick = {handleOpenDelete}>
+            Delete Account
+          </div>
+          <Modal
+                open={openDelete}
+                onClose={handleCloseDelete}
+                BackdropProps={{
+                    timeout: 500,
+                }}
+                closeAfterTransition
+            >
+              <DeleteConfirm handleClose = {handleCloseDelete}/>
+          </Modal>
+        </>
     );
 }
 

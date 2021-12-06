@@ -8,6 +8,8 @@ import { alpha, styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import BlueButton from '../../components/button/BlueButton';
 import {forgotPassword} from './../../lib/api'
+import { useHistory } from "react-router-dom";
+
 //Custom Material UI input
 const FormInput = styled(InputBase)(({ theme }) => ({
     'label + &': {
@@ -40,20 +42,9 @@ const FormInput = styled(InputBase)(({ theme }) => ({
   }));
 
 function Verify(props) {
-    const [email, setEmail] = useState();
-
-    const onClickSignUp = () =>{
-        props.history.push('signup')
-    }
+    let history = useHistory();
     const onClickLogo = () =>{
-        props.history.push('main')
-    }
-    const onChangeEmail = (e) => {
-      setEmail(e.target.value);
-    };
-    const onClickReset  = async () => {
-      let response = await forgotPassword(email)
-      console.log(response)
+        history.push('main')
     }
 
   return (
@@ -84,8 +75,11 @@ function Verify(props) {
                     <div className = "Vazaar-Roboto-normal" style = {{"fontSize":"14px", "color":"#8DAABE", "marginTop":"10px"}}>
                     verify your email address. If you did not receive an email,
                     </div>
-                    <div className = "Vazaar-Roboto-normal" style = {{"fontSize":"14px", "color":"#8DAABE", "marginTop":"10px"}}>
+                    <div className = "Vazaar-Roboto-normal" style = {{"fontSize":"14px", "color":"#8DAABE", "marginTop":"10px", marginBottom:'25px'}}>
                     please make sure to check your spam folder.
+                    </div>
+                    <div style ={{width:'180px', margin:'0 auto'}} onClick = {() => onClickLogo()}>
+                          <BlueButton text="Return To Main" width="180px" height="35px"/>
                     </div>
                 </div>
               

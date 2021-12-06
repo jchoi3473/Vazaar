@@ -11,7 +11,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import ProfileButton from '../profile/ProfileButton';
 import BrowseAllListings from './buyer_sections/BrowseAllListings'
-import Buyer_Dashboard from './buyer_sections/buyer_dashboard'
+import BuyerDashboard from './buyer_sections/BuyerDashboard'
 import FAQ from '../FAQ/FAQ'
 
 import dashboard from './../../assets/images/buyer_dashboard.png'
@@ -160,7 +160,7 @@ function BuyerPage(props) {
                 <div className = "Vazaar-Seller-Section-Container">
                     {
                     {  
-                        0: <Buyer_Dashboard/>,
+                        0: <BuyerDashboard/>,
                         1: <BrowseAllListings type = "all"/>,
                         2: <BedroomPage type = "bedroom"/>,
                         3: <LivingRoomPage type = "living room"/>,

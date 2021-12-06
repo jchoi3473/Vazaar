@@ -10,6 +10,8 @@ import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import BlueButton from "../../components/button/BlueButton";
 import { signUP } from "../../lib/api";
+import { useHistory } from "react-router-dom";
+
 //Custom Material UI input
 const FormInput = styled(InputBase)(({ theme }) => ({
   "label + &": {
@@ -76,6 +78,8 @@ function SignUp(props) {
   const [zipcode, setZipcode] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [warning, setWarning] = useState("");
+  let history = useHistory();
 
   const onChangeName = (e) => {
     setName(e.target.value);
@@ -103,14 +107,18 @@ function SignUp(props) {
     setState(event.target.value);
   };
   const onClickSignIn = () => {
-    props.history.push("sign-in");
+    history.push("sign-in");
   };
   const onClickLogo = () => {
-    props.history.push("main");
+    history.push("main");
   };
 
   const onClickSignUp = async () => {
-    console.log("Trigger Signup");
+    if(password!==passwordConfirm){
+      setWarning("Passwords do not match. Please check your passwords.")
+      return;
+    }
+
     const response = await signUP(
       name,
       email,
@@ -123,7 +131,10 @@ function SignUp(props) {
     );
     console.log(response)
     if(response.status ==="success"){
-      props.history.push("verify");
+      history.push("verify");
+    }else{
+      setWarning("Please check if all fields are filled correctly.")
+      return;
     }
   };
 
@@ -158,26 +169,32 @@ function SignUp(props) {
           <div className="Vazaar-SignUp-Header-Container">
             <div
               className="Vazaar-Main-Logo"
-              style={{ fontSize: "36px", color: "#7D9EB5", paddingTop: "10px" }}
+              style={{ fontSize: "36px", color: "#7D9EB5", paddingTop: "8px" }}
             >
               vazaar
             </div>
             <div
               className="Vazaar-Roboto-bold"
-              style={{ fontSize: "30px", marginTop: "10px" }}
+              style={{ fontSize: "30px", marginTop: "8px" }}
             >
               Sign Up
             </div>
             <div
               className="Vazaar-Roboto-normal"
-              style={{ fontSize: "14px", color: "#8DAABE", marginTop: "15px" }}
+              style={{ fontSize: "14px", color: "#8DAABE", marginTop: "8px" }}
             >
               Create your account here
+            </div>
+            <div
+              className="Vazaar-Roboto-normal"
+              style={{ fontSize: "12px", color: "red", marginTop: "5px", height:'10px' }}
+            >
+              {warning}
             </div>
           </div>
           <div className="Vazaar-SignUp-Form-Container">
             <div className="Vazaar-SignUp-Form-SubContainer">
-              <div className="Vazaar-SignUp-Form-SecondTitle">NAME</div>
+              <div className="Vazaar-SignUp-Form-SecondTitle">NAME*</div>
               <FormInput
                 placeholder="Enter Name"
                 value={name}
@@ -185,7 +202,7 @@ function SignUp(props) {
               />
             </div>
             <div className="Vazaar-SignUp-Form-SubContainer">
-              <div className="Vazaar-SignUp-Form-SecondTitle">ADDRESS</div>
+              <div className="Vazaar-SignUp-Form-SecondTitle">ADDRESS*</div>
               <FormInput
                 placeholder="Enter Address"
                 value={address}
@@ -193,7 +210,7 @@ function SignUp(props) {
               />
             </div>
             <div className="Vazaar-SignUp-Form-SubContainer">
-              <div className="Vazaar-SignUp-Form-SecondTitle">EMAIL</div>
+              <div className="Vazaar-SignUp-Form-SecondTitle">EMAIL(Only Emory email will work)*</div>
               <FormInput
                 placeholder="Enter emory.edu Email"
                 value={email}
@@ -201,7 +218,7 @@ function SignUp(props) {
               />
             </div>
             <div className="Vazaar-SignUp-Form-SubContainer">
-              <div className="Vazaar-SignUp-Form-SecondTitle">CITY</div>
+              <div className="Vazaar-SignUp-Form-SecondTitle">CITY*</div>
               <FormInput
                 placeholder="Enter City"
                 value={city}
@@ -209,7 +226,7 @@ function SignUp(props) {
               />
             </div>
             <div className="Vazaar-SignUp-Form-SubContainer">
-              <div className="Vazaar-SignUp-Form-SecondTitle">PASSWORD</div>
+              <div className="Vazaar-SignUp-Form-SecondTitle">PASSWORD*</div>
               <FormInput
                 placeholder="Enter Password"
                 value={password}
@@ -218,7 +235,7 @@ function SignUp(props) {
               />
             </div>
             <div className="Vazaar-SignUp-Form-SubContainer">
-              <div className="Vazaar-SignUp-Form-SecondTitle">STATE</div>
+              <div className="Vazaar-SignUp-Form-SecondTitle">STATE*</div>
               <FormTextField
                 style={{
                   textAlign: "left",
@@ -241,7 +258,7 @@ function SignUp(props) {
             </div>
             <div className="Vazaar-SignUp-Form-SubContainer">
               <div className="Vazaar-SignUp-Form-SecondTitle">
-                CONFIRM PASSWORD
+                CONFIRM PASSWORD*
               </div>
               <FormInput
                 placeholder="Confirm Password"
@@ -251,7 +268,7 @@ function SignUp(props) {
               />
             </div>
             <div className="Vazaar-SignUp-Form-SubContainer">
-              <div className="Vazaar-SignUp-Form-SecondTitle">ZIP Code</div>
+              <div className="Vazaar-SignUp-Form-SecondTitle">ZIP Code*</div>
               <FormInput
                 placeholder="Enter ZIP code"
                 value={zipcode}
@@ -263,7 +280,7 @@ function SignUp(props) {
             className="Vazaar-SignUp-Button-Container"
             style={{ marginTop: "15px" }}
           >
-            <div onClick={(e) => onClickSignUp()}>
+            <div style = {{width:'417px', margin:'0 auto'}} onClick={(e) => onClickSignUp()}>
               <BlueButton text="Sign Up" width="417px" height="47px" />
             </div>
             <div style={{ marginTop: "15px" }}>

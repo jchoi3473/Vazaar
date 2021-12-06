@@ -7,6 +7,7 @@ import Heart from './../../assets/images/heart.png'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { SvgIcon } from '@mui/material';
+import {doFavorite, undoFavorite} from './../../lib/api'
 function Post(props){
     //Values here are all static. Need to figure out details in future
     const [open, setOpen] = useState(false);
@@ -14,19 +15,29 @@ function Post(props){
     const handleClose = () => setOpen(false);
     const [hover, setHover] = useState(false);
     const [hoverHeart, setHoverHeart] = useState(false);
-
-    const [source, setSource] = useState();
+    const [isFavorite, setIsFavorite] = useState(false);
 
     useEffect(() => {
-        const base64 = btoa(
-            new Uint8Array(props.item.imageCover).reduce(
-            (data, byte) => data + String.fromCharCode(byte),
-            '',
-            ),
-        );
-        setSource("data:;base64," + base64);
-      },[])
+        
+        if(JSON.parse(localStorage.getItem('vazaar-user')).data){
+            if(props.id in JSON.parse(localStorage.getItem('vazaar-user')).data.favorite){
+                setIsFavorite(true)
+            }
+        }      
+    },[])
   
+    const onClickHeart = async() =>{
+        var res = ""
+        if(isFavorite){
+            res = await undoFavorite(props.item.id)
+            console.log(props.item.id)
+            //undo Favorite
+        }else{
+            //do Favorite
+            res = await doFavorite(props.item.id)
+            console.log(props.item.id)
+        }
+    }
     return(
         <div className = "Vazaar-Post-Container" >
             <div className = "Vazaar-Post-Image-Container" onMouseEnter = {() => setHover(true)} onMouseLeave = { () => setHover(false)}>
@@ -39,12 +50,30 @@ function Post(props){
                             {/* <img  className = "Vazaar-Heart" style ={{height:"60px"}} src={Heart}/> */}
                             {
                                 hoverHeart?
+                                <>
+                                {
+                                isFavorite?
+                                <div className = "Vazaar-Heart-Circle" style ={{cursor:'pointer'}} onMouseEnter = {() => setHoverHeart(true)} onClick={()=>onClickHeart()}>
+                                <SvgIcon  className = "Vazaar-Heart"  component={FavoriteBorderIcon} style = {{color: '#E9545D', fontSize: '55px'}} />
+                                </div>:
+                                  <div className = "Vazaar-Heart-Circle" style ={{cursor:'pointer'}} onMouseLeave = {() => setHoverHeart(false)} onClick={()=>onClickHeart()}>
+                                  <SvgIcon  className = "Vazaar-Heart" component={FavoriteIcon} style = {{color: '#E9545D', fontSize: '55px'}} />
+                                </div>
+                                }
+                                    
+                                </>
+                                :
+                                <>
+                                {
+                                isFavorite?
                                 <div className = "Vazaar-Heart-Circle" style ={{cursor:'pointer'}} onMouseLeave = {() => setHoverHeart(false)}>
-                                    <SvgIcon  className = "Vazaar-Heart" component={FavoriteIcon} style = {{color: '#E9545D', fontSize: '55px'}} />
+                                <SvgIcon  className = "Vazaar-Heart" component={FavoriteIcon} style = {{color: '#E9545D', fontSize: '55px'}} />
                                 </div>:
                                 <div className = "Vazaar-Heart-Circle" style ={{cursor:'pointer'}} onMouseEnter = {() => setHoverHeart(true)}>
-                                    <SvgIcon  className = "Vazaar-Heart"  component={FavoriteBorderIcon} style = {{color: '#E9545D', fontSize: '55px'}} />
+                                <SvgIcon  className = "Vazaar-Heart"  component={FavoriteBorderIcon} style = {{color: '#E9545D', fontSize: '55px'}} />
                                 </div>
+                                }
+                                </>
                             }
                             
 

@@ -65,6 +65,8 @@ export const signIn = async function (email, password) {
       if(response.data.data.user.verified){
       localStorage.setItem("vazaar-jwt-token", response.data.token);
       localStorage.setItem("vazaar-user", JSON.stringify(response.data.data));
+      localStorage.setItem("vazaar-recently-viewed", JSON.stringify({recentlyViewed:[]}));
+
       console.log(response.data);
       return response.data.status;
       }else{
@@ -323,7 +325,7 @@ export const updateProfile = async function (
   };
   try{
     const response = await axios.patch(
-      "https://vazaar.herokuapp.com/api/v1/users/updateMe",
+      `https://vazaar.herokuapp.com/api/v1/users/${JSON.parse(localStorage.getItem('vazaar-user')).data._id}`,
       userInfo,
       {headers : {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`} }
 
@@ -331,6 +333,65 @@ export const updateProfile = async function (
     console.log(response.status);
     if(response.status === 200){
       alert("Profile Change Successful!")  
+      return "success"
+    }
+    return
+  }
+  catch(error){
+    console.log(error);
+    return error
+  }
+};
+
+
+export const deleteUser = async function () {
+  try{
+    const response = await axios.delete(
+      `https://vazaar.herokuapp.com/api/v1/users/deleteMe`,
+      {headers : {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`} }
+
+    )
+    console.log(response.status);
+    if(response.status === 204){
+      alert("User Successfully Deleted.")
+      return "success"
+    }
+    return
+  }
+  catch(error){
+    console.log(error);
+    return error
+  }
+};
+
+
+export const doFavorite = async function (itemID) {
+  try{
+    const response = await axios.post(
+      `https://vazaar.herokuapp.com/api/v1/users/favorite/${itemID}`,
+      {headers : {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`} }
+    )
+    console.log(response.status);
+    if(response.status === 201){
+      return "success"
+    }
+    return
+  }
+  catch(error){
+    console.log(error);
+    return error
+  }
+};
+
+
+export const undoFavorite = async function (itemID) {
+  try{
+    const response = await axios.delete(
+      `https://vazaar.herokuapp.com/api/v1/users/favorite/${itemID}`,
+      {headers : {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`} }
+    )
+    console.log(response.status);
+    if(response.status === 204){
       return "success"
     }
     return

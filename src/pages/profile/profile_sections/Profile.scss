@@ -90,3 +90,39 @@
 .Vazaar-Profile-State{
     width: 150% !important;
 }
+.Vazaar-Delete-Account{
+    position: relative;
+    bottom: 0;
+    // left: 50px;
+    left: 40%;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+    // padding-right: 30px;
+    // padding-right: 30px;
+    background-color: rgb(255, 102, 102);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 34px;
+    border-radius: 3px;
+    color: white;
+    cursor: pointer;
+    &:hover{
+        background-color: white;
+        height: 32px;
+        color: rgb(255, 102, 102);
+        border: solid 1px rgb(255, 102, 102);
+    }
+    // top: 0;
+}
+.Vazaar-Delete-Container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

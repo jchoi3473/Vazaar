@@ -37,20 +37,11 @@
 }
 .Vazaar-Top-Navigation-Container{
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
     height: 80px;
     background-color: #ffffff;
     width: 100%;
+    
     // padding-left: 353px;
     // padding-top: 23px;
-}
-.Vazaar-Top-Search{
-    width: 460px;
-    height: 38px;
-    padding-left: 38px;
-    border-radius: 2.5px;
-    
-    border: 1px rgba(126, 159, 182, 1)    solid;
-    margin-top: 23px;
-    margin-left: 38px;
 }

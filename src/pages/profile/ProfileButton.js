@@ -2,8 +2,8 @@ import React, {useState,useEffect} from 'react';
 import Dashboard from '../dashboard/Dashboard';
 import './ProfilePage.scss'
 import Avatar from '@mui/material/Avatar';
-import {withRouter} from "react-router-dom"
 import {signOut} from './../../lib/api'
+import { useHistory, withRouter} from "react-router-dom";
 
 function stringToColor(string) {
   let hash = 0;
@@ -42,14 +42,16 @@ function stringAvatar(name) {
 }
 
 function ProfileButton(props) {
+  let history = useHistory();
+
   const onClickSignIn = () => {
-    props.history.push("/profile");
+    history.push('/profile', {radio:0});
   };
   const onClickLogOut = () =>{
     signOut()
     localStorage.removeItem('vazaar-jwt-token')
     localStorage.removeItem('vazaar-user')
-    props.history.push("/main");
+    history.push("/main", {radio:0});
   }
     return(
       <div className = "Vazaar-Profile-Container">

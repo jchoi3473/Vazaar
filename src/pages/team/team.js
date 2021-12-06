@@ -3,6 +3,7 @@ import './team.scss'
 import team_background from './../../assets/images/team_background.png'
 
 import {authenticateUser} from './../../lib/api'
+import { useHistory, withRouter} from "react-router-dom";
 
 import sunny_pic from './../../assets/images/team_pics/sunny.png'
 import jaeho_pic from './../../assets/images/team_pics/jaeho.png'
@@ -15,6 +16,7 @@ import dheep_pic from './../../assets/images/team_pics/dheep.png'
 
 function Team(props) {
     const [signedIn, setSignedIn] = useState(false); 
+    let history = useHistory();
 
 
     useEffect(() => {
@@ -28,19 +30,19 @@ function Team(props) {
         }
     },[])
     const onClickSignUp = () =>{
-        props.history.push('sign-up')
+        history.push('sign-up')
     }
     const onClickSignIn = () =>{
-        props.history.push('sign-in')
+        history.push('sign-in')
     }
     const onClickTeam = () =>{
-        props.history.push('team')
+        history.push('team')
     }
     const onClickLogo = () =>{
-        props.history.push('main')
+        history.push('main')
     }
     const onClickProfile = () =>{
-        props.history.push('profile')
+        history.push('profile', {radio:0})
     }
     
   return (
@@ -205,4 +207,4 @@ function Team(props) {
   );
 }
 
-export default Team;
+export default withRouter(Team);

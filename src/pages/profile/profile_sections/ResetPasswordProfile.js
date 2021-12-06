@@ -12,6 +12,8 @@ import {
 import InputBase from '@mui/material/InputBase';
 import BlueButton from '../../../components/button/BlueButton';
 import { useEffect } from 'react';
+import { useHistory } from "react-router-dom";
+
 import {resetPasswordProfile, signOut} from './../../../lib/api'
 //Custom Material UI input
 const FormInput = styled(InputBase)(({ theme }) => ({
@@ -51,6 +53,8 @@ function useQuery() {
 }
 
 function ResetPasswordProfile(props) {
+  let history = useHistory();
+
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
@@ -70,7 +74,7 @@ function ResetPasswordProfile(props) {
       signOut()
       localStorage.removeItem('vazaar-jwt-token')
       localStorage.removeItem('vazaar-user')
-      props.history.push("/main");
+      history.push("/main");
     }
   }
 

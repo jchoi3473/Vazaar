@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   useRouteMatch
 } from "react-router-dom";
@@ -19,24 +19,29 @@ import favorite_icon from './../../assets/images/favorite_icon.png'
 import recently_viewed_icon from './../../assets/images/recently_viewed_icon.png'
 import buy_icon from './../../assets/images/buy.jpeg'
 import sell_icon from './../../assets/images/sell.png'
+import RecentlyViewed from './RecentlyViewed';
+import { useHistory } from "react-router-dom";
 
 function ProfilePage(props) {
-    const [selectedIndex, setSelectedIndex] = React.useState(0);
-    let { path, url } = useRouteMatch();
+    let history = useHistory();
+    useEffect(() => {
+        console.log(props.location.state)
+    },[])    
+    const [selectedIndex, setSelectedIndex] = React.useState(props.location.state.radio);
 
     const handleListItemClick = (event, index) => {
         setSelectedIndex(index);
     };
     const onClickLogo = () =>{
-        props.history.push('main')
+        history.push('main')
     }
 
     const onClickBuy = () =>{
-        props.history.push('buy')
+        history.push('buy')
     }
 
     const onClickSell = () =>{
-        props.history.push('sell')
+        history.push('sell')
     }
 
     return(
@@ -107,13 +112,18 @@ function ProfilePage(props) {
             </div>
         }
         main = {
-          <div className = "Vazaar-Profile-Section-Container">
+          <>
               {
               {  
-                  0: <Profile/>
+                0:
+                <div className = "Vazaar-Profile-Section-Container">
+                    <Profile/>
+                </div>,
+                2: <RecentlyViewed/>
+
               }[selectedIndex]
               }
-          </div>
+          </>
       }
       
       />

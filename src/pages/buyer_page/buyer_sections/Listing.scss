@@ -157,3 +157,43 @@ input[type=number] {
 
     // justify-content: center;
 }
+.Vazaar-Top-Search-Container{
+    position: absolute;
+    top:0;
+    left:300px;
+    margin-top: 23px;
+    margin-left: 38px;
+}
+.Vazaar-Top-Search{
+    display: inline-block;
+    width: 460px;
+    height: 38px;
+    padding-left: 38px;
+    border-radius: 2.5px;
+    border: 1px rgba(126, 159, 182, 1)    solid; 
+}
+.Vazaar-Top-Search-Button{
+    margin-left: 15px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    /* or 171% */   
+    color: #FFFFFF;
+    background: #589BFF;
+    border-radius: 2.5px;
+    border: none;
+    cursor: pointer;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    &:hover{
+        color: #589BFF;
+        background: #FFFFFF;
+        border: solid 2px #589BFF;
+    }
+}
+
+

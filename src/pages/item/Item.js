@@ -8,6 +8,8 @@ import { Checkbox } from '@mui/material';
 import ImageGallery from 'react-image-gallery';
 import "react-image-gallery/styles/scss/image-gallery.scss";
 
+
+
 function Item(props){
     const [checked, setChecked] = useState(false);
     const [hoverHeart, setHoverHeart] = useState(false);
@@ -16,13 +18,33 @@ function Item(props){
       setChecked(event.target.checked);
     };
 
+    const containsObject = (obj, list) => {
+        var i;
+        for (i = 0; i < list.length; i++) {
+            if (list[i].id === obj.id) {
+                return true;
+            }
+        }
+        return false;
+    }
     useEffect(() => {
+        if(JSON.parse(localStorage.getItem('vazaar-recently-viewed'))){
+            var tempRecentlyViewed = JSON.parse(localStorage.getItem('vazaar-recently-viewed'))
+            if(!containsObject(props.item, tempRecentlyViewed.recentlyViewed)){
+                tempRecentlyViewed.recentlyViewed.unshift(props.item)
+                localStorage.setItem('vazaar-recently-viewed', JSON.stringify(tempRecentlyViewed))
+            }
+        }else{
+            localStorage.setItem('vazaar-recently-viewed', JSON.stringify({recentlyViewed: [props.item]}))
+        }
+        
+    
         let tempImages = [
         {
             original: "https://vazaar.herokuapp.com/img/items/"+props.item.imageCover,
             thumbnail: "https://vazaar.herokuapp.com/img/items/"+props.item.imageCover
         }
-    ]
+        ]
         for(var i=0;i<props.item.images.length;i++){
             tempImages.push({
                 original :  "https://vazaar.herokuapp.com/img/items/"+props.item.images[i],
@@ -70,7 +92,7 @@ function Item(props){
                         {props.item.name}
                     </div> */}
                 </div>
-                <div style = {{height: '25rem', display: 'flex', flexDirection:'column', justifyContent:"space-evenly"}}>
+                <div style = {{height: '45%', display: 'flex', flexDirection:'column', justifyContent:"space-evenly"}}>
                     <div style = {{display:'flex'}}>
                         <div className = "Vazaar-Item-Description-body" style = {{fontWeight: 'bold', marginRight:"5px"}}>
                             {"Price: "}
@@ -138,7 +160,7 @@ function Item(props){
                     </div>
                     <div style = {{display:'flex', marginTop:'50px'}}>
                         <div className = "Vazaar-Item-Description-body" style = {{fontWeight: 'bold', marginRight:"5px"}}>
-                        Seller: 
+                        Seller : 
                         </div>
                         <div className = "Vazaar-Item-Description-body">
                         {props.item.userInfo.name}
@@ -146,14 +168,14 @@ function Item(props){
                     </div>
                     <div style = {{display:'flex'}}>
                         <div className = "Vazaar-Item-Description-body" style = {{fontWeight: 'bold', marginRight:"5px"}}>
-                        Seller Email: 
+                        Contact : 
                         </div>
                         <div className = "Vazaar-Item-Description-body">
                         {props.item.userInfo.email}
                         </div>
                     </div>
                 </div>
-                <div style = {{height: '25rem', display: 'flex', flexDirection:'column', justifyContent:"space-evenly"}}>
+                <div style = {{height: '20%', display: 'flex', flexDirection:'column', justifyContent:"space-evenly"}}>
                     <div style = {{display:'flex',alignItems:"center"}}>
                         <Checkbox
                         checked={checked}

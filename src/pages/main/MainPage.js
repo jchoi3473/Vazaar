@@ -2,9 +2,12 @@ import React, {useState, useEffect, useRef} from 'react';
 import './MainPage.scss'
 import background from './../../assets/images/background.jpg'
 import {authenticateUser} from './../../lib/api'
+import { useHistory, withRouter} from "react-router-dom";
+
 function MainPage(props) {
     const [userData, setUserData] = useState(); 
     const [signedIn, setSignedIn] = useState(false); 
+    let history = useHistory();
 
 
     useEffect(() => {
@@ -25,34 +28,34 @@ function MainPage(props) {
 
 
     const onClickSignUp = () =>{
-        props.history.push('sign-up')
+        history.push('sign-up')
     }
     const onClickSignIn = () =>{
-        props.history.push('sign-in')
+        history.push('sign-in')
     }
     const onClickTeam = () =>{
-        props.history.push('team')
+        history.push('team')
     }
     const onClickLogo = () =>{
-        props.history.push('main')
+        history.push('main')
     }
     const onClickProfile = () =>{
-        props.history.push('profile')
+        history.push('profile', {radio:0})
     }
     const onClickSell = () =>{
         if(signedIn){
-            props.history.push('sell')
+            history.push('sell')
         }else{
             alert("You need to sign up to start selling!");
-            props.history.push('sign-up')
+            history.push('sign-up')
         }
     }
     const onClickBuy = () =>{
         if(signedIn){
-            props.history.push('buy')
+            history.push('buy')
         }else{
             alert("You need to sign up to start buying!");
-            props.history.push('sign-up')
+            history.push('sign-up')
         }
     }
 
@@ -130,4 +133,4 @@ function MainPage(props) {
   );
 }
 
-export default MainPage;
+export default withRouter(MainPage);

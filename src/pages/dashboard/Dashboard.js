@@ -27,7 +27,6 @@ function Dashboard(props) {
             </div>
             <div style = {{display : "flex",flexDirection : "column", width : "100%", padding: "0", margin:"0"}}>
                     <div className = "Vazaar-Top-Navigation-Container">
-                        <input className ="Vazaar-Top-Search" placeholder = "Search for an item here"/>
                         {props.profile}
                     </div>
                     <div style = {{width : "100%", height: "calc(100% - 80px)", display: "flex", justifyContent: "center", alignItems:"center"}}>

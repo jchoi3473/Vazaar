@@ -163,7 +163,11 @@ function BrowseAllListings(props){
             {
                 loaded?
                 <div style = {{width:'100%', height:'100%'}}>
-                    <div style = {{textAlign :'left', paddingBottom:'30px'}}>
+                        <div className ="Vazaar-Top-Search-Container">
+                            <input className ="Vazaar-Top-Search" placeholder = "Search for an item here"/>
+                            <buttom className ="Vazaar-Top-Search-Button">Search</buttom>
+                        </div>
+                        <div style = {{textAlign :'left', paddingBottom:'30px'}}>
                         <FormControl className = "Vazaar-sort-dropdown">
                                 <div className = "Vazaar-sort-title">
                                 Sort by
