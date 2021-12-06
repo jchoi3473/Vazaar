@@ -226,7 +226,7 @@ function SignUp(props) {
               />
             </div>
             <div className="Vazaar-SignUp-Form-SubContainer">
-              <div className="Vazaar-SignUp-Form-SecondTitle">PASSWORD*</div>
+              <div className="Vazaar-SignUp-Form-SecondTitle">PASSWORD* (minimum 8 characters)</div>
               <FormInput
                 placeholder="Enter Password"
                 value={password}
