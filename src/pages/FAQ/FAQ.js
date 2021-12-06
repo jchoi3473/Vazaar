@@ -22,9 +22,9 @@ function FAQ(props){
                     <div className = "Vazaar-FAQ-Answer">| A. Transactions are not made through the Vazaar website. Transactions should be done in person with the seller after checking the item of interest.
                     <div style = {{paddingTop: "20px" }}></div>
 
-                    <div className = "Vazaar-FAQ-Question">| Q. I see miscellaneous items or non-furniture related listings on the website. What should I do?
+                    {/* <div className = "Vazaar-FAQ-Question">| Q. I see miscellaneous items or non-furniture related listings on the website. What should I do?
                     <div className = "Vazaar-FAQ-Answer">| A. There is a possibility that users may post listings that are non-furniture related. In the case that you come across such a post, please report the post for review. We will review and confirm the post before taking it down.
-                    <div style = {{paddingTop: "20px" }}></div>
+                    <div style = {{paddingTop: "20px" }}></div> */}
 
                     <div className = "Vazaar-FAQ-Question">| Q. Can I link my personal email to the account instead?
                     <div className = "Vazaar-FAQ-Answer">| A. Vazaar requires all users to use their emory.edu email. This process ensures that the service is only available to current Emory students.
@@ -46,9 +46,9 @@ function FAQ(props){
                     <div className = "Vazaar-FAQ-Answer">| A. All available listings have a heart icon for buyers to favorite the listing. The listing will be added to your favorites page to view listings again conveniently at any time.
                     <div style = {{paddingTop: "20px" }}></div>
 
-                    <div className = "Vazaar-FAQ-Question">| Q. I want to reset my password. How do I do that?
+                    {/* <div className = "Vazaar-FAQ-Question">| Q. I want to reset my password. How do I do that?
                     <div className = "Vazaar-FAQ-Answer">| A. The easiest way would be to click on your profile icon at the top right. At the bottom of the page you can click on the link to “reset password.” Enter your emory.edu email to reset.
-                    <div style = {{paddingTop: "20px" }}></div>
+                    <div style = {{paddingTop: "20px" }}></div> */}
 
                     <div className = "Vazaar-FAQ-Question">| Q. How do I terminate my account if I no longer need Vazaar’s services?
                     <div className = "Vazaar-FAQ-Answer">| A. Depending on your expected graduation year, Vazaar will automatically terminate the account. Accounts inactive for a certain period of time may also be terminated automatically.
@@ -78,11 +78,10 @@ function FAQ(props){
                     </div>
                     </div>
 
+                    {/* </div>
                     </div>
                     </div>
-
-                    </div>
-                    </div>                                    
+                    </div>                                     */}
             </div>
         </div>
 
