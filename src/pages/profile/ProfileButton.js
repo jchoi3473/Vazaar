@@ -42,7 +42,7 @@ function stringAvatar(name) {
 }
 
 function ProfileButton(props) {
-  const onClickSignIn = () => {
+  const onClickProfile = () => {
     props.history.push("/profile");
   };
   const onClickLogOut = () =>{
@@ -62,7 +62,7 @@ function ProfileButton(props) {
               </div>
             </div>
             <div className = "Vazaar-Profile-subMenu">
-              <div className = "Vazaar-Profile-subMenu-Entity" onClick = {onClickSignIn}>
+              <div className = "Vazaar-Profile-subMenu-Entity" onClick = {onClickProfile}>
                 Profile
               </div>
               <div className = "Vazaar-Profile-subMenu-Entity" onClick = {onClickLogOut}>

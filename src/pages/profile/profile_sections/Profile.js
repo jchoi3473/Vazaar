@@ -182,14 +182,14 @@ function Profile(props) {
     };
 
     const onClickCancel = () => {
-      props.history.push("profile");
+      window.location.reload();
     };
 
     const onClickModifyProfile = async () => {
 
       const res = updateProfile(address, state, zipcode);
       if(res === "success"){
-        alert("Profile Update Successfully!")
+        alert("Profile Updated Successfully!")
       }
     };
     return(
