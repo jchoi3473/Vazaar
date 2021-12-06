@@ -57,6 +57,13 @@
     line-height: 24px;
 }
 .image-gallery-image{
-    width: 400px;
-    height: 400px;
+    width: 300px;
+    height: 300px;
+    // max-width: 400px;
+    // max-height: 400px;
 }
+.image-gallery-thumbnail-image{
+    width: 100px;
+    height: 100px;
+}
+

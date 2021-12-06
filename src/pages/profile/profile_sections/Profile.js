@@ -3,19 +3,14 @@ import './Profile.scss'
 import Avatar from '@mui/material/Avatar';
 import ProfileButton from '../ProfileButton';
 import { alpha, styled } from "@mui/material/styles";
-import { Link } from 'react-router';
 
 import InputBase from "@mui/material/InputBase";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import BlueButton from '../../../components/button/BlueButton';
-
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import InputAdornment from "@mui/material/InputAdornment";
-import IconButton from "@mui/material/IconButton";
-import {authenticateUser} from '../../../lib/api'
-import { signUP } from "../../../lib/api";
+import Modal from '@mui/material/Modal';
+import ResetPasswordProfile from './ResetPasswordProfile';
+import {authenticateUser, updateProfile} from '../../../lib/api'
 
 const FormInput = styled(InputBase)(({ theme }) => ({
   "label + &": {
@@ -123,7 +118,10 @@ function stringAvatar(name) {
 function Profile(props) {
   const [userData, setUserData] = useState(); 
   const [signedIn, setSignedIn] = useState(false); 
-
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  
   useEffect(() => {
     const fetchProducts = async() =>{
         if(localStorage.getItem('vazaar-jwt-token')){
@@ -184,20 +182,15 @@ function Profile(props) {
     };
 
     const onClickCancel = () => {
-      window.location.reload();    
+      props.history.push("profile");
     };
 
     const onClickModifyProfile = async () => {
-      console.log("Modify Profile");
-      const response = await signUP(
-        name,
-        email,
-        address,
-        city,
-        zipcode,
-        password,
-      );
-      console.log(response)
+
+      const res = updateProfile(address, state, zipcode);
+      if(res === "success"){
+        alert("Profile Update Successfully!")
+      }
     };
     return(
           <div className = "Vazaar-Profile-Section-Container">
@@ -236,7 +229,10 @@ function Profile(props) {
                       />
 
                   <div className="Vazaar-Profile-Form-SubContainer">
-                    <div className="Vazaar-Profile-Form-SecondTitle">PASSWORD</div>
+                    <div style = {{display:'flex', width: '94%', justifyContent:'space-between'}}>
+                      <div className="Vazaar-Profile-Form-SecondTitle">PASSWORD</div>
+                      <div className="Vazaar-Profile-Form-SecondTitle" style ={{textAlign:'right',marginLeft:'10px', color:'#11A1FD', fontSize:'12px', cursor:'pointer'}} onClick = {()=>handleOpen()}>Reset Password?</div>
+                    </div>
                     <FormInput style={{ width: "150%" }}
                         placeholder="Modify Password"
                         value={"************"}
@@ -328,6 +324,17 @@ function Profile(props) {
 
               </div>              
             </div>
+
+            <Modal
+                open={open}
+                onClose={handleClose}
+                BackdropProps={{
+                    timeout: 500,
+                }}
+                closeAfterTransition
+            >
+              <ResetPasswordProfile/>
+            </Modal>
           </div>
     );
 }

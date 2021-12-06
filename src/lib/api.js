@@ -33,7 +33,6 @@ export const signUP = async function (
 
 //use JWT to authenticate
 export const authenticateUser = async function (jwt) {
-  console.log('jwt='+jwt)
   const response = await axios.get(
     "https://vazaar.herokuapp.com/api/v1/users/me",
       {headers:{
@@ -79,6 +78,23 @@ export const signIn = async function (email, password) {
     console.log(error);
   };
 };
+
+export const signOut = async function () {
+  try {
+    const response = await axios.get(
+      // (`/api/v1/products?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}`  
+      'https://vazaar.herokuapp.com/api/v1/users/logout',
+      {headers : {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`} }
+    );
+      console.log(response)
+      return response;
+  }
+  catch(error){
+    //handle error
+    console.log(error);
+  };
+};
+
 
 export const addListing = async function (
   title,
@@ -198,10 +214,6 @@ export const getAllListings = async function (category, page, numItems, sort, mi
       }
     }
 
-
-
-
-
       return response.status === 200 ? response.data : "error";
   } catch (error) {
       return error
@@ -238,7 +250,7 @@ export const forgotPassword = async function (email) {
   
   };
   const response = await axios.post(
-    "https://vazaar.herokuapp.com/api/v1/forgotPassword",
+    "https://vazaar.herokuapp.com/api/v1/users/forgotPassword",
     userInfo
   );
   return response
@@ -261,4 +273,70 @@ export const getSoldListing = async function (sold) {
   } catch (error) {
       return error
   } 
+};
+
+
+
+export const resetPasswordProfile = async function (
+  currentPassword,
+  newPassword,
+  confirmPassword,
+) {
+ 
+  const userInfo = {
+    passwordCurrent: currentPassword,
+    password: newPassword,
+    passwordConfirm: confirmPassword
+  };
+  try{
+    const response = await axios.patch(
+      "https://vazaar.herokuapp.com/api/v1/users/updateMyPassword",
+      userInfo,
+      {headers : {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`} }
+
+    )
+    console.log(response.status);
+    if(response.status === 200){
+      alert("Password Reset Successfully! Please sign back in with new password.")  
+      return "success"
+    }
+    return
+  }
+  catch(error){
+    console.log(error);
+    return error
+  }
+};
+
+export const updateProfile = async function (
+  address,
+  city,
+  state,
+  zipcode
+) {
+ 
+  const userInfo = {
+    address: address,
+    city: city,
+    state: state,
+    zipcode: zipcode,
+  };
+  try{
+    const response = await axios.patch(
+      "https://vazaar.herokuapp.com/api/v1/users/updateMe",
+      userInfo,
+      {headers : {'Authorization': `Bearer ${localStorage.getItem('vazaar-jwt-token')}`} }
+
+    )
+    console.log(response.status);
+    if(response.status === 200){
+      alert("Profile Change Successful!")  
+      return "success"
+    }
+    return
+  }
+  catch(error){
+    console.log(error);
+    return error
+  }
 };

@@ -82,6 +82,10 @@ function BrowseAllListings(props){
     }
     const handlePageChange = (selectedObject) => {
         setcurrentPage(selectedObject.selected);
+        var myDiv = document.getElementById('Vazaar-Container-Div');
+        myDiv.scrollTop = 0;
+
+
         // setLoaded(false);
         const data = getAllListings(props.type, selectedObject.selected+1, 20, sortString, minPrice, maxPrice).then(response => {
             // setLoaded(true);
@@ -89,6 +93,7 @@ function BrowseAllListings(props){
             console.log(response)
             setItems(response.data.doc)
         })
+
         // handleFetch()
         
 
@@ -200,7 +205,7 @@ function BrowseAllListings(props){
                         <button className = "Vazaar-sort-price" onClick = {() => onClickReset()}>Reset</button>
                         </div>
                     </div>
-                        <div style = {{width:'100%', height:'calc(100% - 80px)', overflowY:'scroll'}}>
+                        <div id = "Vazaar-Container-Div"style = {{width:'100%', height:'calc(100% - 80px)', overflowY:'scroll'}}>
                             <div className = "Vazaar-ItemListing-Container">
                                 {
                                     items.map((item, index) => (
