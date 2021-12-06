@@ -107,6 +107,7 @@ function BrowseAllListings(props){
             // setLoaded(true);
             setTotalNumPages(response.totalPageNumber)
             console.log(response)
+            setcurrentPage(0)
             setItems(response.data.doc)
         })
     }
@@ -239,6 +240,8 @@ function BrowseAllListings(props){
                             </div>
                             <div className = "Vazaar-Pagination">
                                 <ReactPaginate
+                                    
+                                    forcePage = {currentPage}
                                     pageCount={totalNumPages}
                                     pageRangeDisplayed={5}
                                     onPageChange={handlePageChange}

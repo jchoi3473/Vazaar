@@ -139,7 +139,6 @@ function SellItem(props) {
       category
     );
     const result = await authenticateUser(localStorage.getItem('vazaar-jwt-token'))
-    console.log(response.status)
     if(response.status ==='success'){
       setCategory()
       setCondition()
@@ -152,6 +151,8 @@ function SellItem(props) {
       setDimension("")
       setKeyWords("")
       setUploadImages([])
+    }else{
+      alert("Please make sure all fields are entered correctly.")
     }
   };
   return (
@@ -159,12 +160,12 @@ function SellItem(props) {
       <div className="Vazaar-SellItem-LeftCol" style={{ height: "100%" }}>
         <div className="Vazaar-Picture-Container">
           <div className="Vazaar-SellItem-Form-SecondTitle">
-            {"DRAG & DROP IMAGE"}
+            {"DRAG & DROP IMAGE(Attach at least 2 images and the first image will be used as a cover image)*"}
           </div>
           <UploadPicture setUploadImages={setUploadImages} />
         </div>
         <div style={{ padding: "20px" }}>
-          <div className="Vazaar-SellItem-Form-SecondTitle">DESCRIPTION</div>
+          <div className="Vazaar-SellItem-Form-SecondTitle">DESCRIPTION*</div>
           <textarea
             className="Vazaar-SellItem-Description-TextArea"
             onChange={(e) => onChangeDescription(e)}
@@ -180,7 +181,7 @@ function SellItem(props) {
       <div className="Vazaar-SellItem-RightCol">
         <div>
           <div style={{ width: "100%" }}>
-            <div className="Vazaar-SellItem-Form-SecondTitle">TITLE</div>
+            <div className="Vazaar-SellItem-Form-SecondTitle">TITLE*</div>
             <FormInput
               placeholder="Enter Title"
               value={title}
@@ -192,7 +193,7 @@ function SellItem(props) {
         </div>
         <div>
           <div style={{ width: "100%" }}>
-            <div className="Vazaar-SellItem-Form-SecondTitle">PURCHASED YEAR</div>
+            <div className="Vazaar-SellItem-Form-SecondTitle">PURCHASED YEAR*</div>
             <FormInput
               placeholder="Enter Year"
               value={year}
@@ -204,7 +205,7 @@ function SellItem(props) {
         </div>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ display: "inline-block", width: "45%" }}>
-            <div className="Vazaar-SellItem-Form-SecondTitle">PRICE</div>
+            <div className="Vazaar-SellItem-Form-SecondTitle">PRICE*</div>
             <FormInput
               placeholder="Enter Price"
               value={price}
@@ -214,7 +215,7 @@ function SellItem(props) {
             />
           </div>
           <div style={{ display: "inline-block", width: "45%" }}>
-            <div className="Vazaar-SignUp-Form-SecondTitle">CATEGORY</div>
+            <div className="Vazaar-SignUp-Form-SecondTitle">CATEGORY*</div>
             <FormTextField
               style={{
                 textAlign: "left",
@@ -238,7 +239,7 @@ function SellItem(props) {
         </div>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ display: "inline-block", width: "45%" }}>
-            <div className="Vazaar-SellItem-Form-SecondTitle">COLOR</div>
+            <div className="Vazaar-SellItem-Form-SecondTitle">COLOR*</div>
             <FormInput
               placeholder="Enter Color"
               value={color}
@@ -248,7 +249,7 @@ function SellItem(props) {
             />
           </div>
           <div style={{ display: "inline-block", width: "45%" }}>
-            <div className="Vazaar-SignUp-Form-SecondTitle">CONDITION</div>
+            <div className="Vazaar-SignUp-Form-SecondTitle">CONDITION*</div>
             <FormTextField
               style={{
                 textAlign: "left",
@@ -272,7 +273,7 @@ function SellItem(props) {
         </div>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ display: "inline-block", width: "45%" }}>
-            <div className="Vazaar-SellItem-Form-SecondTitle">DIMENSION</div>
+            <div className="Vazaar-SellItem-Form-SecondTitle">DIMENSION/SIZE* (ex. 30x30 or small)</div>
             <FormInput
               placeholder="Enter Dimension"
               value={dimension}
@@ -280,7 +281,7 @@ function SellItem(props) {
             />
           </div>
           <div style={{ display: "inline-block", width: "45%" }}>
-            <div className="Vazaar-SignUp-Form-SecondTitle">DELIVERY</div>
+            <div className="Vazaar-SignUp-Form-SecondTitle">DELIVERY*</div>
             <FormTextField
               style={{
                 textAlign: "left",
@@ -302,15 +303,15 @@ function SellItem(props) {
             </FormTextField>
           </div>
         </div>
-        <div>
-          <div className="Vazaar-SellItem-Form-SecondTitle">KEYWORDS</div>
+        {/* <div>
+          <div className="Vazaar-SellItem-Form-SecondTitle">KEYWORDS*</div>
           <FormInput
             placeholder="Enter Keywords"
             value={keywords}
             onChange={(e) => onChangeKeywords(e)}
           />
-        </div>
-        <div style={{ textAlign: "right", paddingTop: "10%" }}>
+        </div> */}
+        <div style={{ textAlign: "right", paddingTop: "15%" }}>
           <div
             style={{
               width: "fit-content",

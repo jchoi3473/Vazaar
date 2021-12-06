@@ -161,7 +161,7 @@ function Item(props){
                     </div>
                     <div style = {{display:'flex'}}>
                         <div className = "Vazaar-Item-Description-body" style = {{fontWeight: 'bold', marginRight:"5px"}}>
-                        Dimensions: 
+                        Dimensions/Size: 
                         </div>
                         <div className = "Vazaar-Item-Description-body">
                         {props.item.dimension}
@@ -207,7 +207,7 @@ function Item(props){
                     </div>
                 </div>
                 <div style = {{height: '20%', display: 'flex', flexDirection:'column', justifyContent:"space-evenly"}}>
-                    <div style = {{display:'flex',alignItems:"center"}}>
+                    {/* <div style = {{display:'flex',alignItems:"center"}}>
                         <Checkbox
                         checked={checked}
                         onChange={handleChange}
@@ -217,7 +217,7 @@ function Item(props){
                         <div className = "Vazaar-Item-Description-body" style = {{fontWeight: 'bold', marginLeft:"20px"}}>
                             Propose $5 for delivery?
                         </div>
-                    </div>
+                    </div> */}
                         <div style = {{display:'flex', width: '400px'}}>
                             <div className = "Vazaar-Item-Note-body" style = {{fontWeight: 'bold', marginRight: '5px'}}>
                             Note:
