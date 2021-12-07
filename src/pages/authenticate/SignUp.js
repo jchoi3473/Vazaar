@@ -268,7 +268,7 @@ function SignUp(props) {
               />
             </div>
             <div className="Vazaar-SignUp-Form-SubContainer">
-              <div className="Vazaar-SignUp-Form-SecondTitle">ZIP Code*</div>
+              <div className="Vazaar-SignUp-Form-SecondTitle">ZIP CODE*</div>
               <FormInput
                 placeholder="Enter ZIP code"
                 value={zipcode}
