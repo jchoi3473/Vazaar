@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import { BrowserRouter, Route, Switch, Redirect, withRouter } from 'react-router-dom';
+import { BrowserRouter,HashRouter, Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import WebFont from 'webfontloader';
 
 import './App.css';
@@ -21,7 +21,7 @@ import VerifySuccessful from './pages/authenticate/VerifySuccessful';
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <HashRouter>
           <Switch>
             <Route path = "/sign-in" component = {SignIn}/>
             <Route path = "/sign-up" component = {SignUp}/>
@@ -45,7 +45,7 @@ function App() {
             <Route path = "*" component = {Error404}/>
 
           </Switch>
-        </BrowserRouter>
+        </HashRouter>
     </div>
   );
 }
