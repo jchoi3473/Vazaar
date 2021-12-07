@@ -21,7 +21,7 @@ import VerifySuccessful from './pages/authenticate/VerifySuccessful';
 function App() {
   return (
     <div className="App">
-      <HashRouter>
+      <BrowserRouter>
           <Switch>
             <Route path = "/sign-in" component = {SignIn}/>
             <Route path = "/sign-up" component = {SignUp}/>
@@ -45,7 +45,7 @@ function App() {
             <Route path = "*" component = {Error404}/>
 
           </Switch>
-        </HashRouter>
+        </BrowserRouter>
     </div>
   );
 }
