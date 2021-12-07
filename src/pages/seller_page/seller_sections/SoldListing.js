@@ -74,7 +74,7 @@ function SoldListing(props){
                                         <Post key = {index} item = {item} />
                                         <div className ="Vazaar-MarkSold-Container" onClick ={()=>onClickUnSold(item)}>
                                             <div className ="Vazaar-MarkSold">
-                                                Item Unsold
+                                                Mark Unsold
                                             </div>
                                         </div>
                                         </div>

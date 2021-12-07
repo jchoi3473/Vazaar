@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import { BrowserRouter, Route, Switch, Redirect, withRouter } from 'react-router-dom';
+import { BrowserRouter,HashRouter, Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import WebFont from 'webfontloader';
 
 import './App.css';
