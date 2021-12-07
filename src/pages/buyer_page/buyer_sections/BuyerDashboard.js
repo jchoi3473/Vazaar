@@ -55,14 +55,16 @@ function Buyer_Dashboard(props){
                         {
                         recentItems.length>0?
                         <div style = {{width:'100%', height:'100%'}}>
-                            <div style = {{width:'100%', height:'95%', overflowY:'scroll', display:'flex', flexWrap:'wrap'}}>
+                            <div style = {{width:'100%', height:'85%', overflowY:'scroll', display:'flex', flexWrap:'wrap'}}>
                                 {recentItems.map((item, index) =>(
                                     <img onClick = {()=>onClickImage(item)} style ={{marginLeft:'20px', cursor:'pointer'}} width = '200' height = '200' src = {"https://vazaar.herokuapp.com/img/items/"+item.imageCover}  alt = ""/>
                                 ))
                                 }             
                             </div>
-                            <div className = "Vazaar-Dashboard-ViewMore" onClick = {() => onClickView()}>
-                                <BlueButton text="View More" width="120px" height="47px" />                                
+                            <div style = {{paddingLeft: "65%"}}>
+                                <div className = "Vazaar-Dashboard-ViewMore" onClick = {() => onClickView()}>
+                                    <BlueButton text="View More" width="120px" height="47px" />       
+                                </div>                                 
                             </div>        
                         </div>
                         :
