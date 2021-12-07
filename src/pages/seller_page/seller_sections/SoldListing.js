@@ -84,7 +84,7 @@ function SoldListing(props){
                                     </>:
                                     <div>
                                         <img  src={EmptyBox} alt = "Empty" style ={{height:'200px', width:'200px'}}/>
-                                        <div style = {{fontSize:'20px', fontFamily:'Roboto', color:'#7D9EB5', marginTop:'10px'}}>
+                                        <div style = {{fontSize:'32px', fontFamily:'Roboto', color:'#7D9EB5', marginTop:'10px'}}>
                                         You don't have any sold items.
                                         </div>
                                     </div>
