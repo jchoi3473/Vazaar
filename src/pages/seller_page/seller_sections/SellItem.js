@@ -73,9 +73,9 @@ const FormTextField = styled(TextField)(({ theme }) => ({
 }));
 
 function SellItem(props) {
-  const [category, setCategory] = useState();
-  const [condition, setCondition] = useState();
-  const [delivery, setDelivery] = useState();
+  const [category, setCategory] = useState('');
+  const [condition, setCondition] = useState('');
+  const [delivery, setDelivery] = useState("No");
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
   const [year, setYear] = useState(0);
@@ -138,6 +138,14 @@ function SellItem(props) {
       images,
       category
     );
+    if(category===''){
+      alert("You must choose the category");
+      return;
+    }
+    if(condition===''){
+      alert("You must choose the condition");
+      return;
+    }
     const result = await authenticateUser(localStorage.getItem('vazaar-jwt-token'))
     if(response.status ==='success'){
       setCategory()
