@@ -134,7 +134,7 @@ function SignUp(props) {
       history.push("verify");
     }else{
       setWarning("Please check if all fields are filled correctly.")
-      return;
+      // return;
     }
   };
 

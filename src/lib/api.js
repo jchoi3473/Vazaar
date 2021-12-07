@@ -21,12 +21,21 @@ export const signUP = async function (
     password: password,
     passwordConfirm: passwordConfirm,
   };
-  const response = await axios.post(
-    "https://vazaar.herokuapp.com/api/v1/users/signup",
-    userInfo
-  );
-  console.log(response)
-  return response.status === 201 ? response.data : "error";
+  try{
+    const response = await axios.post(
+      "https://vazaar.herokuapp.com/api/v1/users/signup",
+      userInfo
+    ); 
+    if(response.status === 201){
+      return response.data
+    }
+    return;
+  
+  }catch(error){
+    return error
+  }
+  
+  // return response.status === 201 ?  : "error";
   //need to do something so that we can validate user(correctness)
 
 };
