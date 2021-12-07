@@ -165,7 +165,7 @@ function SellItem(props) {
           <div className="Vazaar-SellItem-Form-SecondTitle">
             {"Attach at least 2 images in .JPEG or .PNG format only. The first image will be used as the cover photo."}
           </div>
-          <UploadPicture setUploadImages={setUploadImages} />
+          <UploadPicture images = {images} setUploadImages={setUploadImages} />
         </div>
         <div style={{ padding: "20px" }}>
           <div className="Vazaar-SellItem-Form-SecondTitle">DESCRIPTION*</div>

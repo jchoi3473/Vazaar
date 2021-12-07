@@ -41,7 +41,7 @@ function Buyer_Dashboard(props){
     return(
         <div style = {{height: '100%', paddingRight:'50px'}}>
 
-            <div style = {{paddingBottom: "20px"}}></div>
+            {/* <div style = {{paddingBottom: "20px"}}></div> */}
 
             <div style = {{height: '100%', display: 'flex', width:'100%', justifyContent:'space-between'}}>
                 <div style = {{width: '45%'}}>

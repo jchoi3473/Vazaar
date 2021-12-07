@@ -89,7 +89,7 @@ function Item(props){
     return(
         <div className = "Vazaar-Item-Container">
             <div className = "Vazaar-Item-Left">
-                <div className = "Vazaar-Item-Picture-Container" style = {{height: '73%'}}>
+                <div className = "Vazaar-Item-Picture-Container" style = {{height: '500px'}}>
                 <div className = "Vazaar-Item-Description-Title">
                         Images
                 </div>
@@ -229,7 +229,7 @@ function Item(props){
                             Note:
                             </div>
                             <div className = "Vazaar-Item-Note-body" >
-                                If the seller does not provide delivery services, then the buyer has the option of proposing a delivery add-on fee. However, the seller may reject the offer. 
+                            Contact the seller in order to discuss the purchase method and to further discuss the product.
                             </div>
                         </div>
                 </div>

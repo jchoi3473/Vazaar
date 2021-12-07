@@ -7,7 +7,6 @@ function UploadPicture(props) {
 
   const onChange = (imageList, addUpdateIndex) => {
     // data for submit
-    console.log(imageList, addUpdateIndex);
     setImages(imageList);
     props.setUploadImages(imageList);
   };
@@ -16,7 +15,7 @@ function UploadPicture(props) {
     <div>
       <ImageUploading
         multiple
-        value={images}
+        value={props.images}
         onChange={onChange}
         maxNumber={maxNumber}
         dataURLKey="data_url"
