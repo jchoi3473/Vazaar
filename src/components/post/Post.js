@@ -55,6 +55,8 @@ function Post(props){
     }
     return(
         <div className = "Vazaar-Post-Container" >
+            <div className = "Vazaar-Post-View" onClick = {handleOpen}>View</div>
+            <div style = {{zIndex:'1', marginTop:'-45px'}}>
             <div className = "Vazaar-Post-Image-Container" onMouseEnter = {() => setHover(true)} onMouseLeave = { () => setHover(false)}>
 
                 <img style ={{position: "relative", zIndex : "1"}} src={"https://vazaar.herokuapp.com/img/items/"+props.item.imageCover} width="432" height ="290"/>
@@ -103,8 +105,8 @@ function Post(props){
                 </div>
                 {/* <div style = {{position:"relative"}}> */}
                     {/* <img  className = "Vazaar-Heart" style ={{height:"30px"}} src={Heart}/> */}
-                    <div className = "Vazaar-Post-View" onClick = {handleOpen}>View</div>
                 {/* </div> */}
+            </div>
             </div>
             <Modal
                 open={open}
