@@ -113,13 +113,14 @@ function BrowseAllListings(props){
     }
 
     const onClickSearchPrice = (event) =>{
-        if(maxPrice <= minPrice){
+        if(parseInt(maxPrice) <= parseInt(minPrice)){
             alert("Please insert correct price range.")
             setMinPrice(0)
             setMaxPrice(0)
             onClickReset()
             return
         }
+
         const data = getAllListings(props.type, 1, 20, sortString, minPrice, maxPrice, searchText).then(response => {
             // setLoaded(true);
             setTotalNumPages(response.totalPageNumber)

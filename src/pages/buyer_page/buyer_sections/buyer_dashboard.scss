@@ -4,6 +4,7 @@
     background-color: white;
     height: 80%;
     padding: 10px;
+    min-height: 540px;
 }
 
 .Vazaar-Buyer-Header{
@@ -25,8 +26,11 @@
 }
 .Vazaar-Dashboard-ViewMore{
     position: relative;
-    // bottom: 40px;
-    // left: 85%;
-    // z-index: 10;
-    width: 120px;
+    // top: 85%;
+    text-align: right;
+    // left: 75%;
+    // padding-right: 50px;
+    bottom: -87%;
+    z-index: 10;
+    width: 98%;
 }
